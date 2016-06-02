@@ -1,8 +1,8 @@
 ---
 date: 2016-01-10 15:20:09 +0200
 image: "/img/logo_yippie.svg"
-background_color: "#957070"
-font_color: "#ffffff"
+background_color: "#FFCD5E"
+font_color: "#000000"
 type: "card-right"
 ---
-## **OBA Brasil iPhone and iPad app launched. 23% growth in booking during next 5 weeks**
+## **Belvilla search engine List of supported platforms for Belvilla search engine and the impact that we achived**
