@@ -5,6 +5,6 @@ background_color: "#2a96ff"
 font_color: "#FF0000"
 type: "card-left"
 ---
-### **Money remittance platform **
+### **Money remittance platform**
 
 Mauris non tempor quam, et lacinia sapien. Mauris accumsan eros eget libero.
