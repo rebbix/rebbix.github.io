@@ -2,7 +2,7 @@
 ---
 date: 2015-03-01 15:20:09 +0200
 image: "/img/logo_yippie_.svg"
-background_color: "#CCCCCC"
+background_color: "#FFCD5E"
 font_color: "#FFFFFF"
 type: "card-left"
 ---
