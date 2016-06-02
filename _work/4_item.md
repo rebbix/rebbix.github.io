@@ -5,6 +5,4 @@ background_color: "#a7daeb"
 font_color: "#111111"
 type: "card-left"
 ---
-### **Yippie reaches 100k users**
-
-Mauris non tempor quam, et lacinia sapien. Mauris accumsan eros eget libero.
+### **Dopomgli zarelіzitis i pіdnyati sіd at Key infrastructure s bootcamp zapitati Gosha chi schos slit Bulo**
