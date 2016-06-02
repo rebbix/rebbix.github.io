@@ -1,6 +1,6 @@
 ---
 date: 2010-11-17 15:20:09 +0200
-//background_image: "/img/pic_office.png"
+background_image: "/img/pic_office_.png"
 background_color: "#85BC49"
 font_color: "#ffffff"
 type: "wide"
