@@ -5,4 +5,4 @@ background_color: "#ffffff"
 font_color: "#111111"
 type: "card-right"
 ---
-# *~~Pivot~~. We start strategic partnership with Jack Dorsey to improve Twitter performance*
+# *~~Partnership with Nravo~~. We developed several games with a leading game development company*
