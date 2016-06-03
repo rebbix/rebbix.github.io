@@ -1,6 +1,6 @@
 ---
 date: 2013-09-17 15:20:09 +0200
-image: "/img/pic_pivot.png"
+image: "/img/work_rebbix_labs@2x.png"
 background_color: "#FAFAFA"
 font_color: "#111111"
 type: "card-left"
