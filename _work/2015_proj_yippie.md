@@ -5,4 +5,4 @@ background_color: "#2A96FF"
 font_color: "#FFFFFF"
 type: "card-left"
 ---
-### **Dopomgli zarelіzitis i pіdnyati sіd at Key infrastructure s bootcamp zapitati Gosha chi schos slit Bulo**
+# **Dopomgli zarelіzitis i pіdnyati sіd at Key infrastructure s bootcamp zapitati Gosha chi schos slit Bulo**
