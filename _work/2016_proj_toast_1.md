@@ -1,6 +1,6 @@
 ---
 date: 2016-01-17 15:20:09 +0200
-image: "/img/logo_yippie.svg"
+image: "/img/work_toast_logo120.svg"
 background_color: "#2E75BC"
 font_color: "#FFFFFF"
 type: "card-left"
