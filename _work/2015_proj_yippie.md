@@ -1,6 +1,6 @@
 ---
 date: 2015-10-17 15:20:09 +0200
-image: "/img/logo_yippie.svg"
+image: "/img/work_yippie_logo80.svg"
 background_color: "#a7daeb"
 font_color: "#111111"
 type: "card-left"
