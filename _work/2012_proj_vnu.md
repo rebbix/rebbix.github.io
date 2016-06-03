@@ -1,6 +1,6 @@
 ---
 date: 2012-03-01 15:20:09 +0200
-image: "/img/logo_yippie.svg"
+image: "/img/work_vnu_logo80@2x.png"
 background_color: "#003CC7"
 font_color: "#FFFFFF"
 type: "card-left"
