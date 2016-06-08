@@ -1,3 +1,4 @@
+$mobile_break_point : 768px;
 .card {
   &__wrap {
     background-size: cover;
@@ -10,11 +11,21 @@
     max-width: 1140px;
     padding: 100px 120px 0 120px;
     margin: 0 auto;
+
+    @media (max-width: $mobile_break_point) {
+      padding: 0 22px;
+      max-width: 100%;
+      margin: 20px auto;
+    }
   }
 
   &_left &__wrap,
   &_right &__wrap {
     margin-bottom: 100px;
+
+    @media (max-width: $mobile_break_point) {
+      margin-bottom: 22px;
+    }   
   }
 
   &_card-left &__wrap,
@@ -22,38 +33,82 @@
     margin-bottom: 100px;
     padding: 40px 100px 40px 40px;
     border-radius: 5px;
+
+    @media (max-width: $mobile_break_point) {
+      padding: 22px;
+    }
+  }
+
+  &_person &__wrap &__content &__label {
+    @media (max-width: $mobile_break_point) {
+      display: inline-block;
+      float: right;
+    }
   }
 
   &_left &__wrap,
   &_card-left &__wrap {
     float: left;
     margin-right: 30px;
+
+    @media (max-width: $mobile_break_point) {
+      float: none;
+      margin: 0;
+    }
   }
 
   &_right &__wrap,
   &_card-right &__wrap {
     float: right;
     margin-left: 30px;
+
+    @media (max-width: $mobile_break_point) {
+      float: none;
+      margin: 0;
+    }
   }
 
   &_card-left &__wrap {
     width: 420px;
+
+    @media (max-width: $mobile_break_point) {
+      width: auto;
+    }
   }
+
   &_card-right &__wrap {
     width: 380px;
+
+    @media (max-width: $mobile_break_point) {
+      width: auto;
+    }
   }
 
   &_left &__wrap {
     width: 540px;
+
+    @media (max-width: $mobile_break_point) {
+      width: auto;
+    }
   }
+
   &_right &__wrap {
     width: 540px;
+
+    @media (max-width: $mobile_break_point) {
+      width: auto;
+    }
   }
 
   &_left &__content > iframe:not(.instagram-media),
   &_right &__content > iframe:not(.instagram-media) {
     height: 300px;
     width: 540px;
+
+    @media (max-width: $mobile_break_point) {
+      width: 100%;
+      height: auto;
+    }
   }
 
   &_wide {
@@ -70,11 +125,22 @@
     max-width: 580px;
     overflow: hidden;
 
+    @media (max-width: $mobile_break_point) {
+      max-width: 100%;
+      overflow: visible;
+    }
+
     h1 {
       margin: 20px 0;
       line-height: 42px;
       font-weight: 400;
       font-size: 40px;
+
+      @media (max-width: $mobile_break_point) {
+        margin: 10px 0;
+        font-size: 27px;
+        line-height: 30px;
+      }
     }
 
     h2 {
@@ -82,6 +148,11 @@
       line-height: 34px;
       font-weight: 400;
       font-size: 36px;
+
+      @media (max-width: $mobile_break_point) {
+        font-size: 32px;
+        line-height: 32px;
+      }
     }
 
     h3 {
@@ -96,6 +167,12 @@
       line-height: 30px;
       font-weight: 400;
       font-size: 23px;
+
+      @media (max-width: $mobile_break_point) {
+        margin: 10px 0;
+        font-size: 20px;
+        line-height: 27px;
+      }
     }
 
     h1 em,
@@ -119,6 +196,10 @@
 
   &__img {
     margin-bottom: 40px;
+
+    @media (max-width: $mobile_break_point) {
+      margin-bottom: 20px;
+    }
   }
 
   &__label {
@@ -132,6 +213,13 @@
     margin-right: 40px;
     height: 120px;
     width: 120px;
+
+    @media (max-width: $mobile_break_point) {
+      width: 60px;
+      height: 60px;
+      margin-right: 15px;
+      margin-bottom: 10px;
+    }
   }
 
   &__name {
@@ -139,6 +227,12 @@
     margin-bottom: 20px;
     line-height: 23px;
     font-size: 23px;
+
+    @media (max-width: $mobile_break_point) {
+      font-size: 20px;
+      line-height: 29px;
+      margin-bottom: 2px;
+    }
   }
 
   &__position {
@@ -147,6 +241,12 @@
     line-height: 25px;
     font-size: 25px;
     color: #80b744;
+
+    @media (max-width: $mobile_break_point) {
+      font-size: 20px;
+      line-height: 29px;
+      margin-bottom: 5px;
+    }
   }
 
   &__link {
@@ -164,8 +264,27 @@
     &_linkedin {
       background-image: url("/img/icon_linkedin.svg");
     }
+
     &_github {
       background-image: url("/img/icon_github.svg");
     }
   }
 }
+
+.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe[style] {
+  width: 100% !important;
+  overflow:hidden;
+}
+
+.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe .plugin .chrome .webkit .mac .x1 .Locale_en_GB .pluginSkinLight .pluginFontHelvetica .userContentWrapper ._5pcr ._3x-2 ._2a2q {
+  width:100%;
+}
+
+.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe .plugin .chrome .webkit .mac .x1 .Locale_en_GB .pluginSkinLight .pluginFontHelvetica .userContentWrapper ._5pcr ._3x-2 ._2a2q ._5dec ._xcx #u_0_3[style]
+{
+  width: 30%;
+}
+
+
+
+

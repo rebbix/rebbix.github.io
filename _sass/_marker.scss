@@ -57,3 +57,10 @@
     }
   }
 }
+
+$mobile_break_point : 768px;
+@media (max-width: $mobile_break_point) {
+  .marker {
+    display: none;
+  }
+}

@@ -1,6 +1,7 @@
 ---
 date: 2009-07-17 15:20:09 +0200
-image: "/img/work_rebbix_ceo120@2x.png"
+image: "/img/work_rebbix_ceo120.png"
+image2x: "/img/work_rebbix_ceo120@2x.png 2x"
 background_color: "#FAFAFA"
 font_color: "#111111"
 type: "left"

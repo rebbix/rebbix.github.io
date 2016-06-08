@@ -10,7 +10,7 @@ permalink: /life
       background-image:url({{ item.background_image }});
       color:{{ item.font_color }};">
       {% if item.image %}
-        <img class="card__img" src="{{ item.image }}"/>
+        <img class="card__img" src="{{ item.image }}" width="{{ item.image_width }}"/>
       {% endif %}
       {% if item.content %}
         <div class="card__content">{{ item.content }}</div>

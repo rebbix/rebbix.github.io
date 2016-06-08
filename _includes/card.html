@@ -1,4 +1,4 @@
-<div class="card card_{{ item.type }}" data-year="{{ item.date | date: "%Y" }}">
+<div class="card card_{{ item.type }}{% if item.position %} card_person{% endif %}" data-year="{{ item.date | date: "%Y" }}">
   <div class="card__wrap" style="
     {% if item.background_color %}background-color:{{ item.background_color }};{% endif %}
     {% if item.background_image %}background-image:url({{ item.background_image }});{% endif %}
@@ -8,7 +8,7 @@
       <img class="card__avatar" src="{{ item.avatar }}"/>
     {% endif %}
     {% if item.image %}
-      <img class="card__img" src="{{ item.image }}"/>
+      <img class="card__img" src="{{ item.image }}"{% if item.image2x %} srcset="{{item.image2x}}" {% endif %} width="{{item.image_width}}"/>
     {% endif %}
     <div class="card__content">
       {% if item.name %}

@@ -1,6 +1,8 @@
 ---
 date: 2012-03-01 15:20:09 +0200
-image: "/img/work_kasta_logo80@2x.png"
+image: "/img/work_kasta_logo80.png"
+image2x: "/img/work_kasta_logo80@2x.png 2x"
+image_width: "100%"
 background_color: "#E863A4"
 font_color: "#FFFFFF"
 type: "card-left"

@@ -1,3 +1,4 @@
+$mobile_break_point : 768px;
 .header {
   padding: 0 120px;
   margin: 100px auto;
@@ -8,6 +9,14 @@
   font-size: 35px;
   color: #111;
 
+  @media (max-width: $mobile_break_point) {
+    padding: 0;
+    margin: 117px 20px 40px 20px;
+    font-size: 27px;
+    line-height: 30px;
+    letter-spacing: -.13px;
+  }
+
   &__nav {
     padding: 0;
     margin: 80px 0 0;
@@ -16,6 +25,22 @@
     font-family: "acumin-pro";
     font-size: 23px;
     color: #222;
+
+    @media (max-width: $mobile_break_point) {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin: 0 auto;
+      overflow: scroll;
+      z-index: 1; 
+      transform: translateZ(0);
+      text-align: center;
+      line-height: 16px;
+      font-size: 16px;
+      border-bottom:1px solid #EEEEEE;
+      background-color: #fff;
+    }
   }
 
   &__nav-item {
@@ -24,8 +49,18 @@
     cursor: pointer;
     color: #aaa;
 
+    @media (max-width: $mobile_break_point) {
+      width: 25%;
+      padding: 17px 0 10px 0;
+      margin: 0;
+    }
+
     & + & {
       margin-left: 50px;
+
+      @media (max-width: $mobile_break_point) {
+        margin-left: 0;
+      }
     }
 
     &:hover,
@@ -37,5 +72,11 @@
   &__logo {
     margin-top: 80px;
     float: right;
+
+    @media (max-width: $mobile_break_point) {
+      display: block;
+      float: none;
+      margin-top: 25px;
+    }
   }
 }
