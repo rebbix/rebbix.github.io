@@ -113,11 +113,20 @@ $mobile_break_point : 768px;
 
   &_wide {
     clear: both;
+
+    @media (max-width: $mobile_break_point) {
+      padding: 22px;
+    }
   }
 
   &_wide &__wrap {
     padding: 400px 100px 40px;
     text-align: center;
+
+    @media (max-width: $mobile_break_point) {
+      width:100%;
+      padding: 20px;
+    }
   }
 
   &__content {
@@ -270,21 +279,6 @@ $mobile_break_point : 768px;
     }
   }
 }
-
-.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe[style] {
-  width: 100% !important;
-  overflow:hidden;
-}
-
-.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe .plugin .chrome .webkit .mac .x1 .Locale_en_GB .pluginSkinLight .pluginFontHelvetica .userContentWrapper ._5pcr ._3x-2 ._2a2q {
-  width:100%;
-}
-
-.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe .plugin .chrome .webkit .mac .x1 .Locale_en_GB .pluginSkinLight .pluginFontHelvetica .userContentWrapper ._5pcr ._3x-2 ._2a2q ._5dec ._xcx #u_0_3[style]
-{
-  width: 30%;
-}
-
 
 
 
