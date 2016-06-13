@@ -115,7 +115,7 @@ $mobile_break_point : 768px;
     clear: both;
 
     @media (max-width: $mobile_break_point) {
-      padding: 22px;
+      padding: 0px;
     }
   }
 
@@ -124,7 +124,6 @@ $mobile_break_point : 768px;
     text-align: center;
 
     @media (max-width: $mobile_break_point) {
-      width:100%;
       padding: 20px;
     }
   }
