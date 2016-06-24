@@ -4,7 +4,7 @@ label: "Joined August 2012"
 avatar: "/img/pic_serhiy.jpg"
 link_linkedin: "https://ua.linkedin.com/in/mivanyshyn"
 name: "Marta Ivanyshyn"
-position: "Developer"
+position: "QA"
 font_color: "#222"
 type: "right"
 ---
