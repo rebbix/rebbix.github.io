@@ -1,10 +1,10 @@
 ---
 date: 2016-01-16 15:20:09 +0200
-label: "Joined October 2015"
+label: "Joined March 2012"
 avatar: "/img/pic_serhiy.jpg"
-link_linkedin: "http://upyachka.ru"
-link_github: "http://upyachka.ru"
-name: "Robert D'Niro"
+link_linkedin: "https://ua.linkedin.com/in/soplakanets"
+link_github: "https://github.com/soplakanets"
+name: "Serhiy Oplakanets"
 position: "Sinior Pomidor"
 font_color: "#222"
 type: "right"
