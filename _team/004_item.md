@@ -6,4 +6,4 @@ background_color: "#f2f2f2"
 font_color: "#222"
 type: "card-right"
 ---
-## “Rebbix is hell of a journey I enjoy it so much! Yep, thats my quote”
+## “Best company ever”
