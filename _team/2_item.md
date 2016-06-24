@@ -5,7 +5,7 @@ avatar: "/img/pic_serhiy.jpg"
 link_linkedin: "https://ua.linkedin.com/in/soplakanets"
 link_github: "https://github.com/soplakanets"
 name: "Serhiy Oplakanets"
-position: "Developer"
+position: "CTO"
 font_color: "#222"
 type: "right"
 ---
