@@ -1,10 +1,9 @@
 ---
 date: 2014-01-17 15:20:09 +0200
-label: "Joined October 2015"
+label: "Joined March 2012"
 avatar: "/img/pic_serhiy.jpg"
-link_linkedin: "http://upyachka.ru"
-link_github: "http://upyachka.ru"
-name: "Robert D'Niro"
+link_github: "https://github.com/laggyluke"
+name: "Georgii Miroshnikov"
 position: "Developer"
 font_color: "#222"
 type: "left"
