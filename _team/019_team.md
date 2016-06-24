@@ -8,4 +8,3 @@ position: "Developer"
 font_color: "#222"
 type: "right"
 ---
-	-		
