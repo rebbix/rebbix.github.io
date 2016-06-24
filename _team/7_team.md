@@ -1,12 +1,11 @@
 ---
-date: 2014-01-15 15:20:09 +0200
-label: "Joined October 2015"
+date: 2012-03-01 15:20:09 +0200
+label: "Joined March 2012"
 avatar: "/img/pic_serhiy.jpg"
-link_linkedin: "http://upyachka.ru"
-link_github: "http://upyachka.ru"
-name: "Robert D'Niro"
+link_linkedin: "https://ua.linkedin.com/in/taras-voitovych-63aa5b23"
+link_github: "https://github.com/Tararasik"
+name: "Taras Voitovych"
 position: "Developer"
 font_color: "#222"
 type: "left"
 ---
-Some words about what George is involved in, what are his hobbies in tech and life. Expeirence with clients like.
