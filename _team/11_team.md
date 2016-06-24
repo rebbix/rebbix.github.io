@@ -4,7 +4,7 @@ label: "Joined April 2012"
 avatar: "/img/pic_serhiy.jpg"
 link_linkedin: "https://ua.linkedin.com/in/amayboroda
 name: "Nastia Mayboroda"
-position: "QC"
+position: "QA"
 font_color: "#222"
 type: "right"
 ---
