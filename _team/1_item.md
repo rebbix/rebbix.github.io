@@ -8,4 +8,3 @@ position: "CEO"
 font_color: "#222"
 type: "left"
 ---
-Some words about what George is involved in, what are his hobbies in tech and life. Expeirence with clients like.
