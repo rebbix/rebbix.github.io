@@ -1,7 +1,9 @@
 var coordsCards = []
 var $cards = document.querySelectorAll('.card_embed-facebook')
 
+
 window.addEventListener('load', function() {
+  window.addEventListener('scroll', arrange)
   coordsCards = getCardsCoordinates()
   if(typeof $cards.dataset !== "undefined") {
     $cards[0].dataset.loaded = true;
@@ -16,7 +18,7 @@ window.addEventListener('load', function() {
    }    
 })
 
-window.addEventListener('scroll', arrange)
+
 window.addEventListener('resize', function() {
   coordsCards = getCardsCoordinates()
   arrange()
@@ -26,7 +28,7 @@ window.addEventListener('resize', function() {
 function arrange() { 
   var scrollTop = document.body.scrollTop;
   var content = document.querySelector('.content').scrollTop;
-
+  console.log('dd');
   for (var i = 0; i < coordsCards.length; i++) {
     if (coordsCards[i].top  >= scrollTop && coordsCards[i].top <= scrollTop + window.innerHeight) {
 
@@ -39,6 +41,7 @@ function arrange() {
         $cards[i].querySelector('.card__content').appendChild(iframe)
         iframe.addEventListener('load', function() {
           coordsCards = getCardsCoordinates()
+          // var v = document.querySelector('._5pcb _5tmf _5p3y _50f3').setAttribute('margin', 0 auto);
         })
       }
     }

@@ -105,10 +105,12 @@ $mobile_break_point : 768px;
     margin: 0 auto;
   }
 
+
   &_left &__content > iframe:not(.instagram-media),
   &_right &__content > iframe:not(.instagram-media) {
     width: 540px;
     border: none;
+    min-height: 300px;
 
     @media (max-width: $mobile_break_point) {
       width: 100%;
