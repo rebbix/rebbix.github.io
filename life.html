@@ -4,27 +4,10 @@ permalink: /life
 ---
 <div class="content">
   {% for item in site.life reversed %}
-  <div class="card card_{{ item.type }}" data-year="{{ item.date | date: "%Y" }}">
-    <div class="card__wrap" style="
-      background-color:{{ item.background_color }};
-      background-image:url({{ item.background_image }});
-      color:{{ item.font_color }};">
-      {% if item.image %}
-        <img class="card__img" src="{{ item.image }}" width="{{ item.image_width }}"/>
-      {% endif %}
-      {% if item.content %}
-        <div class="card__content">{{ item.content }}</div>
-      {% endif %}
-    </div>
-  </div>
+  {% include card.html item=item %}
   {% endfor %}
 </div>
 
 <div id="fb-root"></div>
 <script async defer src="//platform.instagram.com/en_US/embeds.js"></script>
 <script async src="//platform.twitter.com/widgets.js"></script>
-<script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5&appId=230676180385849";
-  fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
-</script>

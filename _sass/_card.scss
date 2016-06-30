@@ -11,6 +11,7 @@ $mobile_break_point : 768px;
     max-width: 1140px;
     padding: 100px 120px 0 120px;
     margin: 0 auto;
+    min-height: 300px;
 
     @media (max-width: $mobile_break_point) {
       padding: 0 22px;
@@ -100,9 +101,15 @@ $mobile_break_point : 768px;
     }
   }
 
+  &_left &__content >.twitter-tweet,
+  &_right &__content >.twitter-tweet {
+    margin: 0 auto;
+  }
+
   &_left &__content > iframe:not(.instagram-media),
   &_right &__content > iframe:not(.instagram-media) {
     width: 540px;
+    border: none;
 
     @media (max-width: $mobile_break_point) {
       width: 100%;

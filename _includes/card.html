@@ -1,4 +1,4 @@
-<div class="card card_{{ item.type }}{% if item.position %} card_person{% endif %}" data-year="{{ item.date | date: "%Y" }}">
+<div class="card card_{{ item.type }}{% if item.position %} card_person{% endif %}{% if item.embed == 'facebook' %} card_embed-facebook{% endif %}" data-year="{{ item.date | date: "%Y" }}" data-embed-url="{{item.embed_url}}" data-embed-width="{{item.embed_width}}" data-embed-height="{{item.embed_height}}">
   <div class="card__wrap" style="
     {% if item.background_color %}background-color:{{ item.background_color }};{% endif %}
     {% if item.background_image %}background-image:url({{ item.background_image }});{% endif %}
