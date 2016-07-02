@@ -105,7 +105,6 @@ $mobile_break_point : 768px;
     margin: 0 auto;
   }
 
-
   &_left &__content > iframe:not(.instagram-media),
   &_right &__content > iframe:not(.instagram-media) {
     width: 540px;
@@ -283,6 +282,19 @@ $mobile_break_point : 768px;
       background-image: url("/img/icon_github.svg");
     }
   }
+}
+
+.instagram-media {
+  background:#FFF; 
+  border:0; 
+  border-radius:3px; 
+  box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); 
+  margin: 1px; 
+  max-width:658px; 
+  padding:0; 
+  width:99.375%; 
+  width:-webkit-calc(100% - 2px); 
+  width:calc(100% - 2px);
 }
 
 
