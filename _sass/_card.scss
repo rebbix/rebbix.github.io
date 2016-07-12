@@ -109,7 +109,6 @@ $mobile_break_point : 768px;
   &_right &__content > iframe:not(.instagram-media) {
     width: 540px;
     border: none;
-    min-height: 300px;
 
     @media (max-width: $mobile_break_point) {
       width: 100%;
@@ -285,16 +284,17 @@ $mobile_break_point : 768px;
 }
 
 .instagram-media {
+  width:calc(100% - 2px);
+  width:99.375%; 
+  width:-webkit-calc(100% - 2px); 
+  max-width:658px; 
+  margin: 1px; 
+  padding:0; 
   background:#FFF; 
   border:0; 
   border-radius:3px; 
   box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); 
-  margin: 1px; 
-  max-width:658px; 
-  padding:0; 
-  width:99.375%; 
-  width:-webkit-calc(100% - 2px); 
-  width:calc(100% - 2px);
+  min-height: 500px;
 }
 
 

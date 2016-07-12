@@ -1,11 +1,10 @@
 var coordsCards = []
-var $cards = document.querySelectorAll('.card_embed-facebook, .card_embed-youtube, .card_embed-instagram')
+var $cards = document.querySelectorAll('.card_embed-facebook, .card_embed-youtube, .card_embed-instagram, .card_embed-twitter')
 window.addEventListener('scroll', arrange)
 
 window.addEventListener('load', function() {
-  // window.addEventListener('scroll', arrange)
   coordsCards = getCardsCoordinates()
-  if(typeof $cards[0].dataset !== "undefined") {
+  if(!$cards[0].dataset.loaded) {
     $cards[0].dataset.loaded = true;
     addPost($cards[0])
   }
@@ -36,6 +35,7 @@ function getCardsCoordinates() {
   for (var i = 0; i < $cards.length; i++) {
     var $card = $cards[i]
     var rect = $card.getBoundingClientRect()
+    // console.log(rect.top);
 
     coords.push({
       $card: $card
@@ -46,7 +46,9 @@ function getCardsCoordinates() {
 }
 
 function addPost(card) {
+
   if(card.className.indexOf('card_embed-instagram') > -1) {
+
     var blockquote = document.createElement('blockquote')
     blockquote.classList.add('instagram-media')
     blockquote.dataset.instgrmCaptioned = true
@@ -59,6 +61,26 @@ function addPost(card) {
     script.type = 'text/javascript';
     script.src = "//platform.instagram.com/en_US/embeds.js"
     card.querySelector('.card__content').appendChild(script)
+    window.instgrm.Embeds.process()
+    coordsCards = getCardsCoordinates()
+  }
+
+  else if(card.className.indexOf('card_embed-twitter') > -1) {
+    var blockquote = document.createElement('blockquote')
+    blockquote.classList.add('twitter-tweet')
+    blockquote.dataset.lang = "en"
+    var link = document.createElement('a')
+    link.setAttribute('href', card.dataset.embedUrl)
+    blockquote.appendChild(link)
+    card.querySelector('.card__content').appendChild(blockquote)
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+    script.src = "//platform.twitter.com/widgets.js"
+    card.querySelector('.card__content').appendChild(script)
+    card.addEventListener('load', function (){
+      coordsCards = getCardsCoordinates()
+    })
+    
   }
   else
   {
@@ -69,7 +91,6 @@ function addPost(card) {
     card.querySelector('.card__content').appendChild(iframe)
     iframe.addEventListener('load', function() {
     coordsCards = getCardsCoordinates()
-      // document.querySelector('._5pcb _5tmf _5p3y _50f3').setAttribute('margin', 0 auto);
     })
   }
 }
