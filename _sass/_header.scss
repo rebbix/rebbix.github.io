@@ -4,9 +4,9 @@ $mobile_break_point : 768px;
   margin: 100px auto;
   max-width: 1120px;
   letter-spacing: -.17px;
-  line-height: 37px;
-  font-family: "chaparral-pro";
-  font-size: 35px;
+  line-height: 53px;
+  font-family: "acumin-pro";
+  font-size: 40px;
   color: #111;
 
   @media (max-width: $mobile_break_point) {
@@ -18,13 +18,21 @@ $mobile_break_point : 768px;
   }
 
   &__nav {
-    padding: 0;
-    margin: 80px 0 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 37px;
+    padding-bottom: 10px;
+    overflow: scroll;
+    z-index: 1; 
+    text-align: center;
     list-style: none;
-    line-height: 28px;
+    line-height: 23px;
     font-family: "acumin-pro";
-    font-size: 23px;
+    font-size: 20px;
     color: #222;
+    background-color: #fff;
 
     @media (max-width: $mobile_break_point) {
       width: 100%;
@@ -32,6 +40,7 @@ $mobile_break_point : 768px;
       top: 0;
       left: 0;
       margin: 0 auto;
+      padding-top: 10px;
       overflow: scroll;
       z-index: 1; 
       transform: translateZ(0);
@@ -48,9 +57,9 @@ $mobile_break_point : 768px;
     text-decoration: none;
     cursor: pointer;
     color: #aaa;
-
+    
     @media (max-width: $mobile_break_point) {
-      width: 25%;
+      width: 20%;
       padding: 17px 0 10px 0;
       margin: 0;
     }
@@ -65,18 +74,32 @@ $mobile_break_point : 768px;
 
     &:hover,
     &_active {
-      color: #333;
+      color: #85BC49;
     }
   }
 
   &__logo {
     margin-top: 80px;
-    float: right;
+    display: block;
+    margin-bottom: 20px;
+    width:123px;
+    height: 50px;
 
     @media (max-width: $mobile_break_point) {
       display: block;
       float: none;
       margin-top: 25px;
+    }
+  }
+
+  &__small-text {
+    margin-top: 50px;
+    font-size: 30px;
+    line-height: 45px;
+
+    @media (max-width: $mobile_break_point) {
+      font-size: 20px;
+      line-height: 23px;
     }
   }
 }

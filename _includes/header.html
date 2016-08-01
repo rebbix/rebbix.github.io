@@ -1,12 +1,14 @@
 <header class="header">
-  Rebbix is a startup studio building tomorrow's companies. 
-  Together with entrepreneurs, we turn unique ideas into successful companies used by thousands.
-  We act as the perfect co-founder to build strong and independent startups.
+ <img class="header__logo" src="{{ '/img/logo_rebbix.svg' | prepend:site.baseurl }}"/>
+ Software development company experienced in building web and mobile products ranging from 
+ startups to high load platforms with tenth of millions of active users. 
+ <div class="header__small-text">Our domain expertise includes building online marketplaces, travel & 
+  accommodation services, social and data products.</div>
   <nav class="header__nav">
     <a href="{{'/' | prepend:site.baseurl }}" class="header__nav-item{% if page.url == '/' %} header__nav-item_active{% endif %}">Work</a><!--
+ --><a href="{{ '/approach' | prepend:site.baseurl }}" class="header__nav-item{% if page.url == '/approach' %} header__nav-item_active{% endif %}">Approach</a><!--
  --><a href="{{ '/team' | prepend:site.baseurl }}" class="header__nav-item{% if page.url == '/team' %} header__nav-item_active{% endif %}">Team</a><!--
  --><a href="{{ '/life' | prepend:site.baseurl }}" class="header__nav-item{% if page.url == '/life' %} header__nav-item_active{% endif %}">Life</a><!--
  --><a href="{{ '/contacts' | prepend:site.baseurl }}" class="header__nav-item{% if page.url == '/contacts' %} header__nav-item_active{% endif %}">Contact us</a>
   </nav>
-  <img class="header__logo" src="{{ '/img/logo_rebbix.svg' | prepend:site.baseurl }}"/>
 </header>

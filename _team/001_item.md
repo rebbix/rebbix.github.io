@@ -1,10 +1,12 @@
 ---
-date: 2012-03-01 15:20:09 +0200
-label: "Joined March 2012"
-avatar: "/img/pic_serhiy.jpg"
+date: 2012-01-01 15:20:09 +0200
+label: "Joined October 2012"
 link_linkedin: "https://ua.linkedin.com/in/oleksij"
-name: "Oleksij Rak"
-position: "CEO"
-font_color: "#222"
+link_github: "https://github.com/soplakanets"
+name: "Taras Kunch"
+position: "Team Lead"
+font_color: "#333"
 type: "left"
+text_side: "right"
+background_image: "img/team_Taras_Kunch.png"
 ---

@@ -1,3 +1,4 @@
+$mobile_break_point : 768px;
 body {
   margin: 0;
   font: 400 16px/1.5 "acumin-pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -12,5 +13,10 @@ body {
 
 .content {
   clear: both;
+  padding: 0 120px;
   overflow: hidden;
+
+   @media (max-width: $mobile_break_point) {
+      padding: 0 20px;
+   }
 }

@@ -1,35 +1,29 @@
-<div class="card card_{{ item.type }}{% if item.position %} card_person{% endif %}{% if item.embed %} card_embed-{{ item.embed }} {% endif %}" data-year="{{ item.date | date: "%Y" }}" data-embed-url="{{item.embed_url}}" data-embed-width="{{item.embed_width}}" data-embed-height="{{item.embed_height}}">
-  <div class="card__wrap" style="
+<div class="card card_{{ item.type }} {% if item.embed %} card_embed-{{ item.embed }} {% endif %}" data-year="{{ item.date | date: "%Y" }}" data-embed-url="{{item.embed_url}}" data-embed-width="{{item.embed_width}}" data-embed-height="{{item.embed_height}}">
+  <div class="card__wrap {% if item.bottom_image %} card_heavy {% endif %}" style="
     {% if item.background_color %}background-color:{{ item.background_color }};{% endif %}
-    {% if item.background_image %}background-image:url({{ item.background_image }});{% endif %}
     {% if item.font_color %}color:{{ item.font_color }};{% endif %}
+    {% if item.width %}width:{{ item.width }};{% endif %}
+    {% if item.border %}border:{{ item.border }};{% endif %}
     ">
     {% if item.avatar %}
       <img class="card__avatar" src="{{ item.avatar }}"/>
     {% endif %}
     {% if item.image %}
-      <img class="card__img" src="{{ item.image }}"{% if item.image2x %} srcset="{{item.image2x}}" {% endif %} width="{{item.image_width}}"/>
+      <img class="card__img" src="{{ item.image }}"{% if item.image2x %} srcset="{{item.image2x}}" {% endif %} />
     {% endif %}
     <div class="card__content">
-      {% if item.name %}
-        <span class="card__name">{{ item.name }}</span>
-      {% endif %}
-      {% if item.position %}
-        <span class="card__position">{{ item.position }}</span>
-      {% endif %}
       {{ item.content }}
-      {% if item.link_linkedin %}
-        <a class="card__link card__link_linkedin" href="{{ item.link_linkedin }}"></a>
-      {% endif %}
-      {% if item.link_github %}
-        <a class="card__link card__link_github" href="{{ item.link_github }}"></a>
-      {% endif %}
       {% if item.label %}
         <div class="card__label">{{ item.label }}</div>
       {% endif %}
       {% unless item.label %}
         <div class="card__label">{{ item.date | date: "%B, %Y" }}</div>
       {% endunless %}
+    </div>
+    <div class="l">
+      {% if item.bottom_image %}
+        <img class="card__bottom_image" src="{{ item.bottom_image }}"></a>
+      {% endif %}
     </div>
   </div>
 </div>

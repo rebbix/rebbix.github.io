@@ -1,8 +1,13 @@
 ---
-date: 2015-01-15 15:20:09 +0200
-label: "Oleksiy Rak, CEO. Started rebbix in 2010"
-background_image: "/img/pic_lesyk.jpg"
-font_color: "#fff"
-type: "card-left"
+date: 2016-01-15 15:20:09 +0200
+label: "Joined October 2015"
+link_linkedin: "https://ua.linkedin.com/in/soplakanets"
+link_github: "https://github.com/soplakanets"
+name: "Ivan Kiddis"
+position: "Developer"
+font_color: "#ffffff"
+type: "left"
+text_side: "left"
+background_image: "img/team_ivan_kiddis.png"
 ---
-## <br/><br/>“Rebbix is hell of a journey I enjoy it so much! Yep, thats my quote”
+

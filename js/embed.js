@@ -3,10 +3,15 @@ var $cards = document.querySelectorAll('.card_embed-facebook, .card_embed-youtub
 window.addEventListener('scroll', arrange)
 
 window.addEventListener('load', function() {
+  var scrollTop = document.body.scrollTop;
   coordsCards = getCardsCoordinates()
-  if(!$cards[0].dataset.loaded) {
-    $cards[0].dataset.loaded = true;
-    addPost($cards[0])
+  for (var i = 0; i < coordsCards.length; i++) {
+    if (coordsCards[i].top >= scrollTop && coordsCards[i].top <= scrollTop + window.innerHeight) {
+      if (!$cards[i].dataset.loaded) {
+        $cards[i].dataset.loaded = true;
+        addPost($cards[i]);
+      }
+    }
   }
 })
 
@@ -86,6 +91,7 @@ function addPost(card) {
   {
     var iframe = document.createElement('iframe')
     iframe.setAttribute('width', card.dataset.embedWidth)
+    iframe.setAttribute('class' , 'facebook_post')
     iframe.setAttribute('height', card.dataset.embedHeight)
     iframe.setAttribute('src', card.dataset.embedUrl)
     card.querySelector('.card__content').appendChild(iframe)
