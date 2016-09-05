@@ -4,6 +4,7 @@ image: "/img/work_logo-yippie-blue.svg"
 background_color: "#2A96FF"
 font_color: "#FFFFFF"
 type: "right"
-width: 90%
+width: 12
+offset: 1
 ---
 # **Dopomgli zarelіzitis i pіdnyati sіd at Key infrastructure s bootcamp zapitati Gosha chi schos**

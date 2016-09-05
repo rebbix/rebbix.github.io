@@ -1,7 +1,21 @@
 $mobile_break_point : 768px;
+$column_width : 40px;
+$columns: 14;
+
+@mixin card_width {
+  @for $i from 1 through $columns - 1 {
+    .card_width-#{$i} .card__wrap {max-width: $i * $column_width }
+  }
+}
+
+@mixin card_offset {
+  @for $i from 1 through $columns - 1 {
+    .card_offset-#{$i} .card__wrap { margin-left: $i * $column_width }
+  }
+}
 
 .card {
-  padding: 40px 0;
+  padding: $column_width 0;
   box-sizing: border-box;
 
   @media (max-width: $mobile_break_point) {
@@ -17,41 +31,28 @@ $mobile_break_point : 768px;
   }
 
   &__wrap {
-    width: 100%;
     height: 100%;
     background-size: cover;
     background-repeat: no-repeat; 
     background-position: center;
 
     @media (max-width: $mobile_break_point) {
-      width: 100% !important;
+      max-width: 100% !important;
       height: auto;
-      margin: 0 auto;
+      margin: 0 auto !important;
+      overflow: hidden;
+      border-radius: 6px;
     }
   }
 
   &_left {
     float: left;  
-    padding-right: 40px;
-    @media (max-width: $mobile_break_point) {
-      float: none;
-      clear: both;
-      padding-right: 0;
-    }
+    padding-right: $column_width;
   } 
 
   &_right {
     float: right;  
-    padding-left: 40px;
-     @media (max-width: $mobile_break_point) {
-      float: none;
-      clear: both;
-      padding-left: 0;
-    }
-  }
-
-  &_left &__wrap {
-    margin-left: auto;
+    padding-left: $column_width;
   }
 
   &_right &__wrap {
@@ -64,8 +65,12 @@ $mobile_break_point : 768px;
 
     @media (max-width: $mobile_break_point) {
       display: block;
+      float: none;
+      clear: both;
       width: 100%;
       margin: 0 auto;
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 
@@ -177,10 +182,10 @@ $mobile_break_point : 768px;
 
   &__img {
     max-width: 100%;
-    margin: 40px 0 0 40px;
+    margin-bottom: 40px;
 
     @media (max-width: $mobile_break_point) {
-      margin-left: 20px;
+      margin-bottom: 20px;
     }
   }
 
@@ -434,14 +439,9 @@ $mobile_break_point : 768px;
   &_embed-twitter &__content,
   &_embed-coub &__content {
     padding: 0;
+
     @media (max-width: $mobile_break_point) {
       padding: 0;
-    }
-  }
-
-  &_heavy {
-    @media (max-width: $mobile_break_point) {
-      padding: 0 !important;
     }
   }
 
@@ -463,5 +463,5 @@ $mobile_break_point : 768px;
   background:#FFF; 
 }
 
-
-
+@include card_width;
+@include card_offset;
