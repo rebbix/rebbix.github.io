@@ -39,11 +39,17 @@
     &:hover:before {
       background: #222;
     }
+
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        margin-top: -#{210 - ($i - 1) * 35}px;
+      }
+    }
   }
 
-  &__item_active {
+  &__item_active.marker__item {
     position: absolute;
-    margin-top: 0 !important;
+    margin-top: 0;
     transition: none;
     color: #222;
     z-index: 2;
@@ -53,10 +59,10 @@
     }
   }
 
-  @for $i from 1 through 10 {
-    &__item:nth-child(#{$i}) {
-      margin-top: -#{210 - ($i - 1) * 35}px;
-    }
+  &__item_top {
+    top: 270px!important;
+    position: fixed!important;
+    z-index:2;
   }
 }
 

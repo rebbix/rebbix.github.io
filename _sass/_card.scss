@@ -1,21 +1,31 @@
-$mobile_break_point : 768px;
-$column_width : 40px;
-$columns: 14;
+@import './_mixin';
 
 @mixin card_width {
   @for $i from 1 through $columns - 1 {
-    .card_width-#{$i} .card__wrap {max-width: $i * $column_width }
+    .card_width-#{$i} .card__wrap {
+      max-width: $i * 7.14%;
+
+      @media (max-width: $responsive_break_point) and (min-width: $mobile_break_point) {
+        max-width: $i * 7.14%;
+      }
+    }
   }
 }
 
 @mixin card_offset {
   @for $i from 1 through $columns - 1 {
-    .card_offset-#{$i} .card__wrap { margin-left: $i * $column_width }
+    .card_offset-#{$i} .card__wrap {
+      margin-left: $i * 7.14%;
+
+      @media (max-width: $responsive_break_point) and (min-width: $mobile_break_point) {
+        margin-left: $i * 7.14%;
+      }
+    }
   }
 }
 
 .card {
-  padding: $column_width 0;
+  margin: $column_width 0;
   box-sizing: border-box;
 
   @media (max-width: $mobile_break_point) {
@@ -23,7 +33,7 @@ $columns: 14;
   }
 
   &:nth-child(2) {
-    margin-top: 150px;
+    margin-top: 190px;
 
     @media (max-width: $mobile_break_point) {
       margin-top: 0;
@@ -46,7 +56,8 @@ $columns: 14;
   }
 
   &_left {
-    float: left;  
+    float: left;
+    clear: left;
     padding-right: $column_width;
   } 
 
@@ -102,6 +113,15 @@ $columns: 14;
     @media (max-width: $mobile_break_point) {
       padding: 20px;
     }
+  }
+
+  &_green-bg &__wrap {
+    color: #fff;
+    background-color: $green;
+  }
+
+  &_green-border {
+    border: 5px solid $green;
   }
 
   &__content {
@@ -395,19 +415,8 @@ $columns: 14;
     }
   }
 
-  &_address {
-    max-width: 560px;
-    padding: 20px;
-    box-sizing: border-box;
-    font-size: 36px;
-    line-height: 42px;
-    letter-spacing: -0.2;
-    color: #fff;
-    background-color: #85BC49;
-
-    &_email {
-      margin-top: 40px;
-    }
+  &__email {
+    margin-top: 40px!important;
   }
 
   &_follow {
@@ -450,6 +459,42 @@ $columns: 14;
       padding: 40px;
     }
   }
+
+  @media (max-width: $responsive_break_point) and (min-width: $mobile_break_point) {
+    padding: 2.66vw 0;
+
+    &_left {
+      padding-right: 2.66vw;
+    }
+
+    &_right {
+      padding-left: 2.66vw;
+    }
+
+    &__content {
+      padding: 2.66vw;
+    }
+
+    .card__img {
+      margin-bottom: 2.66vw;
+    }
+
+    h1 {
+      font-size: 2.4vw;
+      line-height: 2.8vw;
+    }
+
+    h3 {
+      font-size: 2.3vw;
+      line-height: 2.6vw;
+    }
+
+    p {
+      font-size: 1.6vw;
+      line-height: 2vw;
+    }
+  }
+
 }
 
 .instagram-media,

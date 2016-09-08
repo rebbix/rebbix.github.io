@@ -1,18 +1,30 @@
+$responsive_width: 1440;
+
 $mobile_break_point : 768px;
+$responsive_break_point: $responsive_width * 1px;
 
 .header {
+  $font-size: 40;
+  $line-height: 53;
+
   padding: 0 120px;
   margin: 100px auto;
   max-width: 1200px;
   letter-spacing: -.17px;
-  line-height: 53px;
+  line-height: $line-height * 1px;
   font-family: "acumin-pro";
-  font-size: 40px;
+  font-size: $font-size * 1px;
   color: #111;
+
+  @media (max-width: $responsive_break_point) {
+    margin-bottom: 4%;
+    font-size: $font-size * 100 / $responsive_width * 1vw;
+    line-height: $line-height * 100 / $responsive_width * 1vw;
+  }
 
   @media (max-width: $mobile_break_point) {
     padding: 0;
-    margin: 117px 20px 40px 20px;
+    margin: 117px 7% 40px;
     font-size: 27px;
     line-height: 30px;
     letter-spacing: -.13px;
@@ -104,9 +116,18 @@ $mobile_break_point : 768px;
   }
 
   &__small-text {
+    $font-size: 30;
+    $line-height: 45;
+
     margin-top: 50px;
-    font-size: 30px;
-    line-height: 45px;
+    font-size: #{$font-size}px;
+    line-height: #{$line-height}px;
+
+    @media (max-width: $responsive_break_point) {
+      margin-top: 3%;
+      font-size: #{$font-size * 100 / $responsive_width}vw;
+      line-height: #{$line-height * 100 / $responsive_width}vw;
+    }
 
     @media (max-width: $mobile_break_point) {
       font-size: 20px;

@@ -8,7 +8,6 @@ if (hideMarkerUrls.indexOf(url) === -1) {
   var $markers = []
 
   $marker.classList.add('marker')
-  // $marker.classList.add('marker_hide')
 
   coordsAnchors = coordsAnchors.reverse()
   coordsAnchors.forEach(function (anchor) {
@@ -34,17 +33,27 @@ if (hideMarkerUrls.indexOf(url) === -1) {
       var anchor = coordsAnchors.find(function (anchor) {
         return anchor.year == marker.year
       })
-      scrollTo(document.body, anchor.top - 40, 500)
+      scrollTo(document.body, anchor.top - 60, 500)
     })
   })
 
   function arrange() {
-    coordsMarkers.forEach(function (marker) {
+    coordsMarkers.forEach(function (marker, i) {
       coordsAnchors.some(function (anchor) {
         if (marker.year == anchor.year) {
-          if (marker.top > anchor.top - 30 - document.body.scrollTop) {
+
+          const contentTop = i * 35 + 60
+          const initialMarkerTop = marker.top
+          const anchorTop = anchor.top - 30 - document.body.scrollTop
+          const markerTop = marker.$marker.getBoundingClientRect().top
+
+          if (anchorTop > contentTop && anchorTop < initialMarkerTop) {
             marker.$marker.classList.add('marker__item_active')
+            marker.$marker.classList.remove('marker__item_top')
             marker.$marker.style.top = anchor.top - 30 + 'px'
+          } else if (anchorTop < contentTop) {
+            marker.$marker.classList.remove('marker__item_active')
+            marker.$marker.classList.add('marker__item_top')
           } else {
             marker.$marker.classList.remove('marker__item_active')
             marker.$marker.style.top = '100%'
