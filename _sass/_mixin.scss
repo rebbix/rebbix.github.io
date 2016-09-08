@@ -1,6 +1,9 @@
-$responsive_break_point: 1440px;
+$responsive_width: 1440;
+
+$responsive_break_point: $responsive_width * 1px;
 $mobile_break_point: 768px;
 $column_width: 40px;
 $columns: 14;
 
 $green: #85BC49;
+$grey: #474B4E;

@@ -8,9 +8,11 @@
   </nav>
   <div class="header__wrap">
     <img class="header__logo" src="{{ '/img/logo_rebbix.svg' | prepend:site.baseurl }}"/>
-    Software development company experienced in building web and mobile products ranging from
-    startups to high load platforms with tenth of millions of active users.
-    <div class="header__small-text">Our domain expertise includes building online marketplaces, travel &
-    accommodation services, social and data products.</div>
+    {% if page.header %}
+      <h1 class="header__title">{{ page.header }}</h1>
+    {% endif %}
+    {% if page.subheader %}
+      {{ page.subheader }}
+    {% endif %}
   </div>
 </header>

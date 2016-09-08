@@ -1,5 +1,6 @@
 var url = window.location.pathname
-var hideMarkerUrls = ['/approach', '/contacts'];
+var hideMarkerUrls = ['/approach', '/contacts']
+var reverseMarkerUrls = ['/team']
 
 if (hideMarkerUrls.indexOf(url) === -1) {
   var $cards = document.querySelectorAll('.card')
@@ -9,7 +10,10 @@ if (hideMarkerUrls.indexOf(url) === -1) {
 
   $marker.classList.add('marker')
 
-  coordsAnchors = coordsAnchors.reverse()
+  if (reverseMarkerUrls.indexOf(url) === -1) {
+    coordsAnchors = coordsAnchors.reverse()
+  }
+
   coordsAnchors.forEach(function (anchor) {
     var $markerItem = document.createElement('div')
     $markerItem.classList.add('marker__item')

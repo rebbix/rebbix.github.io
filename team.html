@@ -1,9 +1,10 @@
 ---
 layout: default
 permalink: /team
+header: Community of experienced technologists passionate about building ambitious products
 ---
 <div class="content">
-  {% for item in site.team reversed %}
+  {% for item in site.team %}
   {% include card_person.html item=item %}
   {% endfor %}
 </div>
