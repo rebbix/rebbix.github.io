@@ -96,30 +96,6 @@
     }
   }
 
-  &__title {
-    $font-size: 40;
-    $line-height: 53;
-
-    margin-bottom: 50px;
-    letter-spacing: -.17px;
-    line-height: #{$line-height}px;
-    font-size: #{$font-size}px;
-    font-weight: 400;
-    color: #111;
-
-    @media (max-width: $responsive_break_point) {
-      margin-bottom: 4%;
-      font-size: #{$font-size * 100 / $responsive_width}vw;
-      line-height: #{$line-height * 100 / $responsive_width}vw;
-    }
-
-    @media (max-width: $mobile_break_point) {
-      font-size: 27px;
-      line-height: 30px;
-      letter-spacing: -.13px;
-    }
-  }
-
   &__subtitle {
     $font-size: 30;
     $line-height: 45;
