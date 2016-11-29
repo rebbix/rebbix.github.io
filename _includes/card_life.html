@@ -1,0 +1,11 @@
+<div class="card card_{{ item.type }}{% if item.embed %} card_embed-{{ item.embed }}{% endif %} {% if item.offset %} card_offset-{{ item.offset }}{% endif %}{% if item.width %} card_width-{{ item.width }}{% endif %}" data-year="{{ item.date | date: "%Y" }}" data-embed-url="{{item.embed_url}}" data-embed-width="{{item.embed_width}}" data-embed-height="{{item.embed_height}}">
+    <div class="card__wrap">
+        <div class="card__label">{{ item.date | date: "%B, %Y" }}</div>
+        <div class="card__content">
+            {% if item.image %}
+            <img class="card__img" src="{{item.image}}"{% if item.image2x %} srcset="{{item.image2x}}" {% endif %} />
+            {% endif %}
+            {{ item.content }}
+        </div>
+    </div>
+</div>

@@ -29,19 +29,17 @@
 }
 
 .card {
-  margin: $column_width 0;
+  margin-bottom: $column_width * 2;
   box-sizing: border-box;
 
   @media (max-width: $mobile_break_point) {
-    margin: 20px 0;
-  }
-
-  &:nth-child(2) {
-    margin-top: 190px;
-
-    @media (max-width: $mobile_break_point) {
-      margin-top: 0;
-    }
+    float: none !important;
+    clear: both !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+    margin-bottom: $column_width;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
   &__wrap {
@@ -63,10 +61,15 @@
     float: left;
     clear: left;
     padding-right: $column_width;
-  } 
+  }
+
+  &_left:first-child + &_right {
+    margin-top: 190px;
+  }
 
   &_right {
     float: right;  
+    clear: right;
     padding-left: $column_width;
   }
 
@@ -77,16 +80,6 @@
   &_left,
   &_right {
     width: 50%;
-
-    @media (max-width: $mobile_break_point) {
-      display: block;
-      float: none;
-      clear: both;
-      width: 100%;
-      margin: 0 auto;
-      padding-left: 0;
-      padding-right: 0;
-    }
   }
 
   &_left &__content >.twitter-tweet,
@@ -131,6 +124,15 @@
 
   &_border-green &__wrap {
     border: 5px solid $green;
+  }
+
+  &_year {
+    width: 100%;
+    clear: both;
+    margin: 0;
+    font-size: 30px;
+    line-height: 45px;
+    font-weight: 400;
   }
 
   &__header {
@@ -488,7 +490,8 @@
   &_embed-facebook &__content,
   &_embed-instagram &__content,
   &_embed-twitter &__content,
-  &_embed-coub &__content {
+  &_embed-coub &__content,
+  &_embed-image &__content {
     padding: 0;
 
     @media (max-width: $mobile_break_point) {
@@ -535,6 +538,37 @@
       font-size: 1.6vw;
       line-height: 2vw;
     }
+  }
+
+  &__spinner {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    background-color: #333;
+    margin: 60px auto;
+
+    -webkit-animation: scaleout 1.0s infinite ease-in-out;
+    animation: scaleout 1.0s infinite ease-in-out;
+  }
+
+  @-webkit-keyframes scaleout {
+    0% { -webkit-transform: scale(0.0) }
+    100% {
+      -webkit-transform: scale(1.0);
+      opacity: 0;
+    }
+  }
+
+  @keyframes scaleout {
+    0% {
+      transform: scale(0.0);
+      -webkit-transform: scale(0.0);
+    } 100% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+        opacity: 0;
+      }
   }
 
 }
