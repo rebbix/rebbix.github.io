@@ -117,9 +117,8 @@
     background-color: $green;
   }
 
-  &_bg-grey &__wrap {
-    color: #fff;
-    background-color: $grey;
+  &_border-grey &__wrap {
+    border: 5px solid #DDDDDD;
   }
 
   &_border-green &__wrap {
@@ -376,7 +375,7 @@
 
   &__specialties {
     float: right;
-    margin-top: 50%;
+    margin-top: 30%;
     border: none;
 
     @media (max-width: $mobile_break_point) {
