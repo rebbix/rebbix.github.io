@@ -2,6 +2,11 @@ $responsive_width: 1440;
 
 $responsive_break_point: $responsive_width * 1px;
 $mobile_break_point: 768px;
+
+$responsive: "(max-width: 1024px)";
+$tablet: "(max-width: 768px)";
+$mobile: "(max-width: 568px)";
+
 $column_width: 40px;
 $columns: 14;
 

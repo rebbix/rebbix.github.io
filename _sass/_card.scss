@@ -5,8 +5,8 @@
     .card_width-#{$i} .card__wrap {
       max-width: $i * 7.14%;
 
-      @media (max-width: $responsive_break_point) and (min-width: $mobile_break_point) {
-        max-width: $i * 7.14%;
+      @media #{$tablet} {
+        min-width: 100%;
       }
     }
   }
@@ -17,22 +17,27 @@
     .card_offset-#{$i} .card__wrap {
       margin-left: $i * 7.14%;
 
-      @media (max-width: $responsive_break_point) and (min-width: $mobile_break_point) {
-        margin-left: $i * 7.14%;
+      @media #{$tablet} {
+        margin-left: 0;
       }
     }
   }
 }
 
-.cards {
-  overflow: hidden;
-}
+.cards {}
 
 .card {
   margin-bottom: $column_width * 2;
   box-sizing: border-box;
 
-  @media (max-width: $mobile_break_point) {
+  transition: transform .5s ease-out;
+  transform: translateZ(0);
+
+  @media #{$tablet} {
+    margin-bottom: $column_width;
+  }
+
+  @media #{$mobile} {
     float: none !important;
     clear: both !important;
     width: 100% !important;
@@ -42,18 +47,20 @@
     padding-right: 0 !important;
   }
 
+  &_in-view {
+    transform: translate(0)!important;
+  }
+
   &__wrap {
     height: 100%;
     background-size: cover;
     background-repeat: no-repeat; 
     background-position: center;
 
-    @media (max-width: $mobile_break_point) {
+    @media #{$mobile} {
       max-width: 100% !important;
       height: auto;
       margin: 0 auto !important;
-      overflow: hidden;
-      border-radius: 6px;
     }
   }
 
@@ -61,6 +68,11 @@
     float: left;
     clear: left;
     padding-right: $column_width;
+    transform: translate(-50px, 50px);
+
+    @media #{$mobile} {
+      transform: none;
+    }
   }
 
   &_left:first-child + &_right {
@@ -71,6 +83,11 @@
     float: right;  
     clear: right;
     padding-left: $column_width;
+    transform: translate(50px, 50px);
+
+    @media #{$mobile} {
+      transform: none;
+    }
   }
 
   &_right &__wrap {
@@ -106,10 +123,6 @@
 
   &_wide &__wrap {
     text-align: left;
-
-    @media (max-width: $mobile_break_point) {
-      padding: 20px;
-    }
   }
 
   &_bg-green &__wrap {
@@ -132,6 +145,21 @@
     font-size: 30px;
     line-height: 45px;
     font-weight: 400;
+  }
+
+  &_overlay &__wrap {
+    position: relative;
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, .3);
+    }
   }
 
   &__header {
@@ -236,8 +264,9 @@
     margin-left: -12px;
   }
 
-  &_person_info {
-    margin-top: 50px;
+  &__person_info {
+    position: relative;
+    margin-top: 5px;
   }
 
   &_text-right &_person_info {
@@ -256,36 +285,53 @@
     @media (max-width: $mobile_break_point) {
       float: left !important;
     }
-  } 
+  }
+
+  &__photo {
+    display: block;
+    width: 100%;
+  }
  
   &__label {
-    margin-top: 3px;
+    margin-top: 10px;
     font-weight: 300;
-    font-size: 14px;
+    font-size: 11px;
     opacity: .6;
   }
 
   &__name {
-    display: block;
-    font-size: 23px;
+    padding-right: 40px;
+    font-size: 18px;
   }
 
   &__position {
-    font-size: 20px;   
+    padding-right: 40px;
+    font-size: 16px;
+    font-weight: 300;
   }
 
-  &_socials {
+  &__socials {
     position: absolute;
-    bottom: 0;
-    margin-bottom: 80px;
+    top: 5px;
+    right: 10px;
   }
 
-  &_text-right &_socials {
-    right: 42px;
-  }
+  &__overlay-text {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;
+    font-size: 120px;
 
-  &_text-left &_socials{
-    left: 42px;
+    @media #{$responsive} {
+      font-size: 8vw;
+    }
+
+    @media #{$tablet} {
+      font-size: 50px;
+    }
   }
 
   &__text {
@@ -308,10 +354,6 @@
 
     &_linkedin {
       background-image: url("/img/icon_linkedin.svg");
-    }
-
-    &_github {
-      background-image: url("/img/icon_github.svg");
     }
   }
 
@@ -433,22 +475,14 @@
   }
 
   &_person {
-    height: 315px;
-
-    @media (max-width: $mobile_break_point) {
+    @media #{$mobile} {
       width: 100%;
       margin-top: 10px;
     }
   }
 
-  &_person &__wrap {
-    @media (max-width: $mobile_break_point) {
-      height: 100%;
-    }
-  }
-
   &__approach &__content {
-    @media (max-width: $mobile_break_point) {
+    @media #{$mobile} {
       margin: 20px;
     }
   }
@@ -569,7 +603,6 @@
         opacity: 0;
       }
   }
-
 }
 
 .instagram-media,
