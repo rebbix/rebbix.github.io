@@ -5,7 +5,7 @@ window.addEventListener('scroll', debounce(arrange, 500))
 
 window.addEventListener('load', function() {
   coordsCards = getCardsCoordinates()
-  arrange()
+  // arrange()
 })
 
 window.addEventListener('resize', function() {

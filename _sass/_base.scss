@@ -27,11 +27,12 @@ body {
   $font-size: 40;
   $line-height: 53;
 
-  margin-bottom: 50px;
+  margin-bottom: 10px;
   letter-spacing: -.17px;
   line-height: #{$line-height}px;
   font-size: #{$font-size}px;
   font-weight: 400;
+  font-family: AcuminProWide-Light;
   color: #111;
 
   &_content {
@@ -50,35 +51,4 @@ body {
     line-height: 30px;
     letter-spacing: -.13px;
   }
-}
-
-.infinite-spinner {
-  display: block;
-  width: 40px;
-  height: 40px;
-  border-radius: 40px;
-  background-color: #333;
-  margin: 60px auto;
-
-  -webkit-animation: scaleout 1.0s infinite ease-in-out;
-  animation: scaleout 1.0s infinite ease-in-out;
-}
-
-@-webkit-keyframes scaleout {
-  0% { -webkit-transform: scale(0.0) }
-  100% {
-    -webkit-transform: scale(1.0);
-    opacity: 0;
-  }
-}
-
-@keyframes scaleout {
-  0% {
-    transform: scale(0.0);
-    -webkit-transform: scale(0.0);
-  } 100% {
-      transform: scale(1.0);
-      -webkit-transform: scale(1.0);
-      opacity: 0;
-    }
 }

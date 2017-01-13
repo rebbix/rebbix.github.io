@@ -1,31 +1,33 @@
-<div class="card card_{{ item.type }}{% if item.position %} card_person{% endif %}{% if item.text %} card_overlay{% endif %}{% if item.offset %} card_offset-{{ item.offset }}{% endif %}{% if item.width %} card_width-{{ item.width }}{% endif %}" data-year="{{ item.date | date: "%Y" }}">
-  <div class="card__wrap">
-    {% if item.background_image %}
-      <img class="card__photo" src="{{ item.background_image }}" />
+<div class="card card_person card_{{ item.type }}{% if item.overlay %} card_overlay{% endif %}{% if item.offset %} card_offset-{{ item.offset }}{% endif %}{% if item.offset-top %} card_offset-top-{{ item.offset-top }}{% endif %}{% if item.width %} card_width-{{ item.width }}{% endif %}" data-year="{{ item.date | date: "%Y" }}">
+  {% if item.link %}
+    <a class="card__wrap" href="{{ item.link }}" target="_blank">
+  {% else %}
+    <div class="card__wrap">
+  {% endif %}
+
+    {% if item.image %}
+      <img class="card__photo" src="{{ item.image }}" />
     {% endif %}
 
-    {% if item.text %}
-      <div class="card__overlay-text">{{ item.text }}</div>
+    {% if item.overlay %}
+      <div class="card__overlay-text">{{ item.overlay }}</div>
     {% endif %}
 
-    {% unless item.type == 'wide' %}
-    <div class="card__person_info">
-      {% if item.name %}
-        <div class="card__name">{{ item.name }}</div>
-      {% endif %}
-      {% if item.position %}
-        <div class="card__position">{{ item.position }}</div>
-      {% endif %}
-      {% if item.label %}
-        <div class="card__label">{{ item.label }}</div>
-      {% endif %}
+    {% if item.type == 'wide' or item.type == 'separator' %}
+      <div class="card__content">{{ item.content }}</div>
+    {% endif %}
 
-      {% if item.link_linkedin %}
-        <div class="card__socials">
-          <a class="card__link card__link_linkedin" href="{{ item.link_linkedin }}" target="_blank"></a>
-        </div>
-      {% endif %}
-    </div>
+    {% if item.name %}
+      <div class="card__name">{{ item.name }}</div>
+    {% endif %}
+
+    {% unless item.type == 'wide' or item.type == 'separator' %}
+      <div class="card__label">Joined {{ item.date | date: '%B %Y' }}</div>
     {% endunless %}
-  </div>
+
+  {% if item.link %}
+    </a>
+  {% else %}
+    </div>
+  {% endif %}
 </div>
