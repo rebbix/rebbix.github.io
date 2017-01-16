@@ -1,7 +1,6 @@
 ---
 image: "/img/work/logo-cryptosigma.svg"
-background_color: "#2E75BC"
-font_color: "#FFFFFF"
+style: "background-color: #2E75BC; color: #FFF;"
 type: "right"
 offset: 2
 offset-top: 3

@@ -1,7 +1,6 @@
 ---
 top_image: "/img/work/modnakasta@2x.png"
-background_color: "#000"
-font_color: "#fff"
+style: "background-color: #000; color: #fff;"
 type: "left"
 offset-top: 6
 width: 10

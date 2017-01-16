@@ -1,6 +1,5 @@
 ---
-background_color: "#FFF"
-font_color: "#333333"
+style: "color: #333;"
 type: "separator"
 ---
 # Before 2012

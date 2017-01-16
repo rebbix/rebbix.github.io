@@ -1,7 +1,6 @@
 ---
 image: "/img/work/logo-modnakasta.svg"
-background_color: "#000"
-font_color: "#fff"
+style: "background-color: #000; color: #fff;"
 type: "left"
 offset: 1
 width: 12

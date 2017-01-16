@@ -1,7 +1,6 @@
 ---
 image: "/img/work/logo-belvilla.svg"
-background_color: "#289A21"
-font_color: "#fff"
+style: "background-color: #289A21; color: #FFF;"
 type: "left"
 bottom_image: "/img/work/belvilla.png"
 width: 13

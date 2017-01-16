@@ -1,9 +1,9 @@
 @import './_mixin';
 
 @mixin card_width {
-  @for $i from 1 through $columns - 1 {
+  @for $i from 6 through $columns - 1 {
     .card_width-#{$i} .card__wrap {
-      max-width: $i * 7.14%;
+      max-width: $i * 100% / $columns;
 
       @media #{$tablet} {
         min-width: 100%;
@@ -15,7 +15,7 @@
 @mixin card_offset {
   @for $i from 1 through $columns - 1 {
     .card_offset-#{$i} .card__wrap {
-      margin-left: $i * 7.14%;
+      margin-left: $i * 100% / $columns;
 
       @media #{$tablet} {
         margin-left: 0;
@@ -24,9 +24,8 @@
   }
 }
 
-
 @mixin card_offset-top {
-  @for $i from 1 through 12 {
+  @for $i from 1 through 15 {
     .card_offset-top-#{$i} {
       margin-top: $i * 30px;
 
@@ -37,14 +36,12 @@
   }
 }
 
-.cards {}
-
 .card {
   margin-bottom: $column_width * 2;
   box-sizing: border-box;
 
-  transition: transform .5s ease-out;
-  transform: translateZ(0);
+  transition: all .8s ease-out;
+  opacity: 0;
 
   @media #{$tablet} {
     margin-bottom: $column_width;
@@ -61,7 +58,8 @@
   }
 
   &_in-view {
-    transform: translate(0)!important;
+    transform: translate(0) scale(1)!important;
+    opacity: 1;
   }
 
   &_separator {
@@ -89,7 +87,7 @@
     float: left;
     clear: left;
     padding-right: $column_width;
-    transform: translate(-50px, 50px);
+    transform: translate(0, 80px) scale(1.05);
 
     @media #{$mobile} {
       transform: none;
@@ -104,7 +102,7 @@
     float: right;  
     clear: right;
     padding-left: $column_width;
-    transform: translate(50px, 50px);
+    transform: translate(0, 80px) scale(1.05);
 
     @media #{$mobile} {
       transform: none;
@@ -132,6 +130,11 @@
     @media (max-width: $mobile_break_point) {
       width: 100%;
     }
+  }
+
+
+  &_work {
+    padding: 0;
   }
 
   &_wide {
@@ -202,7 +205,7 @@
 
     @media (max-width: $mobile_break_point) {
       max-width: 100%;
-      padding: 20px;
+      padding: 40px;
       overflow: visible;
     }
 
@@ -519,12 +522,6 @@
 
     @media (max-width: $mobile_break_point) {
       padding: 0;
-    }
-  }
-
-  &_heavy &__content {
-    @media (max-width: $mobile_break_point) {
-      padding: 40px;
     }
   }
 

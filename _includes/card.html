@@ -1,7 +1,7 @@
 <div class="card card_{{ item.type }}{% if item.embed %} card_embed-{{ item.embed }}{% endif %}{% if item.bottom_image %} card_heavy{% endif %}{% if item.offset %} card_offset-{{ item.offset }}{% endif %}{% if item.offset-top %} card_offset-top-{{ item.offset-top }}{% endif %}{% if item.width %} card_width-{{ item.width }}{% endif %}" data-year="{{ item.date | date: "%Y" }}" data-embed-url="{{item.embed_url}}" data-embed-width="{{item.embed_width}}" data-embed-height="{{item.embed_height}}">
   <div class="card__wrap" style="
       {% if item.background_color %} background-color:{{ item.background_color }}; {% endif %}
-      {% if item.font_color %}       color:{{ item.font_color }};                  {% endif %}
+      {% if item.color %}       color:{{ item.color }};                  {% endif %}
       {% if item.border %}           border:{{ item.border }};                     {% endif %}
       {% if item.embed_height %}     height:{{ item.embed_height }}px;             {% endif %}
       {% if item.embed_width %}      width:{{ item.embed_eidth }}px;               {% endif %}

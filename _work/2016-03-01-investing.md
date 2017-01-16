@@ -1,7 +1,6 @@
 ---
 top_image: "/img/work/work_investing@2x.png"
-background_color: "#000000"
-font_color: "#FFFFFF"
+style: "background-color: #000; color: #FFF;"
 type: "left"
 offset: 2
 offset-top: 2
