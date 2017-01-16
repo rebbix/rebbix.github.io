@@ -1,6 +1,6 @@
 ---
 image: "/img/work/logo-rebbix.svg"
-style: "color: #333; margin-bottom: 60px;"
+style: "margin-bottom: 60px;"
 type: "separator"
 ---
 # Rebbix founded

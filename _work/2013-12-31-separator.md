@@ -1,5 +1,4 @@
 ---
-style: "color: #333;"
 type: "separator"
 ---
 # 2013

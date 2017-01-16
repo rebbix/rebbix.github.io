@@ -1,5 +1,6 @@
 ---
+style: "color: #333;"
 type: "separator"
 ---
 # 2013
-2013 separator
+Theo sings at karaoke

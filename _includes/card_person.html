@@ -1,4 +1,4 @@
-<div class="card card_person card_{{ item.type }}{% if item.overlay %} card_overlay{% endif %}{% if item.offset %} card_offset-{{ item.offset }}{% endif %}{% if item.offset-top %} card_offset-top-{{ item.offset-top }}{% endif %}{% if item.width %} card_width-{{ item.width }}{% endif %}" data-year="{{ item.date | date: "%Y" }}">
+<div class="card card_person card_{{ item.type }} {% if item.offset %} card_offset-{{ item.offset }}{% endif %}{% if item.offset-top %} card_offset-top-{{ item.offset-top }}{% endif %}{% if item.width %} card_width-{{ item.width }}{% endif %}" data-year="{{ item.date | date: "%Y" }}">
   {% if item.link %}
     <a class="card__wrap" href="{{ item.link }}" target="_blank">
   {% else %}
@@ -9,19 +9,13 @@
       <img class="card__photo" src="{{ item.image }}" />
     {% endif %}
 
-    {% if item.overlay %}
-      <div class="card__overlay-text">{{ item.overlay }}</div>
-    {% endif %}
-
-    {% if item.type == 'wide' or item.type == 'separator' %}
-      <div class="card__content">{{ item.content }}</div>
-    {% endif %}
-
     {% if item.name %}
       <div class="card__name">{{ item.name }}</div>
     {% endif %}
 
-    {% unless item.type == 'wide' or item.type == 'separator' %}
+    {{ item.content }}
+
+    {% unless item.type == 'separator' %}
       <div class="card__label">Joined {{ item.date | date: '%B %Y' }}</div>
     {% endunless %}
 

@@ -2,4 +2,4 @@
 type: "separator"
 ---
 # 2014
-2014 separator
+Now we’re truly a family company. Rudyy sisters have joined us
