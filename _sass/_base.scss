@@ -16,6 +16,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   clear: both;
+  overflow: hidden;
   padding: 0 120px;
 
    @media (max-width: $mobile_break_point) {
@@ -51,4 +52,15 @@ body {
     line-height: 30px;
     letter-spacing: -.13px;
   }
+}
+
+.footer {
+  clear: both;
+  margin: 300px auto 20px;
+  text-align: center;
+  font-family: AcuminPro-Light;
+  font-size: 20px;
+  color: #7E7E7E;
+  letter-spacing: -0.11px;
+  line-height: 45px;
 }

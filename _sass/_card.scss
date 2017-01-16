@@ -1,7 +1,7 @@
 @import './_mixin';
 
 @mixin card_width {
-  @for $i from 6 through $columns - 1 {
+  @for $i from 6 through $columns {
     .card_width-#{$i} .card__wrap {
       max-width: $i * 100% / $columns;
 
@@ -25,9 +25,9 @@
 }
 
 @mixin card_offset-top {
-  @for $i from 1 through 15 {
+  @for $i from 1 through 30 {
     .card_offset-top-#{$i} {
-      margin-top: $i * 30px;
+      margin-top: $i * 20px;
 
       @media #{$tablet} {
         margin-top: 0;
@@ -64,6 +64,7 @@
 
   &_separator {
     width: 100%;
+    margin-bottom: 0;
     clear: both;
   }
 
@@ -92,10 +93,6 @@
     @media #{$mobile} {
       transform: none;
     }
-  }
-
-  &_left:first-child + &_right {
-    margin-top: 190px;
   }
 
   &_right {
@@ -235,7 +232,6 @@
     }
 
     h3 {
-      max-width: 400px;
       margin: 10px 0;
       font-size: 46px;
       line-height: 48px;
@@ -244,7 +240,6 @@
     }
 
     h4 {
-      max-width: 400px;
       margin: 10px 0;
       font-size: 32px;
       line-height: 38px;
@@ -253,12 +248,11 @@
     }
 
     p {
-      max-width: 400px;
       margin: 20px 0;
       font-weight: 400;
       font-size: 20px;
       line-height: 28px;
-      font-family: AcuminPro-Regular;
+      font-family: AcuminPro-Light;
 
       @media (max-width: $mobile_break_point) {
         margin: 10px 0;
@@ -286,7 +280,12 @@
     }
   }
 
+  &_work &__content {
+    padding: 40px 80px 60px 60px;
+  }
+
   &__img {
+    display: block;
     max-width: 100%;
     margin-bottom: 30px;
 
@@ -554,6 +553,11 @@
       line-height: 2.6vw;
     }
 
+    h4 {
+      font-size: 2.2vw;
+      line-height: 2.4vw;
+    }
+
     p {
       font-size: 1.6vw;
       line-height: 2vw;
@@ -633,6 +637,11 @@
   margin: 1px auto; 
   padding: 0; 
   background:#FFF;
+}
+
+#rebbix-founded {
+  font-size: 44px;
+  line-height: 46px;
 }
 
 @include card_width;

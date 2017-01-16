@@ -1,11 +1,11 @@
 <div class="card card_work card_{{ item.type }}{% if item.offset %} card_offset-{{ item.offset }}{% endif %}{% if item.offset-top %} card_offset-top-{{ item.offset-top }}{% endif %}{% if item.width %} card_width-{{ item.width }}{% endif %}" data-year="{{ item.date | date: "%Y" }}">
   <div class="card__wrap"{% if item.style %} style="{{ item.style }}"{% endif %}>
     {% if item.top_image %}
-      <img class="card__top_image" src="{{ item.top_image }}" />
+      <img class="card__top_image" src="{{ item.top_image }}"/>
     {% endif %}
     <div class="card__content">
       {% if item.image %}
-        <img class="card__img" src="{{item.image}}" />
+        <img class="card__img" src="{{item.image}}" {% if item.image_style %} {{ item.image_style }}{% endif %} />
       {% endif %}
       {% if item.image2 %}
         <img class="card__img" src="{{item.image2}}" />
