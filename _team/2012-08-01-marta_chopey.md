@@ -1,5 +1,5 @@
 ---
-link: "https://ua.linkedin.com/in/soplakanets"
+link: "https://ua.linkedin.com/in/mivanyshyn"
 image: "img/team/2012 marta_c@2x.png"
 name: "Marta Chopey"
 type: "right"

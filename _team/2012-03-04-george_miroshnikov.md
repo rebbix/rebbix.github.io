@@ -1,5 +1,5 @@
 ---
-link: "https://ua.linkedin.com/in/soplakanets"
+link: "https://github.com/laggyluke"
 image: "img/team/2012 gosha_m@2x.png"
 name: "George Miroshnikov"
 type: "right"

@@ -36,13 +36,16 @@
   }
 }
 
+.card_offset-top-40 {
+  margin-top: 800px;
+}
 .card_offset-top-46 {
   margin-top: 920px;
 }
 
+
 .card {
   box-sizing: border-box;
-
   transition: all .8s ease-out;
   opacity: 0;
 
@@ -58,6 +61,10 @@
     margin-bottom: $column_width;
     padding-left: 0 !important;
     padding-right: 0 !important;
+  }
+
+  &:last-child {
+    margin-bottom: 50px;
   }
 
   &_in-view {

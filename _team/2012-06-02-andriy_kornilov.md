@@ -1,5 +1,5 @@
 ---
-link: "https://ua.linkedin.com/in/soplakanets"
+link: "https://ua.linkedin.com/in/frutik"
 image: "img/team/2012 frutik_a@2x.png"
 name: "Andriy Kornilov"
 type: "left"

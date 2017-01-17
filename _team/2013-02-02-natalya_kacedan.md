@@ -1,5 +1,5 @@
 ---
-link: "https://ua.linkedin.com/in/soplakanets"
+link: "https://ua.linkedin.com/in/natalya-katsedan-a1441462/en"
 image: "img/team/2013 natalya_k@2x.png"
 name: "Natalya Kacedan"
 type: "right"
