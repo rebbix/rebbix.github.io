@@ -1,6 +1,6 @@
 ---
 link: "https://ua.linkedin.com/in/galyna-khutorianska"
-image: "img/team/2015 galyna_k@2x.png"
+image: "img/team/2015 galka_k@2x.jpg"
 name: "Galyna Khutorianska"
 type: "left"
 width: 7

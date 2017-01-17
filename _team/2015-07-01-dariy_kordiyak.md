@@ -1,6 +1,6 @@
 ---
 link: "https://ua.linkedin.com/in/dariy-kordiyak-0363a8b2"
-image: "img/team/2015 dariy_k@2x.png"
+image: "img/team/2015 dariy_k@2x.jpg"
 name: "Dariy Kordiyak"
 type: "left"
 width: 7
