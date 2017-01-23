@@ -1,6 +1,6 @@
 ---
 link: "https://ua.linkedin.com/in/oleksij"
-image: "img/team/2012 oleksiy_r@2x.jpg"
+image: "/img/team/2012 oleksiy_r@2x.jpg"
 name: "Oleksiy Rak"
 type: "left"
 width: 9

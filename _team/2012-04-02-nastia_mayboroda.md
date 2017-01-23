@@ -1,6 +1,6 @@
 ---
 link: "https://ua.linkedin.com/in/amayboroda"
-image: "img/team/2012 nastya_m@2x.jpg"
+image: "/img/team/2012 nastya_m@2x.jpg"
 name: "Nastia Mayboroda"
 type: "left"
 width: 8

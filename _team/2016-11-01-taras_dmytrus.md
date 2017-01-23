@@ -1,6 +1,6 @@
 ---
 link: "https://ua.linkedin.com/in/taras-dmytrus-a0b2a056"
-image: "img/team/2016 taras_d@2x.jpg"
+image: "/img/team/2016 taras_d@2x.jpg"
 name: "Taras Dmytrus"
 type: "right"
 offset: 5
