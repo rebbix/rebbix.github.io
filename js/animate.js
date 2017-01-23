@@ -2,8 +2,10 @@ var animationElements = document.querySelectorAll('.card');
 
 function isInView() {
   var windowHeight = window.innerHeight;
+  var animationElementsCount = animationElements.length;
 
-  animationElements.forEach(function(element) {
+  for (var i = 0; i < animationElementsCount; i++) {
+    var element = animationElements[i];
     var elementBounds = element.getBoundingClientRect();
     var elementTop = elementBounds.top;
 
@@ -12,7 +14,7 @@ function isInView() {
     } else {
       element.classList.remove('card_in-view');
     }
-  });
+  }
 }
 
 window.addEventListener('scroll', isInView);

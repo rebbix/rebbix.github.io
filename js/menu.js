@@ -4,7 +4,7 @@ var offset = 20;
 window.addEventListener('scroll', positionMenu);
 
 function positionMenu() {
-  var scrollTop = document.body.scrollTop;
+  var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
   var menu = document.getElementsByClassName('header__nav')[0];
 
   if (scrollTop > offset) {

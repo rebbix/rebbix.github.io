@@ -233,7 +233,7 @@
       font-size: 46px;
       line-height: 48px;
       font-weight: 300;
-      font-family: AcuminProWide-Regular;
+      font-family: acumin-pro-wide;
     }
 
     h4 {
@@ -241,15 +241,14 @@
       font-size: 32px;
       line-height: 38px;
       font-weight: 300;
-      font-family: AcuminProWide-Regular;
+      font-family: acumin-pro-wide;
     }
 
     p {
       margin: 20px 0;
-      font-weight: 400;
+      font-weight: 300;
       font-size: 20px;
       line-height: 28px;
-      font-family: AcuminPro-Light;
 
       @media (max-width: $mobile_break_point) {
         margin: 10px 0;
@@ -263,7 +262,6 @@
     h3 em,
     h4 em,
     p em {
-      font-family: 'acumin-pro';
       font-style: normal;
     }
 
@@ -308,13 +306,12 @@
     font-weight: 300;
     font-size: 14px;
     opacity: .6;
-    font-family: AcuminPro-Regular;
   }
 
   &__name {
     margin-top: 25px;
     font-size: 18px;
-    font-family: AcuminProWide-Regular;
+    font-family: acumin-pro-wide;
   }
 
   &__overlay-text {
@@ -568,7 +565,7 @@
 
     h1 {
       margin: 0;
-      font-family: AcuminProWide-Regular;
+      font-family: acumin-pro-wide;
       font-size: 34px;
       font-weight: 300;
       color: #111111;

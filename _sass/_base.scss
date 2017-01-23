@@ -32,8 +32,8 @@ body {
   letter-spacing: -.17px;
   line-height: #{$line-height}px;
   font-size: #{$font-size}px;
-  font-weight: 400;
-  font-family: AcuminProWide-Light;
+  font-weight: 300;
+  font-family: acumin-pro-wide;
   color: #111;
 
   &_content {
@@ -58,7 +58,6 @@ body {
   clear: both;
   margin: 250px auto 20px;
   text-align: center;
-  font-family: AcuminPro-Light;
   font-size: 20px;
   color: #7E7E7E;
   letter-spacing: -0.11px;
