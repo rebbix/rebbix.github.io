@@ -41,12 +41,6 @@ body {
     margin-top: 50px;
   }
 
-  @media (max-width: $responsive_break_point) {
-    margin-bottom: 4%;
-    font-size: #{$font-size * 100 / $responsive_width}vw;
-    line-height: #{$line-height * 100 / $responsive_width}vw;
-  }
-
   @media (max-width: $mobile_break_point) {
     font-size: 27px;
     line-height: 30px;

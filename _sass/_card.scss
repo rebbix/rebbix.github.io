@@ -287,6 +287,10 @@
 
   &_work &__content {
     padding: 40px 80px 60px 60px;
+
+    @media (max-width: $responsive_break_point) {
+      padding: 2.66vw;
+    }
   }
 
   &__img {
@@ -528,7 +532,7 @@
     }
   }
 
-  @media (max-width: $responsive_break_point) and (min-width: $mobile_break_point) {
+  @media (max-width: $responsive_break_point) {
     padding: 2.66vw 0;
 
     &_left {

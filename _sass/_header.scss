@@ -2,9 +2,13 @@
 
 .header {
   padding: 0 120px;
-  margin: 100px auto 200px;
+  margin: 140px auto 200px;
   max-width: 1200px;
   font-family: "acumin-pro";
+
+  @media (max-width: $responsive_break_point) {
+    margin-bottom: 0;
+  }
 
   @media (max-width: $mobile_break_point) {
     padding: 0;
@@ -99,18 +103,12 @@
     $font-size: 20;
     $line-height: 45;
 
-    margin: 0;
+    margin: 10px 0 0;
     font-family: AcuminPro-Light;
     color: #7E7E7E;
     letter-spacing: -0.11px;
     font-size: #{$font-size}px;
     line-height: #{$line-height}px;
-
-    @media (max-width: $responsive_break_point) {
-      margin-top: 3%;
-      font-size: #{$font-size * 100 / $responsive_width}vw;
-      line-height: #{$line-height * 100 / $responsive_width}vw;
-    }
 
     @media (max-width: $mobile_break_point) {
       font-size: 20px;
