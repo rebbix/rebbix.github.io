@@ -487,38 +487,6 @@
     }
   }
 
-  &__address {
-    color: #fff;
-    font-size: 36px;
-    letter-spacing: -0.21px;
-    line-height: 42px;
-
-    & + & {
-      margin-top: 40px;
-    }
-  }
-
-  &_follow {
-    font-size: 23px;
-
-    &_network {
-      display: block;
-      font-size: 23px;
-    }
-
-    &_link {
-      margin-bottom: 24px;
-      font-size: 20px;
-      word-break: break-all;
-      color: #111;
-      text-decoration: none;
-    }
-  }
-
-  &_map {
-    margin-top: 50px;
-  }
-
   &_embed-youtube &__content,
   &_embed-facebook &__content,
   &_embed-instagram &__content,
@@ -601,6 +569,51 @@
       padding: 0;
     }
   }
+
+  //
+  // Contact us page
+  //
+  &_address {
+    color: #000;
+    .card__wrap {
+      border: 5px solid #85BC49;
+    }
+  }
+
+  &__address {
+    font-family: acumin-pro-wide;
+    font-size: 32px;
+    color: #111;
+    line-height: 36px;
+  }
+
+  &__follow {
+    display: block;
+    margin-bottom: 40px;
+    padding: 60px;
+    font-family: acumin-pro-wide;
+    font-size: 32px;
+    line-height: 36px;
+    color: #fff;
+    text-decoration: none;
+    background: url('/img/contact_arrow.png') right 110px center no-repeat;
+    background-size: 33px;
+    
+    &_fb {
+      background-color: #3B5998;
+    }
+
+    &_ln {
+      background-color: #007BB6;
+    }
+  }
+
+  &__wrap_map {
+    height: 380px;
+    overflow: hidden;
+  }
+
+
 
   &__spinner {
     position: absolute;

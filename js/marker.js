@@ -7,7 +7,7 @@
   var replaceLatestYear = url == '/';
 
   if (!hideMarkers) {
-    var $cards = document.querySelectorAll('.card');
+    var $cards = document.querySelectorAll('[data-year]');
     var cardsArray = [].slice.call($cards);
     var coordsAnchors = getAnchorsCoordinates();
 
