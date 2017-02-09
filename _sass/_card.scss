@@ -543,7 +543,7 @@
   &_separator {
     display: inline-block;
     width: 100%;
-    margin: 60px 0;
+    margin: 100px 0 60px;
     clear: both;
     float: none;
 
@@ -590,14 +590,14 @@
   &__follow {
     display: block;
     margin-bottom: 40px;
-    padding: 60px;
+    padding: 15%;
     font-family: acumin-pro-wide;
-    font-size: 32px;
-    line-height: 36px;
+    font-size: 1.7vw;
+    line-height: 1.9vw;
     color: #fff;
     text-decoration: none;
-    background: url('/img/contact_arrow.png') right 110px center no-repeat;
-    background-size: 33px;
+    background: url('/img/contact_arrow.png') left 70% center no-repeat;
+    background-size: 1.7vw;
     
     &_fb {
       background-color: #3B5998;

@@ -60,14 +60,14 @@
 
         const contentTop = i * 35 + HEADER_HEIGHT;
         const initialMarkerTop = marker.top;
-        const anchorTop = anchor.top - 30 - document.body.scrollTop;
+        const anchorTop = anchor.top - document.body.scrollTop;
 
         if ((anchorTop > contentTop) && (anchorTop < initialMarkerTop)) {
           marker.$marker.classList.add('marker__item_active');
           marker.$marker.classList.remove('marker__item_top');
           marker.$marker.classList.remove('marker__item_top-active');
 
-          marker.$marker.style.top = anchor.top - 30 + 'px';
+          marker.$marker.style.top = anchor.top + 'px';
         } else if (anchorTop < contentTop) {
           marker.$marker.classList.remove('marker__item_active');
           marker.$marker.classList.add('marker__item_top');

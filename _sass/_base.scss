@@ -24,21 +24,28 @@ body {
    }
 }
 
-.title {
+.title,
+.title__link {
   $font-size: 40;
   $line-height: 53;
 
-  margin-bottom: 10px;
+  margin: 0 0 10px;
   letter-spacing: -.17px;
   line-height: #{$line-height}px;
   font-size: #{$font-size}px;
   font-weight: 300;
   font-family: acumin-pro-wide;
   color: #111;
+  text-decoration: none;
 
   &_content {
     clear: both;
     margin-top: 50px;
+  }
+
+  @media (max-width: $responsive_break_point) {
+    font-size: #{$font-size * 100 / $responsive_width}vw;
+    line-height: #{$line-height * 100 / $responsive_width}vw;
   }
 
   @media (max-width: $mobile_break_point) {
@@ -56,4 +63,14 @@ body {
   color: #7E7E7E;
   letter-spacing: -0.11px;
   line-height: 45px;
+}
+
+#gmap_canvas {
+  height:380px;
+  width:520px;
+
+  img {
+    max-width:none!important;
+    background:none!important
+  }
 }

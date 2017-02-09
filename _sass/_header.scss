@@ -110,6 +110,12 @@
     font-size: #{$font-size}px;
     line-height: #{$line-height}px;
 
+    @media (max-width: $responsive_break_point) {
+      margin-top: 3%;
+      font-size: #{$font-size * 100 / $responsive_width}vw;
+      line-height: #{$line-height * 100 / $responsive_width}vw;
+    }
+
     @media (max-width: $mobile_break_point) {
       font-size: 20px;
       line-height: 23px;

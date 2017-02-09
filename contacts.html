@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /contacts
-header: yesterday.sardine.cherry
+header: <a class="title__link" href="https://map.what3words.com/yesterday.sardine.cherry" target="_blank">yesterday.sardine.cherry</a>
 ---
 <div class="content">
   <div class="card card_address card_left card_width-14">
@@ -12,26 +12,22 @@ header: yesterday.sardine.cherry
           Lviv 79000, Ukraine<br/>
           inbox@rebbix.com
         </h4>
-        <p>Our three word address is:<br/> yesterday.sardine.cherry</p>
+        <!--<p>Our three word address is:<br/> yesterday.sardine.cherry</p>-->
       </div>
       <img src="/img/contacts_rebbix@2x.jpg" alt="" class="card__bottom_image" />
     </div>
   </div>
 
-  <div id="map" class="card card_right card_map card_offset-2 card_offset-top-4 card_width-13">
+  <div id="map" class="card card_right card_map card_offset-4 card_offset-top-4 card_width-13">
     <div class="card__wrap card__wrap_map">
-      <div id="gmap_canvas" style="height:380px; width:520px;">
-        <style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
-      </div>
+      <div id="gmap_canvas"></div>
     </div>
   </div>
 
-  <div class="card card_right card_offset-top-5">
+  <div class="card card_right card_offset-2 card_offset-top-5 card_width-10">
     <div class="card__wrap">
-      <div class="card__content">
-        <a class="card__follow card__follow_fb" href="https://www.linkedin.com/company/rebbix" target="_blank">Facebook</a>
-        <a class="card__follow card__follow_ln" href="https://www.facebook.com/rebbix.company" target="_blank">Linkedin</a>
-      </div>
+      <a class="card__follow card__follow_fb" href="https://www.linkedin.com/company/rebbix" target="_blank">Facebook</a>
+      <a class="card__follow card__follow_ln" href="https://www.facebook.com/rebbix.company" target="_blank">Linkedin</a>
     </div>
   </div>
 
@@ -42,7 +38,6 @@ header: yesterday.sardine.cherry
       var myOptions = {
         zoom: 17,
         center: coords,
-        disableDefaultUI: true
       };
 
       var map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);

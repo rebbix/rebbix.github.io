@@ -8,10 +8,10 @@
   --><a href="{{ '/life' | prepend:site.baseurl }}" class="header__nav-item{% if page.url == '/life' %} header__nav-item_active{% endif %}">Life</a><!--
   --><a href="{{ '/contacts' | prepend:site.baseurl }}" class="header__nav-item{% if page.url == '/contacts' %} header__nav-item_active{% endif %}">Contact us</a>
   </nav>
-  <div class="header__wrap" data-year="{{ site.time | date: '%Y' }}">
+  <div class="header__wrap">
     <img class="header__logo" src="{{ '/img/logo_rebbix.svg' | prepend:site.baseurl }}"/>
     {% if page.header %}
-      <h1 class="title">{{ page.header }}</h1>
+      <h1 class="title" data-year="{{ site.time | date: '%Y' }}">{{ page.header }}</h1>
     {% endif %}
     {% if page.subheader %}
       {{ page.subheader }}
