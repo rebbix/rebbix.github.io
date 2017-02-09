@@ -19,9 +19,9 @@ body {
   overflow: hidden;
   padding: 0 120px;
 
-   @media (max-width: $mobile_break_point) {
-      padding: 0 7%;
-   }
+  @media (max-width: $mobile_break_point) {
+    padding: 0 10px;
+  }
 }
 
 .title,
@@ -49,8 +49,8 @@ body {
   }
 
   @media (max-width: $mobile_break_point) {
-    font-size: 27px;
-    line-height: 30px;
+    font-size: 26px;
+    line-height: 32px;
     letter-spacing: -.13px;
   }
 }

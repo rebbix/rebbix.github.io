@@ -56,8 +56,7 @@
     float: none !important;
     clear: both !important;
     width: 100% !important;
-    margin-top: 0 !important;
-    margin-bottom: $column_width;
+    margin: 0 !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
@@ -75,6 +74,7 @@
   }
 
   &__wrap {
+    box-sizing: border-box;
     display: block;
     height: 100%;
     background-size: cover;
@@ -207,9 +207,13 @@
     position: relative;
     overflow: hidden;
 
+    @media (max-width: $responsive_break_point) {
+      padding: 2.66vw;
+    }
+
     @media (max-width: $mobile_break_point) {
       max-width: 100%;
-      padding: 40px;
+      padding: 35px;
       overflow: visible;
     }
 
@@ -218,6 +222,11 @@
       line-height: 42px;
       font-weight: 400;
       font-size: 36px;
+
+      @media (max-width: $responsive_break_point) {
+        font-size: 2.4vw;
+        line-height: 2.8vw;
+      }
 
       @media (max-width: $mobile_break_point) {
         margin: 10px 0;
@@ -244,6 +253,16 @@
       line-height: 48px;
       font-weight: 300;
       font-family: acumin-pro-wide;
+
+      @media (max-width: $responsive_break_point) {
+        font-size: 2.3vw;
+        line-height: 2.6vw;
+      }
+
+      @media (max-width: $mobile_break_point) {
+        font-size: 32px;
+        line-height: 38px;
+      }
     }
 
     h4 {
@@ -252,6 +271,16 @@
       line-height: 38px;
       font-weight: 300;
       font-family: acumin-pro-wide;
+
+      @media (max-width: $responsive_break_point) {
+        font-size: 2.2vw;
+        line-height: 2.4vw;
+      }
+
+      @media (max-width: $mobile_break_point) {
+        font-size: 20px;
+        line-height: 28px;
+      }
     }
 
     p {
@@ -260,10 +289,15 @@
       font-size: 20px;
       line-height: 28px;
 
+      @media (max-width: $responsive_break_point) {
+        font-size: 1.6vw;
+        line-height: 2vw;
+      }
+
       @media (max-width: $mobile_break_point) {
         margin: 10px 0;
-        font-size: 20px;
-        line-height: 27px;
+        font-size: 16px;
+        line-height: 20px;
       }
     }
 
@@ -287,10 +321,6 @@
 
   &_work &__content {
     padding: 40px 80px 60px 60px;
-
-    @media (max-width: $responsive_break_point) {
-      padding: 2.66vw;
-    }
   }
 
   &__img {
@@ -510,33 +540,8 @@
     &_right {
       padding-left: 2.66vw;
     }
-
-    &__content {
-      padding: 2.66vw;
-    }
-
     .card__img {
       margin-bottom: 2.66vw;
-    }
-
-    h1 {
-      font-size: 2.4vw;
-      line-height: 2.8vw;
-    }
-
-    h3 {
-      font-size: 2.3vw;
-      line-height: 2.6vw;
-    }
-
-    h4 {
-      font-size: 2.2vw;
-      line-height: 2.4vw;
-    }
-
-    p {
-      font-size: 1.6vw;
-      line-height: 2vw;
     }
   }
 
@@ -546,6 +551,11 @@
     margin: 100px 0 60px;
     clear: both;
     float: none;
+
+    @media (max-width: $mobile_break_point) {
+      padding: 10px!important;
+    }
+
 
     h1 {
       margin: 0;
@@ -612,6 +622,8 @@
     height: 380px;
     overflow: hidden;
   }
+
+
 
 
 
