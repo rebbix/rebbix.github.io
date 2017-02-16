@@ -4,5 +4,6 @@ image: "/img/team/2014 serhiy_on@2x.jpg"
 name: "Serhiy Onyshchuk"
 type: "left"
 width: 7
-offset: 3
+offset: 4
+offset-top: 10
 ---
