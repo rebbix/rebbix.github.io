@@ -251,24 +251,19 @@
 
     h3 {
       margin: 10px 0;
-      font-size: 2vw;
-      line-height: 2.3vw;
+      font-size: 37px;
+      line-height: 40px;
       font-weight: 300;
       font-family: acumin-pro-wide;
 
-      @media (min-width: $responsive_break_point) {
-        font-size: 1.8vw;
-        line-height: 2vw;
+      @media (max-width: $responsive_break_point) {
+        font-size: 2.4vw;
+        line-height: 2.6vw;
       }
 
       @media (max-width: $mobile_break_point) {
-        font-size: 32px;
-        line-height: 38px;
-      }
-
-      @media (min-width: 2200px) {
-        font-size: 1.4vw;
-        line-height: 1.5vw;
+        font-size: 25px;
+        line-height: 29px;
       }
     }
 
@@ -327,14 +322,17 @@
   }
 
   &_work &__content {
-    padding: 3vw 5vw 4vw 3vw;
-    // padding: 40px 80px 60px 60px;
+    padding: 55px 90px 70px 55px; 
 
     @media #{$mobile} {
       padding: 30px;
     }
-  }
 
+    @media (max-width: $responsive_break_point) {
+      padding: 3vw 5vw 4vw 3vw;
+    }
+  }
+    
   &__img {
     display: block;
     max-width: 100%;
