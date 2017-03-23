@@ -143,7 +143,8 @@
             return card.dataset.year === marker.year;
           });
 
-          var anchorTop = anchor.querySelector('.card__wrap').getBoundingClientRect().top;
+          var cardWrap = anchor.tagName !== 'H1' ? anchor.querySelector('.card__wrap') : anchor;
+          var anchorTop = cardWrap.getBoundingClientRect().top;
           var top = anchorTop + document.body.scrollTop;
 
           scrollTo(document.body, top - HEADER_HEIGHT, 500); // 60 - header height

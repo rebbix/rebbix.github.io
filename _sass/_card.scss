@@ -46,6 +46,7 @@
 .card {
   box-sizing: border-box;
   opacity: 0;
+  transition: opacity .4s ease-out;
 
   @media #{$tablet} {
     margin-bottom: $column_width;
@@ -250,19 +251,24 @@
 
     h3 {
       margin: 10px 0;
-      font-size: 46px;
-      line-height: 48px;
+      font-size: 2vw;
+      line-height: 2.3vw;
       font-weight: 300;
       font-family: acumin-pro-wide;
 
-      @media (max-width: $responsive_break_point) {
-        font-size: 2.3vw;
-        line-height: 2.6vw;
+      @media (min-width: $responsive_break_point) {
+        font-size: 1.8vw;
+        line-height: 2vw;
       }
 
       @media (max-width: $mobile_break_point) {
         font-size: 32px;
         line-height: 38px;
+      }
+
+      @media (min-width: 2200px) {
+        font-size: 1.4vw;
+        line-height: 1.5vw;
       }
     }
 
@@ -297,8 +303,8 @@
 
       @media (max-width: $mobile_break_point) {
         margin: 10px 0;
-        font-size: 16px;
-        line-height: 20px;
+        font-size: 14px;
+        line-height: 18px;
       }
     }
 
@@ -321,7 +327,12 @@
   }
 
   &_work &__content {
-    padding: 40px 80px 60px 60px;
+    padding: 3vw 5vw 4vw 3vw;
+    // padding: 40px 80px 60px 60px;
+
+    @media #{$mobile} {
+      padding: 30px;
+    }
   }
 
   &__img {
@@ -575,6 +586,12 @@
       line-height: 45px;
     }
 
+    @media #{$mobile} {
+      p {
+        line-height: 25px;
+      }
+    }
+
     .card__content {
       padding: 0;
     }
@@ -628,10 +645,6 @@
     height: 380px;
     overflow: hidden;
   }
-
-
-
-
 
   &__spinner {
     position: absolute;
