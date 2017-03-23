@@ -20,10 +20,6 @@ body {
   padding: 0 120px;
 
   @media (max-width: $mobile_break_point) {
-    padding: 0 10px;
-  }
-
-  @media #{$mobile} {
     padding: 0 7%;
   }
 }
