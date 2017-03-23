@@ -1,6 +1,7 @@
 var animationElements = document.querySelectorAll('.card');
+var visibleOnInitialScreen = [];
 
-function isInView() {
+function isInView(initialCards) {
   var windowHeight = window.innerHeight;
   var animationElementsCount = animationElements.length;
 
@@ -8,10 +9,15 @@ function isInView() {
     var element = animationElements[i];
     var elementBounds = element.getBoundingClientRect();
     var elementTop = elementBounds.top;
+    var appearingHeight = initialCards === true ? windowHeight : windowHeight - windowHeight * 0.3;
 
-    if (elementTop <= windowHeight - windowHeight * 0.15) {
+    if (initialCards === true && elementTop <= appearingHeight) {
+      visibleOnInitialScreen.push(element);
+    }
+
+    if (elementTop <= appearingHeight) {
       element.classList.add('card_in-view');
-    } else {
+    } else if (!visibleOnInitialScreen.includes(element)) {
       element.classList.remove('card_in-view');
     }
   }
@@ -19,4 +25,4 @@ function isInView() {
 
 window.addEventListener('scroll', isInView);
 window.addEventListener('resize', isInView);
-isInView();
+isInView(true);
