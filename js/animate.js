@@ -25,4 +25,15 @@ function isInView(initialCards) {
 
 window.addEventListener('scroll', isInView);
 window.addEventListener('resize', isInView);
-setTimeout(isInView.bind(null, true), 800);
+
+function fadeIn() {
+    var header = document.querySelector('.header')
+    if (!header) {
+        return;
+    }
+    header.classList.add('shown');
+
+    setTimeout(isInView.bind(null, true), 800);
+}
+
+window.addEventListener('load', fadeIn);
