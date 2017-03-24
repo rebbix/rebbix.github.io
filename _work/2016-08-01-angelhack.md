@@ -1,7 +1,7 @@
 ---
 image: "/img/work/logo-rebbix_labs.svg"
 bottom_image: "/img/work/work_rebbix_labs@2x.png"
-style: "color: #111; border: 5px solid #85BC49;"
+style: "color: #111; border: 1px solid #D8D8D8;"
 type: "left"
 width: 14
 offset-top: 7

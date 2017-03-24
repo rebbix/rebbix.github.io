@@ -58,6 +58,7 @@
       clear: both !important;
       width: 100% !important;
       margin: 0 !important;
+      padding: 5vw !important;
       padding-left: 0 !important;
       padding-right: 0 !important;
     }
@@ -72,6 +73,16 @@
 
     .card__wrap {
       transform: translate(0) scale(1)!important;
+
+      &::before {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+      }
+
+
+      &:hover,
+      &:hover +  {
+        transform: translate(0, -1vw) !important;
+      }
     }
   }
 
@@ -84,6 +95,7 @@
     background-position: center;
     text-decoration: none;
     color: inherit;
+    position: relative;
 
     transition: all .8s ease-out;
 
@@ -92,6 +104,18 @@
       height: auto;
       margin: 0 auto !important;
     }
+  }
+
+  &:not([class~=card_separator]):not([class~=card_person]) .card__wrap::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    box-shadow: 0px 2vw 6vw 1vw rgba(0, 0, 0, 0.3);
+    transition: all .8s ease-out;
+    opacity: 1;
   }
 
   &_left {
@@ -257,13 +281,18 @@
       font-family: acumin-pro-wide;
 
       @media (max-width: $responsive_break_point) {
-        font-size: 2.4vw;
+        font-size: 2.3vw;
         line-height: 2.6vw;
       }
 
       @media (max-width: $mobile_break_point) {
-        font-size: 25px;
-        line-height: 29px;
+        font-size: 3.4vw;
+        line-height: 3.7vw;
+      }
+
+      @media #{$mobile} {
+        font-size: 8vw;
+        line-height: 9vw;
       }
     }
 
@@ -276,12 +305,17 @@
 
       @media (max-width: $responsive_break_point) {
         font-size: 2.2vw;
-        line-height: 2.4vw;
+        line-height: 2.6vw;
       }
 
       @media (max-width: $mobile_break_point) {
-        font-size: 20px;
-        line-height: 28px;
+        font-size: 2.5vw;
+        line-height: 3.5vw;
+      }
+
+      @media #{$mobile} {
+        font-size: 6vw;
+        line-height: 7.5vw;
       }
     }
 
@@ -292,7 +326,7 @@
       line-height: 28px;
 
       @media (max-width: $responsive_break_point) {
-        font-size: 1.6vw;
+        font-size: 1.4vw;
         line-height: 2vw;
       }
 
@@ -300,6 +334,12 @@
         margin: 10px 0;
         font-size: 14px;
         line-height: 18px;
+      }
+
+      @media #{$mobile} {
+        margin: 4vw 0;
+        font-size: 3.8vw;
+        line-height: 6vw;
       }
     }
 
@@ -324,12 +364,12 @@
   &_work &__content {
     padding: 55px 90px 70px 55px; 
 
-    @media #{$mobile} {
-      padding: 30px;
+    @media (max-width: $responsive_break_point) {
+      padding: 3.8vw 6vw 5vw 3.8vw;
     }
 
-    @media (max-width: $responsive_break_point) {
-      padding: 3vw 5vw 4vw 3vw;
+    @media #{$mobile} {
+      padding: 12vw 6vw 18vw 6vw;
     }
   }
     
@@ -360,6 +400,18 @@
     font-weight: 300;
     font-size: 14px;
     opacity: .6;
+
+    @media (max-width: $responsive_break_point) {
+      font-size: 1vw;
+    }
+
+    @media (max-width: $mobile_break_point) {
+      font-size: 1.5vw;
+    }
+
+    @media #{$mobile} {
+      font-size: 3vw;
+    }
   }
 
   &__name {
@@ -540,8 +592,14 @@
   }
 
   @media (max-width: $responsive_break_point) {
-    padding: 2.66vw 0;
+    padding: 0;
 
+    .card__img {
+      margin-bottom: 2.66vw;
+    }
+  }
+
+  @media (max-width: $mobile_break_point) {
     &_left {
       padding-right: 2.66vw;
     }
@@ -549,15 +607,12 @@
     &_right {
       padding-left: 2.66vw;
     }
-    .card__img {
-      margin-bottom: 2.66vw;
-    }
   }
 
   &_separator {
     display: inline-block;
     width: 100%;
-    margin: 100px 0 60px;
+    margin: 160px 0 0;
     clear: both;
     float: none;
 

@@ -9,7 +9,7 @@ function isInView(initialCards) {
     var element = animationElements[i];
     var elementBounds = element.getBoundingClientRect();
     var elementTop = elementBounds.top;
-    var appearingHeight = initialCards === true ? windowHeight : windowHeight - windowHeight * 0.3;
+    var appearingHeight = initialCards === true ? windowHeight : windowHeight - windowHeight * 0.35;
 
     if (initialCards === true && elementTop <= appearingHeight) {
       visibleOnInitialScreen.push(element);
@@ -25,4 +25,4 @@ function isInView(initialCards) {
 
 window.addEventListener('scroll', isInView);
 window.addEventListener('resize', isInView);
-isInView(true);
+setTimeout(isInView.bind(null, true), 800);

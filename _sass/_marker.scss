@@ -1,4 +1,6 @@
 .marker {
+  font-family: "acumin-pro-wide", "AcuminPro-Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
   &:before {
     position: fixed;
     height: 100%;
@@ -55,6 +57,7 @@
     transition: none;
     color: #222;
     z-index: 2;
+    font-size: 18px;
 
     &:before {
       background: #222;
@@ -73,6 +76,7 @@
 
   &__item_top-active {
     color: #222;
+    font-size: 18px;
 
     &:before {
       background: #222;
