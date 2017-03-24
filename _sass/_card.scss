@@ -655,9 +655,14 @@
   //
   &_address {
     color: #000;
+
     .card__wrap {
       border: 5px solid #85BC49;
     }
+
+    @media (max-width: $responsive_break_point) {
+      margin-top: 50px;
+    } 
   }
 
   &__address {
