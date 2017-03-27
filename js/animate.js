@@ -1,7 +1,35 @@
 var animationElements = document.querySelectorAll('.card');
 var visibleOnInitialScreen = [];
+var loaded = false;
+
+function getRGBColor(hexColor) {
+  var rgb = [];
+  if (hexColor.indexOf('#') !== 0) {
+    return null;
+  } else {
+    hexColor = hexColor.slice(1);
+  }
+
+  if (hexColor.length === 3) { // if it is short hex for of color
+    debugger
+    hexColor.split('').forEach(function(char) {
+      rgb.push(parseInt(Number('0x' + char.toString()), 10));
+    });
+  } else if (hexColor.length === 6) { // if full hex form
+    var hexChars = hexColor.split('');
+    for (var i = 0; i < hexChars.length; i += 2) {
+      var hexNumber = Number('0x' + hexChars[i].toString() + hexChars[i + 1].toString());
+      rgb.push(parseInt(hexNumber, 10))
+    }
+  }
+
+  return rgb;
+}
 
 function isInView(initialCards) {
+  if (!loaded) {
+    return;
+  }
   var windowHeight = window.innerHeight;
   var animationElementsCount = animationElements.length;
 
@@ -23,17 +51,43 @@ function isInView(initialCards) {
   }
 }
 
-window.addEventListener('scroll', isInView);
-window.addEventListener('resize', isInView);
-
 function fadeIn() {
-    var header = document.querySelector('.header')
+    var header = document.querySelector('.header');
+
     if (!header) {
         return;
     }
+
     header.classList.add('shown');
 
-    setTimeout(isInView.bind(null, true), 800);
+    setTimeout(function() {
+      loaded = true;
+      isInView(true);
+    }, 800);
+}
+
+var shadowsApplied = false;
+var SHADOW_OPACITY = '0.5';
+var SHADOW_SIZE = '0px 2vw 6vw 1vw';
+function initShadows() {
+  if (shadowsApplied) return;
+
+  var workCards = document.querySelectorAll('.card.card_work:not([class~=card_separator])');
+
+  workCards.forEach(function(card) {
+    var wrap = card.querySelector('.card__wrap');
+    var shadowColor = wrap.dataset.shadowcolor || '#808080';
+    var rgb = getRGBColor(shadowColor);
+
+    var shadowStyleString = SHADOW_SIZE + ' rgba(' + rgb.join(', ') + ', ' + SHADOW_OPACITY + ')';
+    wrap.style.boxShadow = shadowStyleString;
+  });
+
+  shadowsApplied = true;
 }
 
 window.addEventListener('load', fadeIn);
+window.addEventListener('load', initShadows);
+window.addEventListener('scroll', initShadows);
+window.addEventListener('scroll', isInView);
+window.addEventListener('resize', isInView);
