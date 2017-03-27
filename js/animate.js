@@ -39,14 +39,9 @@ function isInView(initialCards) {
     var elementTop = elementBounds.top;
     var appearingHeight = initialCards === true ? windowHeight : windowHeight - windowHeight * 0.35;
 
-    if (initialCards === true && elementTop <= appearingHeight) {
-      visibleOnInitialScreen.push(element);
-    }
-
     if (elementTop <= appearingHeight) {
       element.classList.add('card_in-view');
-    } else if (!visibleOnInitialScreen.includes(element)) {
-      element.classList.remove('card_in-view');
+      element.classList.add('no-shadow');
     }
   }
 }

@@ -73,8 +73,11 @@
 
     .card__wrap {
       transform: translate(0) scale(1)!important;
-      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
     }
+  }
+
+  &[class~=card_work] .card__wrap:hover {
+    transform: translate(0, -1em) !important;
   }
 
   &__wrap {
@@ -719,6 +722,11 @@
         opacity: 0;
       }
   }
+}
+
+.no-shadow, 
+.no-shadow * {
+  box-shadow: 0 0 0 0 transparent !important;
 }
 
 .instagram-media,

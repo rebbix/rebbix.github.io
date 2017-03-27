@@ -1,5 +1,4 @@
 ---
-image: "/img/work/logo-rebbix.svg"
 style: "margin-bottom: 60px;"
 type: "separator"
 ---
