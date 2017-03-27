@@ -11,7 +11,6 @@ function getRGBColor(hexColor) {
   }
 
   if (hexColor.length === 3) { // if it is short hex for of color
-    debugger
     hexColor.split('').forEach(function(char) {
       rgb.push(parseInt(Number('0x' + char.toString()), 10));
     });
