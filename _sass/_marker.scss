@@ -1,12 +1,15 @@
+@import './_mixin';
+
 .marker {
   font-family: "acumin-pro-wide", "AcuminPro-Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  transition: all .5s;
 
   &:before {
     position: fixed;
     height: 100%;
-    border-left: 1px solid #D8D8D8;
+    border-left: 1px solid #EAEAEA;
     list-style: none;
-    left: 41px;
+    left: 100px;
     top: 0;
     content: "";
     z-index: 2;
@@ -16,12 +19,13 @@
     position: fixed;
     padding: 0 0 0 10px;
     top: 100%;
-    left: 42px;
+    left: 101px;
     letter-spacing: .2px;
     font-size: 13px;
     cursor: pointer;
     color: #a6a6a6;
     z-index: 3;
+    transition: font-size .2s;
 
     &:hover {
       color: #222;
@@ -48,6 +52,26 @@
       &:nth-child(#{$i}) {
         margin-top: -#{210 - ($i - 1) * 35}px;
       }
+    }
+  }
+
+  @media (max-width: $ultra_wide_break_point) {
+    &::before {
+      left: 40px;
+    }
+
+    &__item {
+      left: 41px;
+    }
+  }
+
+  @media (max-width: $responsive_break_point) {
+    &:before {
+      left: 20px;
+    }
+
+    &__item {
+      left: 21px;
     }
   }
 
@@ -84,7 +108,6 @@
   }
 }
 
-$mobile_break_point : 768px;
 @media (max-width: $mobile_break_point) {
   .marker {
     display: none;

@@ -145,6 +145,11 @@
 
           var cardWrap = anchor.tagName !== 'H1' ? anchor.querySelector('.card__wrap') : anchor;
           var anchorTop = cardWrap.getBoundingClientRect().top;
+          
+          // on max year on 'now' marker click - scroll to top of the page
+          if (anchor.dataset.year == maxYear) {
+            anchorTop = document.body.scrollTop * -1;
+          }
           var top = anchorTop + document.body.scrollTop;
 
           scrollTo(document.body, top - HEADER_HEIGHT, 500); // 60 - header height

@@ -106,7 +106,7 @@
     }
   }
 
-  &:not([class~=card_separator]):not([class~=card_person]) .card__wrap::before {
+  &[class~=card_work]:not([class~=card_separator]) .card__wrap::before {
     content: '';
     position: absolute;
     top: 0;
@@ -624,7 +624,7 @@
     h1 {
       margin: 0;
       font-family: acumin-pro-wide;
-      font-size: 34px;
+      font-size: 44px;
       font-weight: 300;
       color: #111111;
       line-height: 46px;
@@ -674,6 +674,7 @@
 
   &__follow {
     display: block;
+    position: relative;
     margin-bottom: 40px;
     padding: 15%;
     font-family: acumin-pro-wide;
