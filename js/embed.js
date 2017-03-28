@@ -9,7 +9,7 @@ function addPost(card) {
   })
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
     var cards = document.querySelectorAll('.card.card_embed');
     
     cards.forEach((card, index) => {
