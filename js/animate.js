@@ -61,8 +61,9 @@ function fadeIn() {
 }
 
 var shadowsApplied = false;
-var SHADOW_OPACITY = '0.5';
-var SHADOW_SIZE = '0px 2vw 6vw 1vw';
+var SHADOW_OPACITY = '0.4';
+var SHADOW_SIZE = '0px 2vw 7vw 1vw';
+var BRIGHTNESS = 0.5;
 function initShadows() {
   if (shadowsApplied) return;
 
@@ -71,7 +72,9 @@ function initShadows() {
   workCards.forEach(function(card) {
     var wrap = card.querySelector('.card__wrap');
     var shadowColor = wrap.dataset.shadowcolor || '#808080';
-    var rgb = getRGBColor(shadowColor);
+    var rgb = getRGBColor(shadowColor).map(function(color) {
+      return Math.floor(color * BRIGHTNESS);
+    });
 
     var shadowStyleString = SHADOW_SIZE + ' rgba(' + rgb.join(', ') + ', ' + SHADOW_OPACITY + ')';
     wrap.style.boxShadow = shadowStyleString;
