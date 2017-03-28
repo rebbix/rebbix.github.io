@@ -1,103 +1,42 @@
-(function() {
-  var coordsCards = []
-  var $cards = document.querySelectorAll('.card_embed-facebook, .card_embed-youtube, .card_embed-instagram, .card_embed-twitter, .card_embed-image')
-
-  window.addEventListener('scroll', debounce(arrange, 500))
-
-  window.addEventListener('load', function() {
-    coordsCards = getCardsCoordinates()
-    // arrange()
+function addPost(card) {
+  var iframe = document.createElement('iframe')
+  iframe.setAttribute('width', '100%')
+  iframe.setAttribute('height', '300px')
+  iframe.setAttribute('src', card.dataset.videoembed)
+  card.querySelector('.card__content').appendChild(iframe)
+  iframe.addEventListener('load', function() {
+    card.dataset.loaded = true;
   })
+}
 
-  window.addEventListener('resize', function() {
-    coordsCards = getCardsCoordinates()
-    arrange()
-  })
+document.addEventListener('DOMContentLoaded', () => {
+    var cards = document.querySelectorAll('.card.card_embed');
+    
+    cards.forEach((card, index) => {
+      console.log(card.dataset.videoembed)
+      var cardWidth = card.dataset.videoembed ? 47 : Math.floor(Math.random() * 20 + 25);
+      var cardMargin = Math.floor(Math.random() * (47 - cardWidth));
+      var cardMarginBottom = Math.floor(Math.random() * 3 + 5);
+      var cardMarginTop = -Math.floor(Math.random() * 3 + 2);
 
-  function arrange() {
-    var scrollTop = document.body.scrollTop;
-
-    for (var i = 0; i < coordsCards.length; i++) {
-      if (coordsCards[i].top >= scrollTop && coordsCards[i].top <= (scrollTop + window.innerHeight)) {
-        if (!$cards[i].dataset.loaded) {
-          $cards[i].dataset.loaded = true;
-          addPost($cards[i]);
-        }
+      var cardSide = (index % 2) ? 'card_right' : 'card_left';
+      card.classList.add(cardSide);
+      
+      if (card.className.indexOf('card_left') > -1) {
+        card.style.marginLeft = cardMargin + '%';
+      } else if (card.className.indexOf('card_right')) {
+        card.style.marginRight = cardMargin + '%';
       }
-    }
-  }
 
-  function getCardsCoordinates() {
-    var coords = []
+      card.style.width = cardWidth + '%';
+      card.style.marginBottom = cardMarginBottom + '%';
 
-    for (var i = 0; i < $cards.length; i++) {
-      var $card = $cards[i]
-      var rect = $card.getBoundingClientRect()
+      if (index > 1) {
+        card.style.marginTop = cardMarginTop + '%';
+      }
 
-      coords.push({
-        $card: $card
-      , top: rect.top + document.body.scrollTop
-      })
-    }
-    return coords
-  }
-
-  function addPost(card) {
-
-    if (card.className.indexOf('card_embed-instagram') > -1) {
-      var blockquote = document.createElement('blockquote')
-      blockquote.classList.add('instagram-media')
-      blockquote.dataset.instgrmCaptioned = true
-      blockquote.dataset.instgrmVersion = 7
-      var link = document.createElement('a')
-      link.setAttribute('href', card.dataset.embedUrl)
-      blockquote.appendChild(link)
-      card.querySelector('.card__content').appendChild(blockquote)
-      window.instgrm && window.instgrm.Embeds.process()
-      coordsCards = getCardsCoordinates()
-    }
-
-    else if (card.className.indexOf('card_embed-twitter') > -1) {
-      var blockquote = document.createElement('blockquote')
-      blockquote.classList.add('twitter-tweet')
-      blockquote.dataset.lang = "en"
-      var link = document.createElement('a')
-      link.setAttribute('href', card.dataset.embedUrl)
-      blockquote.appendChild(link)
-      card.querySelector('.card__content').appendChild(blockquote)
-      twttr.widgets.load(card)
-      card.addEventListener('load', function () {
-        coordsCards = getCardsCoordinates()
-      })
-    }
-
-    else if (card.className.indexOf('card_embed-image') > -1) {
-      var img = document.createElement('img')
-      img.setAttribute('src', card.dataset.embedUrl)
-      card.querySelector('.card__content').appendChild(img)
-    }
-
-    else {
-      var iframe = document.createElement('iframe')
-      iframe.setAttribute('width', card.dataset.embedWidth)
-      iframe.setAttribute('class' , 'facebook_post')
-      iframe.setAttribute('height', card.dataset.embedHeight)
-      iframe.setAttribute('src', card.dataset.embedUrl)
-      card.querySelector('.card__content').appendChild(iframe)
-      iframe.addEventListener('load', function() {
-      coordsCards = getCardsCoordinates()
-      })
-    }
-  }
-
-  function debounce(fn, delay) {
-    var timer = null;
-    return function () {
-      var context = this, args = arguments;
-      clearTimeout(timer);
-      timer = setTimeout(function () {
-        fn.apply(context, args);
-      }, delay);
-    };
-  }
-})();
+      if (card.dataset.videoembed) {
+        addPost(card);
+      }
+    });
+});

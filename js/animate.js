@@ -80,8 +80,8 @@ function initShadows() {
   shadowsApplied = true;
 }
 
-window.addEventListener('load', fadeIn);
-window.addEventListener('load', initShadows);
+document.addEventListener('DOMContentLoaded', fadeIn);
+document.addEventListener('DOMContentLoaded', initShadows);
 window.addEventListener('scroll', initShadows);
 window.addEventListener('scroll', isInView);
 window.addEventListener('resize', isInView);

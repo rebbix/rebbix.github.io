@@ -260,7 +260,7 @@
       font-size: 34px;
       line-height: 37px;
       font-weight: 300;
-      font-family: acumin-pro-wide;
+      font-family: acumin-pro-wide, Arial, Helvetica, sans-serif;
 
       @media (max-width: $responsive_break_point) {
         font-size: 2.3vw;
@@ -283,7 +283,7 @@
       font-size: 32px;
       line-height: 38px;
       font-weight: 300;
-      font-family: acumin-pro-wide;
+      font-family: acumin-pro-wide, Arial, Helvetica, sans-serif;
 
       @media (max-width: $responsive_break_point) {
         font-size: 2.2vw;
@@ -399,7 +399,7 @@
   &__name {
     margin-top: 25px;
     font-size: 18px;
-    font-family: acumin-pro-wide;
+    font-family: acumin-pro-wide, Arial, Helvetica, sans-serif;
   }
 
   &__overlay-text {
@@ -560,17 +560,8 @@
     }
   }
 
-  &_embed-youtube &__content,
-  &_embed-facebook &__content,
-  &_embed-instagram &__content,
-  &_embed-twitter &__content,
-  &_embed-coub &__content,
-  &_embed-image &__content {
+  &.card_embed .card__content {
     padding: 0;
-
-    @media (max-width: $mobile_break_point) {
-      padding: 0;
-    }
   }
 
   @media (max-width: $responsive_break_point) {
@@ -605,7 +596,7 @@
 
     h1 {
       margin: 0;
-      font-family: acumin-pro-wide;
+      font-family: acumin-pro-wide, Arial, Helvetica, sans-serif;
       font-size: 44px;
       font-weight: 300;
       color: #111111;
@@ -648,7 +639,7 @@
   }
 
   &__address {
-    font-family: acumin-pro-wide;
+    font-family: acumin-pro-wide, Arial, Helvetica, sans-serif;
     font-size: 32px;
     color: #111;
     line-height: 36px;
@@ -659,7 +650,7 @@
     position: relative;
     margin-bottom: 40px;
     padding: 15%;
-    font-family: acumin-pro-wide;
+    font-family: acumin-pro-wide, Arial, Helvetica, sans-serif;
     font-size: 1.7vw;
     line-height: 1.9vw;
     color: #fff;
@@ -702,6 +693,12 @@
 
     -webkit-animation: scaleout 1.0s infinite ease-in-out;
     animation: scaleout 1.0s infinite ease-in-out;
+  }
+
+  &[data-loaded] {
+    .card__spinner {
+      display: none;
+    }
   }
 
   @-webkit-keyframes scaleout {
