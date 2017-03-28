@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     var cards = document.querySelectorAll('.card.card_embed');
     
     cards.forEach((card, index) => {
-      console.log(card.dataset.videoembed)
       var cardWidth = card.dataset.videoembed ? 47 : Math.floor(Math.random() * 20 + 25);
       var cardMargin = Math.floor(Math.random() * (47 - cardWidth));
       var cardMarginBottom = Math.floor(Math.random() * 3 + 5);
