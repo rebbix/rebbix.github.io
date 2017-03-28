@@ -365,6 +365,10 @@
     }
   }
 
+  &_embed .card__img {
+    margin-bottom: 0 !important;
+  }
+
   &__content q {
     font-size: 34px;
     letter-spacing: -0.18px;
@@ -621,6 +625,10 @@
     .card__content {
       padding: 0;
     }
+  }
+
+  &_separator_embed {
+    margin-bottom: 85px;
   }
 
   //

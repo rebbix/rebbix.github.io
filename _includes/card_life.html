@@ -1,21 +1,31 @@
 {% if item.video %}  
 <div class="card card_embed" data-videoembed="{{ item.video }}" data-year="{{ item.date | date: "%Y" }}">
     <div class="card__wrap">
-        <div class="card__label">{{ item.date | date: "%B, %Y" }}</div>
         <div class="card__content">
             <div class="card__spinner"></div>
+            <div class="card__label">{{ item.date | date: "%B, %Y" }}</div>
         </div>
     </div>
 </div>
 {% else %}
-<div class="card card_embed" data-year="{{ item.date | date: "%Y" }}">
-    <div class="card__wrap">
-        <div class="card__label">{{ item.date | date: "%B, %Y" }}</div>
-        <div class="card__content">
-            <a href="{{ item.link }}" target="_blank">
-                <img class="card__img" src="{{ item.img | prepend:site.baseurl }}"{% if item.image2x %} srcset="{{item.image2x}}" {% endif %} />
-            </a>
+    {% if item.separator %}
+        <div class="card card_separator card_separator_embed" data-year="{{ item.date | date: "%Y" }}">
+            <div class="card__wrap">
+                <div class="card__content">
+                    <h1>{{ item.separator }}</h3>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+    {% else %}
+        <div class="card card_embed" data-year="{{ item.date | date: "%Y" }}">
+            <div class="card__wrap">
+                <div class="card__content">
+                    <a href="{{ item.link }}" target="_blank">
+                        <img class="card__img" src="{{ item.img | prepend:site.baseurl }}"{% if item.image2x %} srcset="{{item.image2x}}" {% endif %} />
+                    </a>
+                    <div class="card__label">{{ item.date | date: "%B, %Y" }}</div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endif %}
