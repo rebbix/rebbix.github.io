@@ -1,18 +1,19 @@
 @import './_mixin';
 
 .marker {
-  font-family: "acumin-pro-wide", "AcuminPro-Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "acumin-pro-wide", acumin-pro, "Helvetica Neue", Helvetica, Arial, sans-serif;
   transition: all .5s;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 100px;
+  z-index: 1000;
 
-  &:before {
-    position: fixed;
+  .marker_container {
+    position: relative;
+    width: 1px;
     height: 100%;
-    border-left: 1px solid #EAEAEA;
-    list-style: none;
-    left: 100px;
-    top: 0;
-    content: "";
-    z-index: 2;
+    background: #f5f5f5;
   }
 
   &__item {
@@ -78,9 +79,10 @@
   &__item_active.marker__item {
     position: absolute;
     margin-top: 0;
-    transition: none;
+    // transition: none;
     color: #222;
     z-index: 2;
+    left: 1px;
     font-size: 18px;
 
     &:before {

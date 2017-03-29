@@ -4,7 +4,7 @@
   var url = window.location.pathname;
   var hideMarkers = ['/approach', '/contacts'].indexOf(url) > -1;
   var reverseMarkers = ['/team'].indexOf(url) === -1;
-  var replaceLatestYear = url == '/';
+  var replaceLatestYear = url === '/';
 
   if (!hideMarkers) {
     // when we don't need 'now' marker we sholdn't search for all elements with data-year attr,
@@ -17,6 +17,9 @@
     var $markers = [];
 
     $marker.classList.add('marker');
+    var $markerItemContainer = document.createElement('DIV');
+    $markerItemContainer.classList.add('marker_container');
+    $marker.appendChild($markerItemContainer);
 
     var years = coordsAnchors.map(function(anchor) {
       return parseInt(anchor.year);
@@ -33,7 +36,7 @@
         $markerItem.innerHTML = 'Now';
       }
 
-      $marker.appendChild($markerItem);
+      $markerItemContainer.appendChild($markerItem);
       $markers.push($markerItem);
     });
     document.body.appendChild($marker);
@@ -57,19 +60,38 @@
         var anchor = coordsAnchors.find(function(card) {
           return card.year === marker.year;
         });
+        var nextMarker = coordsMarkers[i + 1]; 
+        var nextAnchor = nextMarker ? coordsAnchors.find(function(card) {
+          return card.year === nextMarker.year;
+        }) : null;
 
         if (!anchor) return;
 
-        const contentTop = i * 35 + HEADER_HEIGHT;
-        const initialMarkerTop = marker.top;
-        const anchorTop = anchor.top - document.body.scrollTop;
+        var contentTop = i * 35 + HEADER_HEIGHT; // hight on top positino
+        var initialMarkerTop = marker.top; // top position related to the screen
+
+        var distanceToBottom = window.innerHeight - initialMarkerTop;
+        var distanceToTop = contentTop;
+        var windowHeight = window.innerHeight;
+
+        var anchorTop = anchor.top - document.body.scrollTop; // position related to the scroll position        
+        var b = 0;
+        if (nextAnchor) {
+          var yearShown = (windowHeight - (anchor.top - document.body.scrollTop) - (windowHeight - initialMarkerTop));
+          var yearHeight = (nextAnchor.top - anchor.top);
+          var z = (windowHeight - contentTop - (windowHeight - initialMarkerTop));
+          var k = Math.floor(contentTop + z - z * (yearShown / yearHeight));
+          anchorTop = k;
+          b = k;
+        }
 
         if ((anchorTop > contentTop) && (anchorTop < initialMarkerTop)) {
           marker.$marker.classList.add('marker__item_active');
           marker.$marker.classList.remove('marker__item_top');
           marker.$marker.classList.remove('marker__item_top-active');
 
-          marker.$marker.style.top = anchor.top + 'px';
+          marker.$marker.style.top = nextAnchor ? b + 'px' : anchor.top + 'px';
+
         } else if (anchorTop < contentTop) {
           marker.$marker.classList.remove('marker__item_active');
           marker.$marker.classList.add('marker__item_top');
@@ -99,8 +121,7 @@
 
         if (coords[year]) continue;
 
-        var rect = $cards[i]
-          .getBoundingClientRect();
+        var rect = $cards[i].getBoundingClientRect();
 
         coords[year] = {
           top: rect.top + document.body.scrollTop,
