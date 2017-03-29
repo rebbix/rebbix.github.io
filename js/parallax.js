@@ -1,19 +1,32 @@
-var TRANSLATE_RATIO = 0.1;
+var TRANSLATE_RATIO = 0.15;
 var MEASUREMENT = 'px';
 var prevScrollY = 0;
+var visibleOnLoad = 0;
 function parallax(event) {
   var scrollDown = window.scrollY > prevScrollY;
   var STEP = (window.scrollY - prevScrollY) * -TRANSLATE_RATIO;
   prevScrollY = window.scrollY;
+  if (!scrollDown && window.scrollY < visibleOnLoad) {
+      visibleOnLoad = window.scrollY;
+  }
+
   var rightCards = document.querySelectorAll('.card.card_right.card_in-view');
   if (!rightCards.length) {
     return;
   }
 
   rightCards.forEach(function(card) {
+    var cardTopPosition = card.offsetTop;
+
+    // to prevent parallax for those cards, which were hiegher, than viewport
+    // when page loaded
+    if (cardTopPosition < visibleOnLoad + window.innerHeight * 0.35) {
+        return
+    }
+
     var transformString = card.style.transform;
     if (!transformString.length) {
-      card.style.transform = 'translate(0, ' + STEP * (scrollDown ? -1 : 1) + MEASUREMENT + ')';
+      card.style.transform = 'translate(0, ' + STEP + MEASUREMENT + ')';
     } else {
       var translateRegexp = /translate\(-*\d+.?\d*[a-z]*,\s-*\d+.?\d*[a-z]*\)/;
       var translateValueRegexp = /-*\d+[.\d*]?\w*/g;
@@ -43,3 +56,6 @@ function parallax(event) {
 }
 
 window.addEventListener('scroll', parallax);
+window.addEventListener('load', function() {
+    visibleOnLoad = window.scrollY;
+});
