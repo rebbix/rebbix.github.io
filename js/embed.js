@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
       var cardWidth = card.dataset.videoembed ? 47 : Math.floor(Math.random() * 20 + 25);
       var cardMargin = Math.floor(Math.random() * (47 - cardWidth));
       var cardMarginBottom = Math.floor(Math.random() * 7 + 8);
-      var cardMarginTop = -Math.floor(Math.random() * 3 + 2);
+      var cardMarginTop = index > 1 ? -Math.floor(Math.random() * 3 + 2) : 15;
 
       var cardSide = (index % 2) ? 'card_right' : 'card_left';
       card.classList.add(cardSide);
@@ -29,10 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       card.style.width = cardWidth + '%';
       card.style.marginBottom = cardMarginBottom + '%';
-
-      if (index > 1) {
-        card.style.marginTop = cardMarginTop + '%';
-      }
+      card.style.marginTop = cardMarginTop + '%';
 
       if (card.dataset.videoembed) {
         addPost(card);

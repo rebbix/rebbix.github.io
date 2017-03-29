@@ -76,7 +76,7 @@
     }
   }
 
-  &[class~=card_work] .card__wrap:hover {
+  &[class~=card_work]:not([class~=card_separator]) .card__wrap:hover {
     transform: translate(0, -1em) !important;
   }
 
