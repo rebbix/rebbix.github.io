@@ -1,15 +1,23 @@
+var currentHovered = null;
 function onMouseOver(wrap) {
     var shadowStyle = wrap.style.boxShadow;
     wrap.style.boxShadow = '';
     var currentStyle = wrap.getAttribute('style');
 
+    wrap.classList.add('hover_transition');
     wrap.setAttribute('style', currentStyle + 'box-shadow: ' + shadowStyle + ' !important;');
+    currentHovered = wrap;
 }
 
 function onMouseOut(wrap, event) {
     var shadowStyle = wrap.style.boxShadow;
     wrap.style.boxShadow = ''; // to remove !important operator
     wrap.style.boxShadow = shadowStyle;
+    setTimeout(function() {
+        if (currentHovered !== wrap) {
+            wrap.classList.remove('hover_transition');
+        }
+    }, 400);
 }
 
 function initHoverAction() {

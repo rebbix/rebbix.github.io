@@ -751,6 +751,10 @@
   line-height: 46px;
 }
 
+.hover_transition {
+  transition: all .4s;
+}
+
 @include card_width;
 @include card_offset;
 @include card_offset-top;

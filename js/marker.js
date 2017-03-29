@@ -130,7 +130,7 @@
           $marker: $marker,
           top: rect.top,
           year: year,
-        })
+        });
       }
 
       return coords;
@@ -146,7 +146,7 @@
           var cardWrap = anchor.tagName !== 'H1' ? anchor.querySelector('.card__wrap') : anchor;
           var anchorTop = cardWrap.getBoundingClientRect().top;
           
-          // on max year on 'now' marker click - scroll to top of the page
+          // on max year or 'now' marker click - scroll to top of the page
           if (anchor.dataset.year == maxYear && replaceLatestYear) {
             anchorTop = document.body.scrollTop * -1;
           }
