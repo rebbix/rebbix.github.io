@@ -36,7 +36,7 @@ function isInView(initialCards) {
     var element = animationElements[i];
     var elementBounds = element.getBoundingClientRect();
     var elementTop = elementBounds.top;
-    var appearingHeight = initialCards === true ? windowHeight : windowHeight - windowHeight * 0.15;
+    var appearingHeight = initialCards === true ? windowHeight : windowHeight - windowHeight * 0.35;
 
     if (elementTop <= appearingHeight) {
       element.classList.add('card_in-view');

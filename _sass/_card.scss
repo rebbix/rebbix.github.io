@@ -94,7 +94,7 @@
     position: relative;
     opacity: 0;
 
-    transition: all .8s ease-out;
+    transition: transform .4s ease-out;
 
     @media #{$mobile} {
       max-width: 100% !important;
@@ -108,8 +108,8 @@
     clear: left;
 
     .card__wrap {
-      transform: matrix3d(1, 0, 0, 0, 0.00, 1, 0.00, -0.0005, 0, 0, 1, 0, 0, 220, 40, 1);
-      transform-origin: top center;
+      transform: matrix3d(1, 0, 0, 0, 0.00, 1, 0.00, 0.0003, 0, 0, 1, 0, 0, 100, 40, 1);
+      transform-origin: bottom center;
 
       @media #{$mobile} {
         transform: none;
@@ -122,8 +122,8 @@
     clear: right;
 
     .card__wrap {
-      transform: matrix3d(1, 0, 0, 0, 0.00, 1, 0.00, -0.0005, 0, 0, 1, 0, 0, 220, 40, 1);
-      transform-origin: top center;
+      transform: matrix3d(1, 0, 0, 0, 0.00, 1, 0.00, 0.0003, 0, 0, 1, 0, 0, 100, 40, 1);
+      transform-origin: bottom center;
       @media #{$mobile} {
         transform: none;
       }
