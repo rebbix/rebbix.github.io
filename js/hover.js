@@ -2,29 +2,40 @@
     var TABLET_BREAK_POINT = 768;
     var currentHovered = null;
     function onMouseOver(wrap) {
-        if (window.innerWidth <= TABLET_BREAK_POINT) { return };
-        var shadowStyle = wrap.style.boxShadow;
-        wrap.style.boxShadow = '';
-        var currentStyle = wrap.getAttribute('style');
+        if (window.innerWidth <= TABLET_BREAK_POINT) {
+            return
+        }
 
-        wrap.classList.add('hover_transition');
-        wrap.setAttribute('style', currentStyle + 'box-shadow: ' + shadowStyle + ' !important;');
-        currentHovered = wrap;
+        var element = wrap;
+        element.classList.add('hover_transition');
+    
+        if (wrap.parentElement.classList.contains('card_person') || wrap.parentElement.classList.contains('card_life')) {
+            return;
+        }
+
+        var shadowStyle = element.style.boxShadow;
+        element.style.boxShadow = '';
+        var currentStyle = element.getAttribute('style');
+        element.setAttribute('style', currentStyle + 'box-shadow: ' + shadowStyle + ' !important;');
     }
 
     function onMouseOut(wrap, event) {
+        if (wrap.classList.contains('card_person') || wrap.classList.contains('card_life')) {
+            return;
+        }
+
         var shadowStyle = wrap.style.boxShadow;
         wrap.style.boxShadow = ''; // to remove !important operator
         wrap.style.boxShadow = shadowStyle;
-        setTimeout(function() {
-            if (currentHovered !== wrap) {
-                wrap.classList.remove('hover_transition');
-            }
-        }, 400);
     }
 
     function initHoverAction() {
-        var workwraps = document.querySelectorAll('.card.card_work:not([class~=card_separator]) .card__wrap');
+        var selectors = [
+            '.card.card_work:not([class~=card_separator]) .card__wrap',
+            '.card.card_person:not([class~=card_separator]) .card__wrap',
+            '.card.card_life:not([class~=card_separator]) .card__wrap',
+        ]
+        var workwraps = document.querySelectorAll(selectors.join(', '));
 
         workwraps.forEach(function(wrap) {
             wrap.addEventListener('mouseenter', onMouseOver.bind(null, wrap));

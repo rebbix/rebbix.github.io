@@ -36,6 +36,8 @@
   }
 }
 
+$default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
+
 .card_offset-top-40 {
   margin-top: 800px;
 }
@@ -45,7 +47,7 @@
 
 .card {
   box-sizing: border-box;
-  transition: opacity .4s ease-out;
+  // transition: box-shadow 1s cubic-bezier(0, 0, 0, 1);
 
   @media #{$tablet} {
     margin-bottom: $column_width;
@@ -82,6 +84,17 @@
     }
   }
 
+  &[class~=card_person]:not([class~=card_separator]) .card__wrap:hover .card__photo,
+  &[class~=card_embed]:not([class~=card_separator]) .card__wrap:hover .card__img, {
+    transform: translate(0, -1em) !important;
+    box-shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4) !important;
+
+    @media #{$tablet} {
+      transform: none !important;
+      box-shadow: none !important;
+    }
+  }
+
   &__wrap {
     box-sizing: border-box;
     display: block;
@@ -94,7 +107,7 @@
     position: relative;
     opacity: 0;
 
-    transition: .4s ease-out;
+    transition: all 1s cubic-bezier(0, 0, 0, 1), box-shadow .8s linear, opacity .5s linear;
 
     @media #{$mobile} {
       max-width: 100% !important;
@@ -108,8 +121,7 @@
     clear: left;
 
     .card__wrap {
-      transform: matrix3d(1, 0, 0, 0, 0.00, 1, 0.00, 0.0002, 0, 0, 1, 0, 0, 100, 40, 1);
-      transform-origin: bottom center;
+      transform: translate(0, 80px) scale(1.05);
 
       @media #{$mobile} {
         transform: none;
@@ -122,8 +134,7 @@
     clear: right;
 
     .card__wrap {
-      transform: matrix3d(1, 0, 0, 0, 0.00, 1, 0.00, 0.0002, 0, 0, 1, 0, 0, 100, 40, 1);
-      transform-origin: bottom center;
+      transform: translate(0, 80px) scale(1.05);
       @media #{$mobile} {
         transform: none;
       }
@@ -370,7 +381,9 @@
   }
 
   &_embed .card__img {
+    box-shadow: $default_box_shadow;
     margin-bottom: 0 !important;
+    transition: .4s;
   }
 
   &__content q {
@@ -383,6 +396,7 @@
   &__photo {
     display: block;
     width: 100%;
+    box-shadow: $default_box_shadow;
   }
  
   &__label {
@@ -570,6 +584,7 @@
 
   &.card_embed .card__content {
     padding: 0;
+    overflow: visible;
   }
 
   @media (max-width: $responsive_break_point) {
@@ -795,7 +810,9 @@
   line-height: 46px;
 }
 
-.hover_transition {
+.hover_transition,
+.hover_transition .card__img,
+.hover_transition .card__photo {
   transition: all .4s ease-out;
 }
 
