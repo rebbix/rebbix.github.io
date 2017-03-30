@@ -44,15 +44,6 @@
     var coordsMarkers = getMarkersCoordinates();
     arrange()
 
-    window.addEventListener('scroll', function () {
-      coordsAnchors = getAnchorsCoordinates();
-      arrange();
-    });
-    window.addEventListener('resize', function () {
-      coordsAnchors = getAnchorsCoordinates();
-      arrange();
-    });
-
     initMarkerClick();
 
     function arrange() {
@@ -178,5 +169,26 @@
         })
       })
     }
+
+    var tabletViewport = false;
+    var TABLET_BREAK_POINT = 768;
+    window.addEventListener('scroll', function () {
+      if (tabletViewport) { return }
+      coordsAnchors = getAnchorsCoordinates();
+      arrange();
+    });
+    window.addEventListener('resize', function () {
+      if (window.innerWidth <= TABLET_BREAK_POINT) {
+        tabletViewport = true;
+      } else if (tabletViewport) {
+        tabletViewport = false;
+        coordsMarkers = getMarkersCoordinates();
+      }
+      coordsAnchors = getAnchorsCoordinates();
+      arrange();
+    });
+    window.addEventListener('load', function() {
+      tabletViewport = window.innerWidth <= TABLET_BREAK_POINT;
+    });
   }
 })();

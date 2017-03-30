@@ -78,6 +78,10 @@
 
   &[class~=card_work]:not([class~=card_separator]) .card__wrap:hover {
     transform: translate(0, -1em) !important;
+    
+    @media #{$tablet} {
+      transform: none !important;
+    }
   }
 
   &__wrap {
@@ -595,25 +599,65 @@
 
     @media (max-width: $mobile_break_point) {
       padding: 10px!important;
+      margin-bottom: 10%;
+    }
+
+    @media #{$mobile} {
+      margin-bottom: 0;
     }
 
 
     h1 {
-      margin: 0;
-      font-family: acumin-pro-wide, Arial, Helvetica, sans-serif;
+      $font-size: 44;
+      $line-height: 53;
+
+      margin: 0 0 10px;
+      letter-spacing: -.17px;
+      line-height: 53px;
       font-size: 44px;
       font-weight: 300;
-      color: #111111;
-      line-height: 46px;
+      font-family: acumin-pro-wide, Arial, Helvetica, sans-serif;
+      color: #111;
+      text-decoration: none;
+
+      &_content {
+        clear: both;
+        margin-top: 50px;
+      }
+
+      @media (max-width: $responsive_break_point) {
+        font-size: #{$font-size * 100 / $responsive_width}vw;
+        line-height: #{$line-height * 100 / $responsive_width}vw;
+      }
+
+      @media (max-width: $mobile_break_point) {
+        font-size: 26px;
+        line-height: 32px;
+        letter-spacing: -.13px;
+      }
     }
 
     p {
-      max-width: 100%;
-      margin: 0;
-      font-size: 20px;
+      $font-size: 20;
+      $line-height: 45;
+
+      margin: 10px 0 0;
+      font-family: acumin-pro, Arial, Helvetica, sans-serif;
+      font-weight: 300;
       color: #7E7E7E;
       letter-spacing: -0.11px;
-      line-height: 45px;
+      font-size: #{$font-size}px;
+      line-height: #{$line-height}px;
+
+      @media (max-width: $responsive_break_point) {
+        font-size: #{$font-size * 100 / $responsive_width}vw;
+        line-height: #{$line-height * 100 / $responsive_width}vw;
+      }
+
+      @media (max-width: $mobile_break_point) {
+        font-size: 16px;
+        line-height: 20px;
+      }
     }
 
     @media #{$mobile} {
@@ -752,7 +796,7 @@
 }
 
 .hover_transition {
-  transition: all .4s;
+  transition: all .4s ease-out;
 }
 
 @include card_width;

@@ -1,6 +1,8 @@
 (function() {
+    var TABLET_BREAK_POINT = 768;
     var currentHovered = null;
     function onMouseOver(wrap) {
+        if (window.innerWidth <= TABLET_BREAK_POINT) { return };
         var shadowStyle = wrap.style.boxShadow;
         wrap.style.boxShadow = '';
         var currentStyle = wrap.getAttribute('style');

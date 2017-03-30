@@ -57,7 +57,7 @@
   }
 
   @media (max-width: $ultra_wide_break_point) {
-    &::before {
+    &, &_item-active {
       left: 40px;
     }
 
@@ -67,7 +67,7 @@
   }
 
   @media (max-width: $responsive_break_point) {
-    &:before {
+    &, &_item-active {
       left: 20px;
     }
 
@@ -79,7 +79,6 @@
   &__item_active.marker__item {
     position: absolute;
     margin-top: 0;
-    // transition: none;
     color: #222;
     z-index: 2;
     left: 1px;
