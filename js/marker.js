@@ -1,4 +1,4 @@
-(function() {
+// (function() {
   const HEADER_HEIGHT = 60;
 
   var url = window.location.pathname;
@@ -9,7 +9,7 @@
   if (!hideMarkers) {
     // when we don't need 'now' marker we sholdn't search for all elements with data-year attr,
     // sometimes h1 also can has a data-year attribute
-    var $cards = document.querySelectorAll(reverseMarkers ? '[data-year]' : '.card[data-year]');
+    var $cards = document.querySelectorAll(replaceLatestYear ? '[data-year]' : '.card[data-year]');
     var cardsArray = [].slice.call($cards);
     var coordsAnchors = getAnchorsCoordinates();
 
@@ -188,4 +188,4 @@
       tabletViewport = window.innerWidth <= TABLET_BREAK_POINT;
     });
   }
-})();
+// })();
