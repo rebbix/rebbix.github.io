@@ -47,7 +47,6 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
 
 .card {
   box-sizing: border-box;
-  // transition: box-shadow 1s cubic-bezier(0, 0, 0, 1);
 
   @media #{$tablet} {
     margin-bottom: $column_width;
@@ -87,7 +86,7 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
   &[class~=card_person]:not([class~=card_separator]) .card__wrap:hover .card__photo,
   &[class~=card_embed]:not([class~=card_separator]) .card__wrap:hover .card__img, {
     transform: translate(0, -1em) !important;
-    box-shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4) !important;
+    box-shadow: $default_box_shadow !important;
 
     @media #{$tablet} {
       transform: none !important;
@@ -382,6 +381,7 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
 
   &_embed .card__img {
     box-shadow: $default_box_shadow;
+    transition: box-shadow .6s;
     margin-bottom: 0 !important;
     transition: .4s;
   }
@@ -397,6 +397,7 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     display: block;
     width: 100%;
     box-shadow: $default_box_shadow;
+    transition: box-shadow .6s linear;
   }
  
   &__label {
@@ -788,9 +789,13 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
   }
 }
 
-.no-shadow, 
-.no-shadow * {
+.no-shadow .card__wrap {
   box-shadow: 0 0 0 0 transparent !important;
+
+  .card__photo,
+  .card__img {
+    box-shadow: 0 0 0 0 transparent !important;
+  }
 }
 
 .instagram-media,
