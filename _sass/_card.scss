@@ -45,7 +45,6 @@
 
 .card {
   box-sizing: border-box;
-  opacity: 0;
   transition: opacity .4s ease-out;
 
   @media #{$tablet} {
@@ -69,10 +68,9 @@
   }
 
   &_in-view {
-    opacity: 1;
-
     .card__wrap {
-      transform: translate(0) scale(1)!important;
+      opacity: 1;
+      transform: matrix(1, 0, 0, 1, 0, 0) !important;
     }
   }
 
@@ -94,6 +92,7 @@
     text-decoration: none;
     color: inherit;
     position: relative;
+    opacity: 0;
 
     transition: all .8s ease-out;
 
@@ -109,7 +108,8 @@
     clear: left;
 
     .card__wrap {
-      transform: translate(0, 80px) scale(1.05);
+      transform: matrix3d(1, 0, 0, 0, 0.00, 1, 0.00, -0.0005, 0, 0, 1, 0, 0, 220, 40, 1);
+      transform-origin: top center;
 
       @media #{$mobile} {
         transform: none;
@@ -122,8 +122,8 @@
     clear: right;
 
     .card__wrap {
-      transform: translate(0, 80px) scale(1.05);
-
+      transform: matrix3d(1, 0, 0, 0, 0.00, 1, 0.00, -0.0005, 0, 0, 1, 0, 0, 220, 40, 1);
+      transform-origin: top center;
       @media #{$mobile} {
         transform: none;
       }
