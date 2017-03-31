@@ -87,4 +87,5 @@ document.addEventListener('DOMContentLoaded', fadeIn);
 document.addEventListener('DOMContentLoaded', initShadows);
 window.addEventListener('scroll', initShadows);
 window.addEventListener('scroll', isInView);
+window.addEventListener('wheel', isInView);
 window.addEventListener('resize', isInView);

@@ -20,7 +20,7 @@ $fade-duration: .4s;
   &__wrap {
     max-width: 1120px;
     opacity: 0;
-    transition: $fade-duration ease-out;
+    transition: opacity $fade-duration ease-out;
   }
 
   &__nav {
@@ -113,10 +113,10 @@ $fade-duration: .4s;
   }
 
   &__subtitle {
-    $font-size: 20;
-    $line-height: 45;
+    $font-size: 26;
+    $line-height: 35;
 
-    margin: 10px 0 0;
+    margin: 24px 0 0;
     font-family: acumin-pro, Arial, Helvetica, sans-serif;
     font-weight: 300;
     color: #7E7E7E;

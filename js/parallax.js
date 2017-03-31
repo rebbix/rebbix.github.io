@@ -6,7 +6,11 @@
     var mobileViewport = false;
     var parallaxCleared = false;
     function parallax(event) {
-        var rightCards = document.querySelectorAll('.card.card_right.card_in-view[class~=card_person],.card.card_right.card_in-view[class~=card_work]');
+        var selectors = [
+            '.card.card_right.card_in-view[class~=card_person]',
+            '.card.card_right.card_in-view[class~=card_work]',
+        ];
+        var rightCards = document.querySelectorAll(selectors.join(', '));
         if (!rightCards.length) {
             return;
         }
@@ -42,21 +46,25 @@
         }
         parallaxCleared = false;
 
-        var scrollDown = window.scrollY > prevScrollY;
-        var STEP = (window.scrollY - prevScrollY) * -TRANSLATE_RATIO;
-        prevScrollY = window.scrollY;
-        if (!scrollDown && window.scrollY < visibleOnLoad) {
-            visibleOnLoad = window.scrollY;
-        }
+        var currentScroll = parseFloat(document.body.dataset.scrollTop, 10);
+        var scrollDown = currentScroll > prevScrollY;
+        var STEP = (currentScroll - prevScrollY) * -TRANSLATE_RATIO;
+        prevScrollY = currentScroll;
+        // var scrollDown = window.scrollY > prevScrollY;
+        // var STEP = (window.scrollY - prevScrollY) * -TRANSLATE_RATIO;
+        // prevScrollY = window.scrollY;
+        // if (!scrollDown && window.scrollY < visibleOnLoad) {
+        //     visibleOnLoad = window.scrollY;
+        // }
 
         rightCards.forEach(function(card) {
-            var cardTopPosition = card.offsetTop;
+            // var cardTopPosition = card.offsetTop;
 
             // to prevent parallax for those cards, which were hiegher, than viewport
             // when page loaded
-            if (cardTopPosition < visibleOnLoad + window.innerHeight - window.innerHeight * 0.35) {
-                return
-            }
+            // if (cardTopPosition < visibleOnLoad + window.innerHeight - window.innerHeight * 0.35) {
+            //     return
+            // }
 
             var transformString = card.style.transform;
             if (!transformString.length) {
@@ -101,8 +109,9 @@
 
     window.addEventListener('resize', checkViewportWidth)
     window.addEventListener('scroll', parallax);
+    window.addEventListener('wheel', parallax);
     window.addEventListener('load', function() {
         visibleOnLoad = window.scrollY;
         checkViewportWidth();
-    });    
+    });
 })();
