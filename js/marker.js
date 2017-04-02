@@ -276,83 +276,81 @@ window.addEventListener('keypress', preventHomeAndEnd);
 window.addEventListener('keyup', preventHomeAndEnd);
 
 var content = document.querySelector('.content');
-var header = document.querySelector('.header .header__wrap')
-var deltas = [];
-window.addEventListener('wheel', e => {
-  e.preventDefault();
+var header = document.querySelector('.header .header__wrap');
 
+var translateRegexp = /translate\(-*\d+.?\d*[a-z]*,\s-*\d+.?\d*[a-z]*\)/;
+var translateValueRegexp = /-*\d+[.\d*]?\w*/g;
+
+function getY() {
+  var YValue = 0;
   var transformString = content.style.transform;
   if (transformString.length) {
-      var translateRegexp = /translate\(-*\d+.?\d*[a-z]*,\s-*\d+.?\d*[a-z]*\)/;
-      var translateValueRegexp = /-*\d+[.\d*]?\w*/g;
 
       var translateString = transformString.match(translateRegexp);
       if (translateString === null) {
-          return;
+          return YValue;
       } else {
           translateString = translateString[0];
       }
 
       var translateValue = translateString.match(translateValueRegexp);
-      if (translateValue === null) { return; }
+      if (translateValue === null) { return YValue; }
+      YValue = parseFloat(translateValue[1], 10);
+  }
+  return YValue;
+}
 
-      var YValue = parseFloat(translateValue[1], 10);
-      translateIndex = transformString.indexOf(translateString);
-      var ratio = 0.6;
-      var deltaY = e.deltaY
-      // if (Math.abs(deltas[deltas.length - 1]) < Math.abs(deltaY)) {
-      //   deltas.push(deltaY)
-      // } else {
-      //   if (isScrolling) return;
-      //   isScrolling = true;
-      //   console.log('stopping', prevScrollStep, deltaY, isScrolling);
-
-      //   scrollContentTo(600, 1000, function() {
-      //     prevScrollStep = 0;
-      //     isScrolling = false;
-      //   });
-      //   return;
-      // }
-
-      var nextValue = YValue + -e.deltaY * ratio;
-      nextValue = nextValue > 0 ? 0 : nextValue;
-      
-      translateValue[1] = nextValue + 'px';
-
-      var transformStringWithoutTranslate = transformString.slice(0, translateIndex) + transformString.slice(translateIndex + translateString.length);
-      var transformStyle = transformStringWithoutTranslate + 'translate(' + translateValue.join(', ') + ')';
-      document.body.dataset.scrollTop = -nextValue;
-      header.style.transform = transformStyle;
-      content.style.transform = transformStyle;
+function setY(y) {
+  var transformString = content.style.transform;
+  var translateString = transformString.match(translateRegexp);
+  if (translateString === null) {
+    header.style.transform = 'translate(0, ' + -y + 'px)';
+    content.style.transform = 'translate(0, ' + -y + 'px)';  
+    document.body.dataset.scrollTop = y;
+    return
   } else {
-    content.style.transform = `translate(0, ${-e.deltaY}px)`;
+    translateString = translateString[0];
+  }
+  translateIndex = transformString.indexOf(translateString);
+  var translateValue = translateString.match(translateValueRegexp);
+  translateValue[1] = -y + 'px';
+
+  var transformStringWithoutTranslate = transformString.slice(0, translateIndex) + transformString.slice(translateIndex + translateString.length);
+  var transformStyle = transformStringWithoutTranslate + 'translate(' + translateValue.join(', ') + ')';
+  document.body.dataset.scrollTop = y;
+  header.style.transform = transformStyle;
+  content.style.transform = transformStyle;
+}
+
+function scroll() {
+  scrolled += (scrollTo - scrolled) * 0.1;
+  
+  window.dispatchEvent(new WheelEvent('wheel', {
+    deltaX: 0,
+    deltaY: (scrollTo - scrolled) * 0.1,
+    deltaMode: 0x00
+  }));
+
+  setY(scrolled);
+
+  if (Math.abs(scrollTo - scrolled) > 0.1) {
+    requestAnimationFrame(scroll);
+  } else {
+    scrolling = false;
+  }
+}
+
+var scrollTo = 0;
+var scrolled = 0;
+var scrolling = false;
+window.addEventListener('wheel', e => {
+  e.preventDefault();
+  if (!e.isTrusted) return;
+
+  scrollTo += e.deltaY;
+  if (!scrolling) {
+    scrolling = true;
+    requestAnimationFrame(scroll)
   }
 });
 })();
-
-
-
-
-
-var timer;
-var windowHeight = $(window).height();
-var triggerHeight = 0.5 * windowHeight;
-
-$(window).scroll(function() {
-	if(timer) {
-		window.clearTimeout(timer);
-	}
-
-	timer = window.setTimeout(function() {
-
-		// this variable changes between callbacks, so we can't cache it
-		var y = $(window).scrollTop() + windowHeight;
- 
-	    if(y > triggerHeight) {
-	        // ...
-	    }
-
-		
-	}, 100);
-});
-
