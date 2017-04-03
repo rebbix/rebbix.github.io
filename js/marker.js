@@ -73,7 +73,7 @@
         var yearHeight = (nextAnchor.top - anchor.top);
         var markerLineHeight = (windowHeight - contentTop - (windowHeight - initialMarkerTop));
         anchorTop = Math.floor(contentTop + markerLineHeight - markerLineHeight * (yearShown / yearHeight));
-
+  
         if ((anchorTop > contentTop) && (anchorTop < initialMarkerTop)) {
           marker.$marker.classList.add('marker__item_active');
           marker.$marker.classList.remove('marker__item_top');
@@ -97,6 +97,7 @@
         } else {
           marker.$marker.classList.remove('marker__item_active');
           marker.$marker.classList.remove('marker__item_top-active');
+          marker.$marker.classList.remove('marker__item_top');
           marker.$marker.style.top = '100%';
         }
       })
@@ -188,6 +189,8 @@
         tabletViewport = true;
       } else if (tabletViewport) {
         tabletViewport = false;
+        coordsMarkers = getMarkersCoordinates();
+      } else {
         coordsMarkers = getMarkersCoordinates();
       }
       coordsAnchors = getAnchorsCoordinates();
