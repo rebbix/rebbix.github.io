@@ -75,7 +75,7 @@
                 var translateValue = translateString.match(translateValueRegexp);
                 if (translateValue === null) { return; }
 
-                var parallaxStep = -(currentScroll - appearedOn) * ratio + measurement;
+                var parallaxStep = -(currentScroll - appearedOn) * -ratio + measurement;
 
                 translateValue[1] = parallaxStep;
 

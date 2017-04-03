@@ -73,6 +73,9 @@
         var yearHeight = (nextAnchor.top - anchor.top);
         var markerLineHeight = (windowHeight - contentTop - (windowHeight - initialMarkerTop));
         anchorTop = Math.floor(contentTop + markerLineHeight - markerLineHeight * (yearShown / yearHeight));
+        if (anchor.year == maxYear && replaceLatestYear) {
+          anchorTop = anchor.top;
+        }
 
         if ((anchorTop > contentTop) && (anchorTop < initialMarkerTop)) {
           marker.$marker.classList.add('marker__item_active');
