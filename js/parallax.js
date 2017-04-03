@@ -50,22 +50,8 @@
         var scrollDown = currentScroll > prevScrollY;
         var STEP = (currentScroll - prevScrollY) * -TRANSLATE_RATIO;
         prevScrollY = currentScroll;
-        // var scrollDown = window.scrollY > prevScrollY;
-        // var STEP = (window.scrollY - prevScrollY) * -TRANSLATE_RATIO;
-        // prevScrollY = window.scrollY;
-        // if (!scrollDown && window.scrollY < visibleOnLoad) {
-        //     visibleOnLoad = window.scrollY;
-        // }
 
         rightCards.forEach(function(card) {
-            // var cardTopPosition = card.offsetTop;
-
-            // to prevent parallax for those cards, which were hiegher, than viewport
-            // when page loaded
-            // if (cardTopPosition < visibleOnLoad + window.innerHeight - window.innerHeight * 0.35) {
-            //     return
-            // }
-
             var transformString = card.style.transform;
             if (!transformString.length) {
                 card.style.transform = 'translate(0, ' + STEP + MEASUREMENT + ')';
