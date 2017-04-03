@@ -138,6 +138,7 @@
         var currentBodyScroll = parseFloat(document.body.dataset.scrollTop, 10) || 0;
         content.style.transform = `translate(0, ${-position}px)`;
         header.style.transform = `translate(0, ${-position}px)`;
+        footer.style.transform = `translate(0, ${-position}px)`;
         document.body.dataset.scrollTop = position;
 
         window.dispatchEvent(new WheelEvent('wheel', {

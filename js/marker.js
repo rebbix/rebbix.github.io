@@ -62,7 +62,7 @@
 
         if (!anchor) return;
 
-        var contentTop = i * 35 + HEADER_HEIGHT; // hight on top positino
+        var contentTop = i * 35 + HEADER_HEIGHT; // height on top positino
         var initialMarkerTop = marker.top; // top position related to the screen
 
         var distanceToBottom = window.innerHeight - initialMarkerTop;
@@ -73,7 +73,7 @@
         var yearHeight = (nextAnchor.top - anchor.top);
         var markerLineHeight = (windowHeight - contentTop - (windowHeight - initialMarkerTop));
         anchorTop = Math.floor(contentTop + markerLineHeight - markerLineHeight * (yearShown / yearHeight));
-  
+
         if ((anchorTop > contentTop) && (anchorTop < initialMarkerTop)) {
           marker.$marker.classList.add('marker__item_active');
           marker.$marker.classList.remove('marker__item_top');
@@ -81,7 +81,7 @@
 
           marker.$marker.style.top = anchorTop + 'px';
 
-        } else if (anchorTop < contentTop) {
+        } else if (anchorTop <= contentTop) {
           marker.$marker.classList.remove('marker__item_active');
           marker.$marker.classList.add('marker__item_top');
           marker.$marker.classList.add('marker__item_top-active');
@@ -152,21 +152,20 @@
         marker.$marker.addEventListener('click', function () {
           if (isScrolling) { return };
           isScrolling = true;
-          var anchor = cardsArray.find(function (card) {
-            return card.dataset.year === marker.year;
+          var anchor = coordsAnchors.find(function (card) {
+            return card.year === marker.year;
           });
 
-          var cardWrap = anchor.tagName !== 'H1' ? anchor.querySelector('.card__wrap') : anchor;
-          var anchorTop = cardWrap.getBoundingClientRect().top;
+          // var cardWrap = anchor.tagName !== 'H1' ? anchor.querySelector('.card__wrap') : anchor;
+          var anchorTop = anchor ? anchor.top : 0;
           
           // on max year or 'now' marker click - scroll to top of the page
-          if (anchor.dataset.year == maxYear && replaceLatestYear) {
-            anchorTop = document.body.scrollTop * -1;
+          if (anchor.year == maxYear && replaceLatestYear) {
+            anchorTop = (document.body.dataset.scrollTop || 0) * -1;
           }
-          
-          var top = anchorTop + document.body.scrollTop;
+
           if (window.ScrollManager) {
-            window.ScrollManager.scrollContentTo(top - HEADER_HEIGHT, SCROLL_DURATION, function() {
+            window.ScrollManager.scrollContentTo(anchorTop - HEADER_HEIGHT, SCROLL_DURATION, function() {
               isScrolling = false;
             });
           }
@@ -187,12 +186,13 @@
     window.addEventListener('resize', function () {
       if (window.innerWidth <= TABLET_BREAK_POINT) {
         tabletViewport = true;
-      } else {
-        tabletViewport = false;
-        coordsAnchors = getAnchorsCoordinates();
-        coordsMarkers = getMarkersCoordinates();
-        arrange();
+        return;
       }
+
+      tabletViewport = false;
+      coordsAnchors = getAnchorsCoordinates();
+      coordsMarkers = getMarkersCoordinates();
+      arrange();
     });
     window.addEventListener('load', function() {
       tabletViewport = window.innerWidth <= TABLET_BREAK_POINT;
