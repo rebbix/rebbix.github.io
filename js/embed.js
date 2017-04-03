@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
     cards.forEach((card, index) => {
       var cardWidth = card.dataset.videoembed ? 47 : Math.floor(Math.random() * 20 + 25);
       var cardMargin = Math.floor(Math.random() * (47 - cardWidth));
-      var cardMarginBottom = Math.floor(Math.random() * 7 + 8);
-      var cardMarginTop = index > 1 ? -Math.floor(Math.random() * 3 + 2) : 15;
+      var cardMarginBottom = 20
+      var cardMarginTop = index > 1 ? -0 : 15;
 
       var cardSide = (index % 2) ? 'card_right' : 'card_left';
       card.classList.add(cardSide);
