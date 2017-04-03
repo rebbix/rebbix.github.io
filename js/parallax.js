@@ -96,7 +96,7 @@
             visibleOnLoad = window.scrollY;
         } else if (window.innerWidth >= STATIC_CONTENT_BREAK_POINT) {
             measurement = 'px';
-            ratio = 0.15;
+            ratio = 0.1;
         } else {
             measurement = 'vw';
             ratio = 0.01;
