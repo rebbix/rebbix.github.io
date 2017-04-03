@@ -226,6 +226,8 @@ function scrollContentTo(scrollingDistance, duration, callback) {
     if (notTargetPosition && !canceledByNativeEvent) {
       requestAnimationFrame(scroll);
     } else {
+      scrolled += scrollingDistance;
+      scrollTo += scrollingDistance;
       callback && callback();
     }
   }
@@ -235,6 +237,7 @@ function scrollContentTo(scrollingDistance, duration, callback) {
 
 var content = document.querySelector('.content');
 var header = document.querySelector('.header .header__wrap');
+var footer = document.querySelector('.footer');
 function setScrollPosition(position) {
   var currentBodyScroll = parseFloat(document.body.dataset.scrollTop, 10) || 0;
   content.style.transform = `translate(0, ${-position}px)`;
@@ -277,6 +280,7 @@ window.addEventListener('keyup', preventHomeAndEnd);
 
 var content = document.querySelector('.content');
 var header = document.querySelector('.header .header__wrap');
+var footer = document.querySelector('.footer');
 
 var translateRegexp = /translate\(-*\d+.?\d*[a-z]*,\s-*\d+.?\d*[a-z]*\)/;
 var translateValueRegexp = /-*\d+[.\d*]?\w*/g;
@@ -320,6 +324,7 @@ function setY(y) {
   document.body.dataset.scrollTop = y;
   header.style.transform = transformStyle;
   content.style.transform = transformStyle;
+  footer.style.transform = transformStyle;
 }
 
 function scroll() {
@@ -343,14 +348,23 @@ function scroll() {
 var scrollTo = 0;
 var scrolled = 0;
 var scrolling = false;
+var footer = document.querySelector('.footer');
 window.addEventListener('wheel', e => {
   e.preventDefault();
-  if (!e.isTrusted) return;
+  if (!e.isTrusted || isScrolling) return;
 
-  scrollTo += e.deltaY;
+  var nextScrollTo  = scrollTo + e.deltaY;
+
+  if (nextScrollTo < 0) {
+    nextScrollTo = 0;
+    // todo: find out why does page has some extra height?
+  } else if (nextScrollTo > 13900) {//document.body.clientHeight) {
+    nextScrollTo = 13900;// document.body.clientHeight;
+  }
+  scrollTo = nextScrollTo;
   if (!scrolling) {
     scrolling = true;
-    requestAnimationFrame(scroll)
+    requestAnimationFrame(scroll);
   }
 });
 })();
