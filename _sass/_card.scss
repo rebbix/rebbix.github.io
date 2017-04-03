@@ -29,7 +29,7 @@
     .card_offset-top-#{$i} {
       margin-top: $i * 20px;
 
-      @media (max-width: $responsive_break_poing) {
+      @media (max-width: $responsive_break_point) {
         margin-top: $i * 1.39714285714285vw;
       }
 
