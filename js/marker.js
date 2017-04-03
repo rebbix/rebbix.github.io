@@ -187,14 +187,12 @@
     window.addEventListener('resize', function () {
       if (window.innerWidth <= TABLET_BREAK_POINT) {
         tabletViewport = true;
-      } else if (tabletViewport) {
-        tabletViewport = false;
-        coordsMarkers = getMarkersCoordinates();
       } else {
+        tabletViewport = false;
+        coordsAnchors = getAnchorsCoordinates();
         coordsMarkers = getMarkersCoordinates();
+        arrange();
       }
-      coordsAnchors = getAnchorsCoordinates();
-      arrange();
     });
     window.addEventListener('load', function() {
       tabletViewport = window.innerWidth <= TABLET_BREAK_POINT;
