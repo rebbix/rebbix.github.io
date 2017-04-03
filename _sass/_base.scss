@@ -80,6 +80,10 @@ body {
   }
 }
 
-// ::-webkit-scrollbar { 
-//     display: none; 
-// }
+// to hide scrollbars
+::-webkit-scrollbar { 
+    display: none; 
+}
+html {
+  overflow: -moz-scrollbars-none;
+}

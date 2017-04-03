@@ -67,6 +67,17 @@ $fade-duration: .4s;
     .header__wrap {
       opacity: 1;
     }
+
+    &__hard {
+      .header__nav {
+        transition: 0s !important;
+        transform: translate(0, 0);
+      }
+
+      .header__wrap {
+        opacity: 1;
+      }
+    }
   }
 
   &__nav-item {
