@@ -2,6 +2,7 @@
 top_image: "/img/work/modnakasta@2x.png"
 style: "background-color: #000; color: #fff;"
 type: "left"
+link: "https://modnakasta.ua/"
 offset-top: 12
 width: 12
 ---
