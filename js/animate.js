@@ -75,7 +75,7 @@
   function initShadows() {
     if (shadowsApplied) return;
 
-    var workCards = document.querySelectorAll('.card.card_work:not([class~=card_separator])');
+    var workCards = document.querySelectorAll('.card.card_work:not([class~=card_separator])') || [];
 
     workCards.forEach(function(card) {
       var wrap = card.querySelector('.card__wrap');

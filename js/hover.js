@@ -35,7 +35,7 @@
             '.card.card_person:not([class~=card_separator]) .card__wrap',
             '.card.card_life:not([class~=card_separator]) .card__wrap',
         ]
-        var workwraps = document.querySelectorAll(selectors.join(', '));
+        var workwraps = document.querySelectorAll(selectors.join(', ')) || [];
 
         workwraps.forEach(function(wrap) {
             wrap.addEventListener('mouseenter', onMouseOver.bind(null, wrap));

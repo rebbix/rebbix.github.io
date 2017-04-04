@@ -22,7 +22,7 @@
     }
 
     function initTransforms() {
-        var rightCards = document.querySelectorAll(selectors.join(', '));
+        var rightCards = document.querySelectorAll(selectors.join(', ')) || [];
         rightCards.forEach(function(card) {
             var transformString = card.style.transform;
             if (transformString.length) {
