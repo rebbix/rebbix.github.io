@@ -12,31 +12,13 @@
     var translateRegexp = /translate\(-*\d+.?\d*[a-z]*,\s-*\d+.?\d*[a-z]*\)/;
     var translateValueRegexp = /-*\d+[.\d*]?\w*/g;
 
-    function getY() {
-        var YValue = 0;
-        var transformString = content.style.transform;
-        if (transformString.length) {
-
-            var translateString = transformString.match(translateRegexp);
-            if (translateString === null) {
-                return YValue;
-            } else {
-                translateString = translateString[0];
-            }
-
-            var translateValue = translateString.match(translateValueRegexp);
-            if (translateValue === null) { return YValue; }
-            YValue = parseFloat(translateValue[1], 10);
-        }
-        return YValue;
-    }
-
-    function setY(y) {
+    function setScroll(y) {
         var transformString = content.style.transform;
         var translateString = transformString.match(translateRegexp);
         if (translateString === null) {
             header.style.transform = 'translate(0, ' + -y + 'px)';
-            content.style.transform = 'translate(0, ' + -y + 'px)';  
+            content.style.transform = 'translate(0, ' + -y + 'px)';
+            footer.style.transform = 'translate(0, ' + -y + 'px)';
             document.body.dataset.scrollTop = y;
             return
         } else {
@@ -54,6 +36,16 @@
         footer.style.transform = transformStyle;
     }
 
+    window.addEventListener('resize', e => {
+        var y = +document.body.dataset.scrollTop || 0;
+        if (y > getPageHeight()) {
+            y = getPageHeight();
+        }
+        scrollTo = y;
+        scrolled = y;
+        setScroll(y); 
+    }); 
+
     function scroll() {
         scrolled += (scrollTo - scrolled) * 0.1;
 
@@ -63,7 +55,7 @@
             deltaMode: 0x00
         }));
 
-        setY(scrolled);
+        setScroll(scrolled);
 
         if (Math.abs(scrollTo - scrolled) > 0.1) {
             requestAnimationFrame(scroll);
@@ -72,12 +64,17 @@
         }
     }
 
+    function getPageHeight() {
+        return footer
+            ? (footer.offsetTop + footer.offsetHeight + footerBottomMargin - window.innerHeight)
+            : document.body.offsetHeight;
+    }
+
     var scrollTo = 0;
     var scrolled = 0;
     var scrolling = false;
     var footer = document.querySelector('.footer');
     var footerBottomMargin = 20;
-
     window.addEventListener('wheel', function(e) {
         e.preventDefault();
         if (!e.isTrusted || isScrolling) return;
@@ -86,12 +83,12 @@
         }
 
         var nextScrollTo  = scrollTo + e.deltaY;
-
+        var pageHeight = getPageHeight();
         if (nextScrollTo < 0) {
             nextScrollTo = 0;
-        } else if (footer.offsetTop + footer.offsetHeight + footerBottomMargin - window.innerHeight < nextScrollTo) {
+        } else if (pageHeight < nextScrollTo) {
             // if whole footer is in viewport
-            nextScrollTo = footer.offsetTop + footer.offsetHeight + footerBottomMargin - window.innerHeight;
+            nextScrollTo = pageHeight;
         }
 
         scrollTo = nextScrollTo;

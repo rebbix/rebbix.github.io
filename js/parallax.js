@@ -1,4 +1,4 @@
-(function() {
+(function(window) {
     var TRANSLATE_RATIO = 0.15;
     var measurement = 'vw';
     var ratio = 0.01;
@@ -12,6 +12,14 @@
     ];
     var translateRegexp = /translate\(-*\d+.?\d*[a-z]*,\s-*\d+.?\d*[a-z]*\)/;
     var translateValueRegexp = /-*\d+[.\d*]?\w*/g;
+    
+    function getPageHeight() {
+        var footer = document.querySelector('.footer');
+        var footerBottomMargin = 20;
+        return footer
+            ? (footer.offsetTop + footer.offsetHeight + footerBottomMargin - window.innerHeight)
+            : document.body.offsetHeight;
+    }
 
     function initTransforms() {
         var rightCards = document.querySelectorAll(selectors.join(', '));
@@ -53,15 +61,15 @@
         }
         parallaxCleared = false;
 
-        var currentScroll = parseFloat(document.body.dataset.scrollTop, 10) || 0;
-        var scrollDown = currentScroll > prevScrollY;
+        var currentScroll = +document.body.dataset.scrollTop || 0;
         prevScrollY = currentScroll;
 
         rightCards.forEach(function(card) {
             var transformString = card.style.transform;
             if (!transformString.length) {
                 card.style.transform = 'translate(0, ' + 0 + 'vw)';
-                card.dataset.appearedOn = currentScroll;
+                var appearedOn = currentScroll / getPageHeight();
+                card.dataset.appearedOn = appearedOn;
             } else {
                 var translateString = transformString.match(translateRegexp);
                 if (translateString === null) {
@@ -70,12 +78,12 @@
                     translateString = translateString[0];
                 }
 
-                var appearedOn = parseFloat(card.dataset.appearedOn, currentScroll, 10);
+                var appearedOn = parseFloat(card.dataset.appearedOn, 10);
 
                 var translateValue = translateString.match(translateValueRegexp);
                 if (translateValue === null) { return; }
 
-                var parallaxStep = -(currentScroll - appearedOn) * -ratio + measurement;
+                var parallaxStep = -(currentScroll - (getPageHeight() * appearedOn)) * -ratio + measurement;
 
                 translateValue[1] = parallaxStep;
 
@@ -101,6 +109,9 @@
             measurement = 'vw';
             ratio = 0.01;
         }
+
+        prevScrollY = +document.body.dataset.scrollTop || 0;
+        parallax();
     }
 
     window.addEventListener('resize', checkViewportWidth);
@@ -110,4 +121,4 @@
         initTransforms();
         checkViewportWidth();
     });
-})();
+})(window);
