@@ -68,6 +68,10 @@ body {
   color: #7E7E7E;
   letter-spacing: -0.11px;
   line-height: 45px;
+
+  @media #{$mobile} {
+    margin: 0 auto 20px;
+  }
 }
 
 #gmap_canvas {
