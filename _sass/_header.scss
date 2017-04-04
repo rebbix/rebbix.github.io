@@ -90,8 +90,7 @@ $fade-duration: .4s;
     font-size: 18px;
     
     @media (max-width: $mobile_break_point) {
-      width: 20%;
-      padding: 17px 0 10px 0;
+      padding: 17px 3vw 10px;
       margin: 0;
     }
 
@@ -104,6 +103,8 @@ $fade-duration: .4s;
     }
 
     &:hover,
+    &:active,
+    &:focus,
     &_active {
       color: #111;
     }
@@ -143,6 +144,10 @@ $fade-duration: .4s;
     @media (max-width: $mobile_break_point) {
       font-size: 16px;
       line-height: 20px;
+    }
+
+    @media #{$mobile} {
+      line-height: 25px;
     }
   }
 }

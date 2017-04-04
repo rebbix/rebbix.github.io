@@ -26,8 +26,9 @@
     return rgb;
   }
 
+  var MOBILE_BREAK_POINT = 568;
   function isInView(initialCards) {
-    if (!loaded) {
+    if (!loaded || window.innerWidth <= MOBILE_BREAK_POINT) {
       return;
     }
     var windowHeight = window.innerHeight;
