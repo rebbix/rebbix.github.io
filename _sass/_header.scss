@@ -102,11 +102,19 @@ $fade-duration: .4s;
       }
     }
 
-    &:hover,
-    &:active,
-    &:focus,
     &_active {
       color: #111;
+    }
+
+
+    &:hover,
+    &:active,
+    &:focus { 
+      color: #111;
+
+      & + .header__nav-item {
+        color: #aaa !important; 
+      }
     }
   }
 
