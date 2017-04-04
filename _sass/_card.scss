@@ -69,7 +69,7 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
   }
 
   &:last-child {
-    margin-bottom: 50px;
+    margin-bottom: calc(4vw + 50px);
   }
 
   &_in-view {

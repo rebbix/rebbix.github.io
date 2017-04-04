@@ -1,5 +1,5 @@
-(function() {
-  const HEADER_HEIGHT = 60;
+(function init() {
+  var HEADER_HEIGHT = 60;
   var SCROLL_DURATION = 2000;
   var isScrolling = false;
 
@@ -49,6 +49,7 @@
     initMarkerClick();
 
     function arrange() {
+      var shouldBeActive = null;
       coordsMarkers.forEach(function (marker, i) {
         var anchor = coordsAnchors.find(function(card) {
           return card.year === marker.year;
@@ -77,33 +78,30 @@
           anchorTop = anchor.top;
         }
 
+        marker.$marker.classList.remove('marker__item_active');
+        marker.$marker.classList.remove('marker__item_top-active');
+        marker.$marker.classList.remove('marker__item_movable');
+
         if ((anchorTop > contentTop) && (anchorTop < initialMarkerTop)) {
-          marker.$marker.classList.add('marker__item_active');
           marker.$marker.classList.remove('marker__item_top');
-          marker.$marker.classList.remove('marker__item_top-active');
-
+          marker.$marker.classList.add('marker__item_movable');
           marker.$marker.style.top = anchorTop + 'px';
-
-        } else if (anchorTop <= contentTop) {
-          marker.$marker.classList.remove('marker__item_active');
-          marker.$marker.classList.add('marker__item_top');
-          marker.$marker.classList.add('marker__item_top-active');
-
-          if (
-              marker.$marker.nextSibling &&
-              (marker.$marker.nextSibling.classList.contains('marker__item_top') ||
-              marker.$marker.nextSibling.classList.contains('marker__item_active'))
-          ) {
-            marker.$marker.classList.remove('marker__item_top-active');
+          if (shouldBeActive === null || marker.year == maxYear) {
+            shouldBeActive = marker.$marker;
           }
-
+        } else if (anchorTop <= contentTop) {
+          marker.$marker.classList.add('marker__item_top');
         } else {
-          marker.$marker.classList.remove('marker__item_active');
-          marker.$marker.classList.remove('marker__item_top-active');
           marker.$marker.classList.remove('marker__item_top');
           marker.$marker.style.top = '100%';
         }
-      })
+      });
+
+      if (shouldBeActive !== null) {
+        shouldBeActive.classList.add('marker__item_active');
+      } else {
+        coordsMarkers[coordsMarkers.length - 1].$marker.classList.add('marker__item_top-active');
+      }
     }
 
     function getAnchorsCoordinates() {
@@ -150,55 +148,51 @@
       return coords;
     }
 
+    function markerItemClickListener() {
+      if (isScrolling) { return };
+      isScrolling = true;
+      var anchor = coordsAnchors.find(function (card) {
+        return card.year === marker.year;
+      });
+
+      var anchorTop = anchor ? anchor.top : 0;
+      
+      // on max year or 'now' marker click - scroll to top of the page
+      if (anchor.year == maxYear && replaceLatestYear) {
+        anchorTop = (document.body.dataset.scrollTop || 0) * -1;
+      }
+
+      // ScrollManager is in another file ./scroll.js
+      if (window.ScrollManager) {
+        window.ScrollManager.scrollContentTo(anchorTop - HEADER_HEIGHT, SCROLL_DURATION, function() {
+          isScrolling = false;
+        });
+      }
+    }
+
     function initMarkerClick() {
       coordsMarkers.forEach(function (marker) {
-        marker.$marker.addEventListener('click', function () {
-          if (isScrolling) { return };
-          isScrolling = true;
-          var anchor = coordsAnchors.find(function (card) {
-            return card.year === marker.year;
-          });
-
-          // var cardWrap = anchor.tagName !== 'H1' ? anchor.querySelector('.card__wrap') : anchor;
-          var anchorTop = anchor ? anchor.top : 0;
-          
-          // on max year or 'now' marker click - scroll to top of the page
-          if (anchor.year == maxYear && replaceLatestYear) {
-            anchorTop = (document.body.dataset.scrollTop || 0) * -1;
-          }
-
-          if (window.ScrollManager) {
-            window.ScrollManager.scrollContentTo(anchorTop - HEADER_HEIGHT, SCROLL_DURATION, function() {
-              isScrolling = false;
-            });
-          }
-        })
+        marker.$marker.addEventListener('click', markerItemClickListener)
       })
     }
 
-    var tabletViewport = false;
     var TABLET_BREAK_POINT = 768;
     function redrawMarkers() {
-      if (tabletViewport) { return }
+      if (window.innerWidth <= TABLET_BREAK_POINT) { return }
       coordsAnchors = getAnchorsCoordinates();
       arrange();
     }
 
     window.addEventListener('scroll', redrawMarkers);
     window.addEventListener('wheel', redrawMarkers);
-    window.addEventListener('resize', function () {
-      if (window.innerWidth <= TABLET_BREAK_POINT) {
-        tabletViewport = true;
-        return;
-      }
+    window.addEventListener('resize', clear);
+  }
 
-      tabletViewport = false;
-      coordsAnchors = getAnchorsCoordinates();
-      coordsMarkers = getMarkersCoordinates();
-      arrange();
-    });
-    window.addEventListener('load', function() {
-      tabletViewport = window.innerWidth <= TABLET_BREAK_POINT;
-    });
+  function clear() {
+    window.removeEventListener('scroll', redrawMarkers);
+    window.removeEventListener('wheel', redrawMarkers);
+    window.removeEventListener('resize', clear);
+    document.body.removeChild($marker);
+    init();
   }
 })();
