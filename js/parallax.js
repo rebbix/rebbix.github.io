@@ -23,6 +23,9 @@
 
     function initTransforms() {
         var rightCards = document.querySelectorAll(selectors.join(', ')) || [];
+        if (!rightCards.forEach) {
+            rightCards = Array.from(rightCards);
+        }
         rightCards.forEach(function(card) {
             var transformString = card.style.transform;
             if (transformString.length) {

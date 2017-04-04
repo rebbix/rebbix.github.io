@@ -36,7 +36,9 @@
             '.card.card_life:not([class~=card_separator]) .card__wrap',
         ]
         var workwraps = document.querySelectorAll(selectors.join(', ')) || [];
-
+        if (!workwraps.forEach) {
+            workwraps = Array.from(workwraps);
+        }
         workwraps.forEach(function(wrap) {
             wrap.addEventListener('mouseenter', onMouseOver.bind(null, wrap));
             wrap.addEventListener('mouseleave', onMouseOut.bind(null, wrap));

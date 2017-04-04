@@ -11,7 +11,9 @@ function addPost(card) {
 
 document.addEventListener('DOMContentLoaded', function() {
     var cards = document.querySelectorAll('.card.card_embed');
-    
+    if (!cards.forEach) {
+      cards = Array.from(cards);
+    }
     cards.forEach((card, index) => {
       var cardWidth = card.dataset.videoembed ? 47 : Math.floor(Math.random() * 20 + 25);
       var cardMargin = Math.floor(Math.random() * (47 - cardWidth));

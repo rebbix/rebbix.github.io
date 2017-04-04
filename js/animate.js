@@ -76,7 +76,9 @@
     if (shadowsApplied) return;
 
     var workCards = document.querySelectorAll('.card.card_work:not([class~=card_separator])') || [];
-
+    if (!workCards.forEach) {
+      workCards = Array.from(workCards);
+    }
     workCards.forEach(function(card) {
       var wrap = card.querySelector('.card__wrap');
       var shadowColor = wrap.dataset.shadowcolor || '#808080';
