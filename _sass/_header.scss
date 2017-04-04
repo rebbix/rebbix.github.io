@@ -105,18 +105,8 @@ $fade-duration: .4s;
     &_active {
       color: #111;
     }
-
-
-    &:hover,
-    &:active,
-    &:focus { 
-      color: #111;
-
-      & + .header__nav-item {
-        color: #aaa !important; 
-      }
-    }
   }
+
 
   &__logo {
     margin-top: 80px;

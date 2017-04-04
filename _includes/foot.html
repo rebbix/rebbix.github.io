@@ -2,6 +2,36 @@
   Rebbix @ 2017
 </footer>
 
+<script>
+  (function() {
+    var links = document.querySelectorAll('.header__nav-item');
+    var prevSelected = document.querySelector('.header__nav-item_active');
+
+    function clear() {
+      [].forEach.call(links, function(link) {
+        link.classList.remove('header__nav-item_active');
+      });
+    }
+    
+    function selectLink(event) {
+      clear();
+      event.target.classList.add('header__nav-item_active');
+    }
+
+    function selectDefault() {
+      clear();
+      if (prevSelected) {
+        prevSelected.classList.add('header__nav-item_active');
+      }
+    }
+
+    [].forEach.call(links, function(link) {
+      link.addEventListener('click', selectLink);
+      link.addEventListener('mouseenter', selectLink);
+      link.addEventListener('mouseleave', selectDefault)
+    })
+  })();
+</script>
 <script src={{ "/js/animate.js" | prepend: site.baseurl }}></script>
 <script src={{ "/js/scroll.js" | prepend: site.baseurl }}></script>
 <script src={{ "/js/embed.js" | prepend: site.baseurl }}></script>
