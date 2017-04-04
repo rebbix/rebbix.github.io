@@ -148,7 +148,7 @@
       return coords;
     }
 
-    function markerItemClickListener() {
+    function markerItemClickListener(marker) {
       if (isScrolling) { return };
       isScrolling = true;
       var anchor = coordsAnchors.find(function (card) {
@@ -172,13 +172,11 @@
 
     function initMarkerClick() {
       coordsMarkers.forEach(function (marker) {
-        marker.$marker.addEventListener('click', markerItemClickListener)
+        marker.$marker.addEventListener('click', markerItemClickListener.bind(null, marker))
       })
     }
 
-    var TABLET_BREAK_POINT = 768;
     function redrawMarkers() {
-      if (window.innerWidth <= TABLET_BREAK_POINT) { return }
       coordsAnchors = getAnchorsCoordinates();
       arrange();
     }

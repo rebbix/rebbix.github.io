@@ -14,7 +14,7 @@ $fade-duration: .4s;
 
   @media (max-width: $mobile_break_point) {
     padding: 0;
-    margin: 117px 7% 40px;
+    margin: 117px 7% 40px 8%;
   }
 
   &__wrap {
@@ -30,7 +30,7 @@ $fade-duration: .4s;
     left: 0;
     padding-bottom: 20px;
     padding-top: 15px;
-    z-index: 1; 
+    z-index: 2; 
     text-align: center;
     line-height: 23px;
     font-family: "acumin-pro";
@@ -49,7 +49,7 @@ $fade-duration: .4s;
       margin: 0 auto;
       padding-top: 0;
       padding-bottom: 5px;
-      z-index: 1; 
+      z-index: 2; 
       transform: translateZ(0);
       text-align: center;
       line-height: 16px;
