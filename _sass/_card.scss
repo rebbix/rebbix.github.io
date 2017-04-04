@@ -614,6 +614,7 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     @media (max-width: $mobile_break_point) {
       iframe {
         height: 23vw !important;
+        min-height: 23vw !important;
       }
     }
   }
