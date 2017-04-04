@@ -723,8 +723,8 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     margin-bottom: 40px;
     padding: 15%;
     font-family: acumin-pro-wide, Arial, Helvetica, sans-serif;
-    font-size: 1.7vw;
-    line-height: 1.9vw;
+    font-size: 24px;
+    line-height: 27px;
     color: #fff;
     text-decoration: none;
     background: url('/img/contact_arrow.png') left 70% center no-repeat;
@@ -736,6 +736,11 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
 
     &_ln {
       background-color: #007BB6;
+    }
+
+    @media (max-width: $responsive_break_point) {
+      font-size: 1.7vw;
+      line-height: 1.9vw;
     }
 
     @media #{$mobile} {
