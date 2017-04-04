@@ -610,6 +610,12 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
   &.card_embed .card__content {
     padding: 0;
     overflow: visible;
+
+    @media (max-width: $mobile_break_point) {
+      iframe {
+        height: 23vw !important;
+      }
+    }
   }
 
   @media (max-width: $responsive_break_point) {
