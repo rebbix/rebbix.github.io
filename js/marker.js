@@ -48,17 +48,18 @@
 
     initMarkerClick();
 
-    function arrange() {
+    function arrange(byScroll) {
       var shouldBeActive = null;
       coordsMarkers.forEach(function (marker, i) {
         var anchor = coordsAnchors.find(function(card) {
           return card.year === marker.year;
         });
         var nextMarker = coordsMarkers[i + 1]; 
+        var scrollPosition = byScroll ? document.body.scrollTop : (+document.body.dataset.scrollTop || 0);
         var nextAnchor = nextMarker ? coordsAnchors.find(function(card) {
           return card.year === nextMarker.year;
         }) : {
-          top: document.body.offsetHeight - (document.body.dataset.scrollTop || 0)
+          top: document.body.offsetHeight - scrollPosition
         };
 
         if (!anchor) return;
@@ -70,7 +71,7 @@
         var distanceToTop = contentTop;
         var windowHeight = window.innerHeight;
     
-        var yearShown = (windowHeight - (anchor.top - document.body.scrollTop) - (windowHeight - initialMarkerTop));
+        var yearShown = (windowHeight - anchor.top - (windowHeight - initialMarkerTop));
         var yearHeight = (nextAnchor.top - anchor.top);
         var markerLineHeight = (windowHeight - contentTop - (windowHeight - initialMarkerTop));
         anchorTop = Math.floor(contentTop + markerLineHeight - markerLineHeight * (yearShown / yearHeight));
@@ -122,7 +123,7 @@
 
       var anchorsCoords = Object.keys(coords).map(function (i) {
         return coords[i];
-      })
+      });
 
       if (reverseMarkers) {
         anchorsCoords = anchorsCoords.reverse();
@@ -148,6 +149,10 @@
       return coords;
     }
 
+    var isMobileRegex = /[mM]obile/g;
+    var isChrome = /[cC]hrome/g;
+    // hack to prevent wheeling on mobile chrome
+    var isMobileChrome = !!(window.chrome && navigator.userAgent.match(isChrome) && navigator.userAgent.match(isMobileRegex));
     function markerItemClickListener(marker) {
       if (isScrolling) { return };
       isScrolling = true;
@@ -156,29 +161,29 @@
       });
 
       var anchorTop = anchor ? anchor.top : 0;
-      
+      var scrollPosition = isMobileChrome ? document.body.scrollTop : (document.body.dataset.scrollTop || 0);
       // on max year or 'now' marker click - scroll to top of the page
       if (anchor.year == maxYear && replaceLatestYear) {
-        anchorTop = (document.body.dataset.scrollTop || 0) * -1;
+        anchorTop = scrollPosition * -1;
       }
 
       // ScrollManager is in another file ./scroll.js
       if (window.ScrollManager) {
         window.ScrollManager.scrollContentTo(anchorTop - HEADER_HEIGHT, SCROLL_DURATION, function() {
           isScrolling = false;
-        });
+        }, isMobileChrome);
       }
     }
 
     function initMarkerClick() {
       coordsMarkers.forEach(function (marker) {
-        marker.$marker.addEventListener('click', markerItemClickListener.bind(null, marker))
-      })
+        marker.$marker.addEventListener('click', markerItemClickListener.bind(null, marker));
+      });
     }
 
-    function redrawMarkers() {
+    function redrawMarkers(e) {
       coordsAnchors = getAnchorsCoordinates();
-      arrange();
+      arrange(e.type === 'scroll');
     }
 
     window.addEventListener('scroll', redrawMarkers);

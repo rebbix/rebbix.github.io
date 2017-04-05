@@ -100,11 +100,10 @@
 
     function easeOutCubic(t) { return  (--t)*t*t+1 };
 
-    function scrollContentTo(scrollingDistance, duration, callback) {
+    function scrollContentTo(scrollingDistance, duration, callback, shouldUseNativeScroll) {
         isScrolling = true;
-
         var endOfAnimation = Date.now() + duration;
-        var scrollPositionOnStart = parseFloat(document.body.dataset.scrollTop, 10) || 0;
+        var scrollPositionOnStart = shouldUseNativeScroll ? document.body.scrollTop : +document.body.dataset.scrollTop || 0;
         var scrollPositionOnEnd = scrollPositionOnStart + scrollingDistance
         var scrollDown = scrollPositionOnStart < scrollPositionOnStart + scrollingDistance;
         function scroll(timestamp) {
@@ -112,7 +111,7 @@
             progress = progress <= 1 ? progress : 1;
             var scrollStep = scrollingDistance * easeOutCubic(progress);
             var nextScrollPositino = scrollPositionOnStart + scrollStep;
-            setScrollPosition(nextScrollPositino);
+            setScrollPosition(nextScrollPositino, shouldUseNativeScroll);
 
             var notTargetPosition = scrollDown ? nextScrollPositino < scrollPositionOnEnd : scrollPositionOnEnd < nextScrollPositino;
             if (notTargetPosition) {
@@ -131,18 +130,22 @@
     var content = document.querySelector('.content');
     var header = document.querySelector('.header .header__wrap');
     var footer = document.querySelector('.footer');
-    function setScrollPosition(position) {
-        var currentBodyScroll = parseFloat(document.body.dataset.scrollTop, 10) || 0;
-        content.style.transform = `translate(0, ${-position}px)`;
-        header.style.transform = `translate(0, ${-position}px)`;
-        footer.style.transform = `translate(0, ${-position}px)`;
-        document.body.dataset.scrollTop = position;
+    function setScrollPosition(position, shouldUseNativeScroll) {
+        if (shouldUseNativeScroll) {
+            window.scrollTo(0, position);
+        } else {
+            var currentBodyScroll = parseFloat(document.body.dataset.scrollTop, 10) || 0;
+            content.style.transform = `translate(0, ${-position}px)`;
+            header.style.transform = `translate(0, ${-position}px)`;
+            footer.style.transform = `translate(0, ${-position}px)`;
+            document.body.dataset.scrollTop = position;
 
-        window.dispatchEvent(new WheelEvent('wheel', {
-            deltaX: 0,
-            deltaY: position - currentBodyScroll,
-            deltaMode: 0x00
-        }));
+            window.dispatchEvent(new WheelEvent('wheel', {
+                deltaX: 0,
+                deltaY: position - currentBodyScroll,
+                deltaMode: 0x00
+            }));
+        }
     }
 
     function preventHomeAndEnd(e) {
