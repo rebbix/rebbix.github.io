@@ -385,7 +385,7 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     }
   }
 
-  &_embed, {
+  &_embed {
     @media (max-width: $mobile_break_point) {
       width: 48% !important;
       margin: 0 !important;
@@ -393,6 +393,24 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
       padding-left: 0 !important;
       padding-right: 0 !important;
     }
+
+    &__link {
+      display: none;
+
+      @media (max-width: $mobile_break_point) {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        position: absolute;
+        z-index: 2;
+        top: 0;
+      }
+    }
+  }
+
+  [data-videoembed] .card__content {
+    position: relative;
   }
 
   &_embed .card__img {
