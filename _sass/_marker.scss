@@ -117,11 +117,14 @@
     left: 4%;
 
     .marker_container {
-      position: absolute;
-      top: calc(50% - 35px * 4);
+      position: initial;
       left: 0;
-      width: 3px;
+      width: 1px;
       background-color: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     &__item {
@@ -135,16 +138,7 @@
       color: transparent !important;
 
       &::before {
-        position: absolute;
-        top: 50%;
-        left: -3px;
-        width: 5px;
-        height: 5px;
-        margin-top: -3px;
-        background: #d8d8d8;
-        border-radius: 50%;
-        content: "";
-        z-index: 10;
+        left: 1px;
       }
 
       &_active {
