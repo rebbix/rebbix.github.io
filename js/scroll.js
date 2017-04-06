@@ -1,18 +1,91 @@
 (function(window) {
-    (function() {
-        var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
-                                    window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-        window.requestAnimationFrame = requestAnimationFrame;
-    })();
+    var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                                window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+    window.requestAnimationFrame = requestAnimationFrame;
+    var TABLET_BREAK_POINT = 768;
     var content = document.querySelector('.content');
     var header = document.querySelector('.header .header__wrap');
     var footer = document.querySelector('.footer');
+    var scrollBar = document.createElement('DIV');
+    var scrollThumb = document.createElement('DIV');
+    var scrollTo = 0;
+    var scrolled = 0;
+    var scrolling = false;
+    var footerBottomMargin = 20;
     var isScrolling = false;
+    var thumbPressed = false;
+
+    function updateScrollBarPosition() {
+        if (window.innerWidth < TABLET_BREAK_POINT) {
+            return;
+        }
+        var windowHeight = window.innerHeight;
+        var pageHeight = getPageHeight();
+        var scrollPosition = (+document.body.dataset.scrollTop || 0);
+        var scrollThumbHeight = windowHeight * (parseInt((windowHeight / (pageHeight + windowHeight)) * 10000) / 10000);
+        scrollThumbHeight = scrollThumbHeight < 100 ? 100 : scrollThumbHeight;
+        var scrollIsPercentage = (scrollPosition / pageHeight) * 100;
+        var scrollThumbTop = ((windowHeight - scrollThumbHeight) * scrollIsPercentage) / windowHeight;
+
+        scrollThumb.style.height = scrollThumbHeight + 'px';
+        scrollThumb.style.top = scrollThumbTop + '%';
+    }
+
+    var prevPointerPosition = null;
+    function scrollBarMove(e) {
+        if (!thumbPressed) {
+            return;
+        }
+        document.body.classList.add('no-user-select');
+        scrollThumb.classList.add('scroll__thumb_active');
+        var rect = scrollThumb.getBoundingClientRect();
+        var pointerDiff = e.clientY - prevPointerPosition;
+        if (rect.top + pointerDiff < 0 || rect.bottom + pointerDiff > window.innerHeight) {
+            return;
+        }
+        var pageDiff = (getPageHeight() * (pointerDiff / window.innerHeight));
+        prevPointerPosition = e.clientY;
+        scrolled = scrolled + pageDiff;
+        scrollTo = scrolled;
+        setScroll(scrolled);
+        window.dispatchEvent(new WheelEvent('wheel', {
+            deltaX: 0,
+            deltaY: pointerDiff,
+            deltaMode: 0x00
+        }));
+    }
+
+    function initScrollBar() {
+        if (window.innerWidth < TABLET_BREAK_POINT) {
+            return;
+        }
+        var pageHeight = getPageHeight();
+        var windowHeight = window.innerHeight;
+        scrollThumb.classList.add('scroll__thumb');
+        scrollThumb.addEventListener('mousedown', function(e) {
+            thumbPressed = true;
+            prevPointerPosition = e.clientY;
+        });
+        window.addEventListener('mousemove', scrollBarMove);
+        window.addEventListener('mouseup', function() {
+            thumbPressed = false;
+            document.body.classList.remove('no-user-select');
+            scrollThumb.classList.remove('scroll__thumb_active');
+        });
+        scrollBar.classList.add('scroll__bar');
+        scrollBar.appendChild(scrollThumb);
+        document.body.appendChild(scrollBar);
+        updateScrollBarPosition();
+    }
 
     var translateRegexp = /translate\(-*\d+.?\d*[a-z]*,\s-*\d+.?\d*[a-z]*\)/;
     var translateValueRegexp = /-*\d+[.\d*]?\w*/g;
 
-    function setScroll(y) {
+    function setScroll(y, shouldUseNativeScroll) {
+        if (shouldUseNativeScroll) {
+            window.scrollTo(0, y);
+            return;
+        }
         var transformString = content.style.transform;
         var translateString = transformString.match(translateRegexp);
         if (translateString === null) {
@@ -30,10 +103,16 @@
 
         var transformStringWithoutTranslate = transformString.slice(0, translateIndex) + transformString.slice(translateIndex + translateString.length);
         var transformStyle = transformStringWithoutTranslate + 'translate(' + translateValue.join(', ') + ')';
+        window.dispatchEvent(new WheelEvent('wheel', {
+            deltaX: 0,
+            deltaY: y - (+document.body.dataset.scrollTop || 0),
+            deltaMode: 0x00
+        }));
         document.body.dataset.scrollTop = y;
         header.style.transform = transformStyle;
         content.style.transform = transformStyle;
         footer.style.transform = transformStyle;
+        updateScrollBarPosition();
     }
 
     window.addEventListener('resize', e => {
@@ -43,7 +122,7 @@
         }
         scrollTo = y;
         scrolled = y;
-        setScroll(y); 
+        setScroll(y);
     }); 
 
     function scroll() {
@@ -70,14 +149,9 @@
             : document.body.offsetHeight;
     }
 
-    var scrollTo = 0;
-    var scrolled = 0;
-    var scrolling = false;
-    var footer = document.querySelector('.footer');
-    var footerBottomMargin = 20;
     window.addEventListener('wheel', function(e) {
         e.preventDefault();
-        if (!e.isTrusted || isScrolling) return;
+        if ((!e.isTrusted && !e.byArrows) || isScrolling) return;
         if (window.scrollY !== 0) {
             window.scrollTo(0, 0);
         }
@@ -111,7 +185,7 @@
             progress = progress <= 1 ? progress : 1;
             var scrollStep = scrollingDistance * easeOutCubic(progress);
             var nextScrollPositino = scrollPositionOnStart + scrollStep;
-            setScrollPosition(nextScrollPositino, shouldUseNativeScroll);
+            setScroll(nextScrollPositino, shouldUseNativeScroll);
 
             var notTargetPosition = scrollDown ? nextScrollPositino < scrollPositionOnEnd : scrollPositionOnEnd < nextScrollPositino;
             if (notTargetPosition) {
@@ -125,27 +199,6 @@
         }
 
         requestAnimationFrame(scroll);
-    }
-
-    var content = document.querySelector('.content');
-    var header = document.querySelector('.header .header__wrap');
-    var footer = document.querySelector('.footer');
-    function setScrollPosition(position, shouldUseNativeScroll) {
-        if (shouldUseNativeScroll) {
-            window.scrollTo(0, position);
-        } else {
-            var currentBodyScroll = parseFloat(document.body.dataset.scrollTop, 10) || 0;
-            content.style.transform = `translate(0, ${-position}px)`;
-            header.style.transform = `translate(0, ${-position}px)`;
-            footer.style.transform = `translate(0, ${-position}px)`;
-            document.body.dataset.scrollTop = position;
-
-            window.dispatchEvent(new WheelEvent('wheel', {
-                deltaX: 0,
-                deltaY: position - currentBodyScroll,
-                deltaMode: 0x00
-            }));
-        }
     }
 
     function preventHomeAndEnd(e) {
@@ -163,18 +216,20 @@
                 deltaY = 20;
             }
 
-            window.dispatchEvent(new WheelEvent('wheel', {
+            var wheelEvent = new WheelEvent('wheel', {
                 deltaX: 0,
                 deltaY: deltaY,
                 deltaMode: 0x00
-            }));
+            });
+            wheelEvent.byArrows = true;
+            window.dispatchEvent(wheelEvent);
         }
     }
 
     window.addEventListener('keydown', preventHomeAndEnd);
     window.addEventListener('keypress', preventHomeAndEnd);
     window.addEventListener('keyup', preventHomeAndEnd);
-
+    document.addEventListener('DOMContentLoaded', initScrollBar);
     window.ScrollManager = {
         scrollContentTo: scrollContentTo
     }

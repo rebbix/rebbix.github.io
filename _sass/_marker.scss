@@ -46,6 +46,10 @@
 
     &:hover:before {
       background: #222;
+      
+      @media (max-width: $mobile_break_point) {
+        background: #d8d8d8;
+      }
     }
 
     @for $i from 1 through 10 {

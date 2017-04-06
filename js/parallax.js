@@ -86,9 +86,10 @@
                 var translateValue = translateString.match(translateValueRegexp);
                 if (translateValue === null) { return; }
 
-                var parallaxStep = -(currentScroll - (getPageHeight() * appearedOn)) * -ratio + measurement;
+                var parallaxStep = -(currentScroll - (getPageHeight() * appearedOn)) * -ratio;
+                parallaxStep = parseInt(parallaxStep * 1000) / 1000;
 
-                translateValue[1] = parallaxStep;
+                translateValue[1] = parallaxStep + measurement;
 
                 translateIndex = transformString.indexOf(translateString);
                 var transformStringWithoutTranslate = transformString.slice(0, translateIndex) + transformString.slice(translateIndex + translateString.length);

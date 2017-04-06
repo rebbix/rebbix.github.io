@@ -88,10 +88,62 @@ body {
   }
 }
 
+.no-user-select {
+  -moz-user-select: none !important;
+  -webkit-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
 // to hide scrollbars
 ::-webkit-scrollbar { 
     display: none; 
 }
 html {
   overflow: -moz-scrollbars-none;
+}
+
+.scroll {
+  $bar-width: 0.7vw;
+
+  &__bar {
+    min-width: 8px;
+    width: $bar-width;
+    max-width: 14px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 10000;
+    background-color: transparent;
+    user-select: none !important;
+    transition: background-color .3s;
+
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+
+  &__thumb {
+    min-width: 8px;
+    width: $bar-width;
+    max-width: 14px;
+    border-radius: $bar-width / 2;
+    position: absolute;
+    right: 0;
+    z-index: 10000;
+    background-color: #ddd;
+    transition: background-color .3s;
+    
+    &:hover,
+    &_active {
+      background-color: #666;
+    }
+  }
+
+  @media (max-width: $mobile_break_point) {
+    &__bar {
+      display: none;
+    }
+  }
 }
