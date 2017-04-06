@@ -40,9 +40,15 @@
       var elementTop = elementBounds.top;
       var appearingHeight = initialCards === true ? windowHeight : windowHeight - windowHeight * 0.15;
 
+      var a = element.querySelector('.card__img');
+
       if (elementTop <= appearingHeight) {
         element.classList.add('card_in-view');
         element.classList.add('no-shadow');
+      }
+      
+      if (elementTop < appearingHeight * 4.5 && a) {
+        a.style.display = 'initial';
       }
     }
   }
