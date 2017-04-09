@@ -418,7 +418,6 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     transition: box-shadow .6s;
     margin-bottom: 0 !important;
     transition: .4s;
-    display: none;
 
     @media (max-width: $mobile_break_point) {
       box-shadow: none;
