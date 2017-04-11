@@ -14,6 +14,7 @@
     var footerBottomMargin = 20;
     var isScrolling = false;
     var thumbPressed = false;
+    var SCROLL_RATIO = 0.15;
 
     function updateScrollBarPosition() {
         if (window.innerWidth < TABLET_BREAK_POINT) {
@@ -126,17 +127,17 @@
     }); 
 
     function scroll() {
-        scrolled += (scrollTo - scrolled) * 0.1;
+        scrolled += (scrollTo - scrolled) * SCROLL_RATIO;
 
         window.dispatchEvent(new WheelEvent('wheel', {
             deltaX: 0,
-            deltaY: (scrollTo - scrolled) * 0.1,
+            deltaY: (scrollTo - scrolled) * SCROLL_RATIO,
             deltaMode: 0x00
         }));
 
         setScroll(scrolled);
 
-        if (Math.abs(scrollTo - scrolled) > 0.1) {
+        if (Math.abs(scrollTo - scrolled) > SCROLL_RATIO) {
             requestAnimationFrame(scroll);
         } else {
             scrolling = false;

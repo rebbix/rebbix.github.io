@@ -110,7 +110,8 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     position: relative;
     opacity: 0;
 
-    transition: all 1s cubic-bezier(0, 0, 0, 1), box-shadow .8s linear, opacity .5s linear;
+    // transition: all 1s cubic-bezier(0, 0, 0, 1), box-shadow .8s linear, opacity .5s linear;
+    transition: all .8s cubic-bezier(0, 0, 0, 1), box-shadow .8s linear, opacity .4s linear;
 
     @media #{$mobile} {
       max-width: 100% !important;
