@@ -3,7 +3,7 @@
     var currentHovered = null;
     function onMouseOver(wrap) {
         if (window.innerWidth <= TABLET_BREAK_POINT) {
-            return
+            return;
         }
 
         var element = wrap;
