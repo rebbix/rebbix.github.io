@@ -151,7 +151,7 @@
 
     var isMobileRegex = /[mM]obile/g;
     // hack to prevent wheeling on mobile chrome
-    var isMobileBrowser = !!(window.chrome && navigator.userAgent.match(isMobileRegex));
+    var isMobileBrowser = !!navigator.userAgent.match(isMobileRegex);
     function markerItemClickListener(marker) {
       if (isScrolling) { return };
       isScrolling = true;
