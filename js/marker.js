@@ -150,9 +150,8 @@
     }
 
     var isMobileRegex = /[mM]obile/g;
-    var isChrome = /[cC]hrome/g;
     // hack to prevent wheeling on mobile chrome
-    var isMobileChrome = !!(window.chrome && navigator.userAgent.match(isChrome) && navigator.userAgent.match(isMobileRegex));
+    var isMobileBrowser = !!(window.chrome && navigator.userAgent.match(isMobileRegex));
     function markerItemClickListener(marker) {
       if (isScrolling) { return };
       isScrolling = true;
@@ -161,7 +160,7 @@
       });
 
       var anchorTop = anchor ? anchor.top : 0;
-      var scrollPosition = isMobileChrome ? document.body.scrollTop : (document.body.dataset.scrollTop || 0);
+      var scrollPosition = isMobileBrowser ? document.body.scrollTop : (document.body.dataset.scrollTop || 0);
       // on max year or 'now' marker click - scroll to top of the page
       if (anchor.year == maxYear && replaceLatestYear) {
         anchorTop = scrollPosition * -1;
@@ -171,7 +170,7 @@
       if (window.ScrollManager) {
         window.ScrollManager.scrollContentTo(anchorTop - HEADER_HEIGHT, SCROLL_DURATION, function() {
           isScrolling = false;
-        }, isMobileChrome);
+        }, isMobileBrowser);
       }
     }
 
