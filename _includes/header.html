@@ -1,12 +1,12 @@
 <header class="header">
-  <nav class="header__nav" ontouchstart=""><!-- ontouchstart is a hack to apply :focus and: active pseudo-classes on movile safari-->
-   <a href="{{'/' | prepend:site.baseurl }}" class="header__nav-item{% if page.url == '/' %} header__nav-item_active{% endif %}">Work</a><!--
+  <nav class="header__nav"><!-- ontouchstart is a hack to apply :focus and: active pseudo-classes on movile safari-->
+   <a href="{{'/' | prepend:site.baseurl }}" class="header__nav-item{% if page.url == '/' %} header__nav-item_active{% endif %}" ontouchstart="">Work</a><!--
   -->
     <!--<a href="{{ '/approach' | prepend:site.baseurl }}" class="header__nav-item{% if page.url == '/approach' %} header__nav-item_active{% endif %}">Approach</a>-->
   <!--
-  --><a href="{{ '/team' | prepend:site.baseurl }}" class="header__nav-item{% if page.url == '/team' %} header__nav-item_active{% endif %}">Team</a><!--
-  --><a href="{{ '/life' | prepend:site.baseurl }}" class="header__nav-item{% if page.url == '/life' %} header__nav-item_active{% endif %}">Life</a><!--
-  --><a href="{{ '/contacts' | prepend:site.baseurl }}" class="header__nav-item{% if page.url == '/contacts' %} header__nav-item_active{% endif %}">Contacts</a>
+  --><a href="{{ '/team' | prepend:site.baseurl }}" class="header__nav-item{% if page.url == '/team' %} header__nav-item_active{% endif %}" ontouchstart="">Team</a><!--
+  --><a href="{{ '/life' | prepend:site.baseurl }}" class="header__nav-item{% if page.url == '/life' %} header__nav-item_active{% endif %}" ontouchstart="">Life</a><!--
+  --><a href="{{ '/contacts' | prepend:site.baseurl }}" class="header__nav-item{% if page.url == '/contacts' %} header__nav-item_active{% endif %}" ontouchstart="">Contacts</a>
   </nav>
   <div class="header__wrap">
     <a href="{{ '/' | prepend:site.baseurl }}">
