@@ -4,5 +4,5 @@ image: "/img/team/2012 serhiy_o@2x.jpg"
 name: "Serhiy Oplakanets"
 type: "right"
 width: 8
-offset-top: 28
+offset-top: 8
 ---

@@ -408,6 +408,38 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
         top: 0;
       }
     }
+
+    &__thumb {
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+
+      $buttonSize: 150px;
+      &::after {
+        content: '';
+        width: $buttonSize;
+        height: $buttonSize;
+        position: absolute;
+        top: calc(50% - #{$buttonSize / 2});
+        left: calc(50% - #{$buttonSize / 2});
+        opacity: .9;
+        background: rgba(0,0,0,.06) url(/img/play-button.svg) center center no-repeat;
+        background-size: cover;
+        box-shadow: 0 0 74px rgba(0, 0, 0, .2);
+        border-radius: 50%;
+      }
+
+      @media (max-width: $responsive_break_point) {
+        $responsiveButtonSize: 11vw;
+
+        &::after {
+          width: $responsiveButtonSize;
+          height: $responsiveButtonSize;
+          top: calc(50% - #{$responsiveButtonSize / 2});
+          left: calc(50% - #{$responsiveButtonSize / 2});
+        }
+      }
+    }
   }
 
   [data-videoembed] .card__content {
@@ -422,6 +454,10 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
 
     @media (max-width: $mobile_break_point) {
       box-shadow: none;
+    }
+
+    &__thumb {
+      width: 100%;
     }
   }
 
