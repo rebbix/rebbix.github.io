@@ -6,5 +6,5 @@ type: "left"
 width: 14
 offset-top: 7
 ---
-#### Photo copyright platform experiment won at AngelHack Lviv
-Mission: Reduce image copyrights infringement risks by providing a completely new image distribution model.
+#### Experimental photo copyright platform wins at AngelHack Lviv
+Mission: Reduce image copyright infringement risks with brand-new image distribution model.
