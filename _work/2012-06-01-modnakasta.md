@@ -7,4 +7,4 @@ offset-top: 12
 width: 12
 ---
 #### Started working with modnaKasta
-Top 1 flash sales website in Ukraine.
+No. 1 online flash sales company in Ukraine.
