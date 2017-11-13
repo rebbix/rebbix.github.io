@@ -1,0 +1,25 @@
+{
+  "name": "rebbix.github.io",
+  "version": "1.0.0",
+  "description": "Rebbix site",
+  "main": "generateImages.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rebbix/rebbix.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rebbix/rebbix.github.io/issues"
+  },
+  "homepage": "https://github.com/rebbix/rebbix.github.io#readme",
+  "devDependencies": {
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
+  }
+}

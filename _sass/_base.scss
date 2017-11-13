@@ -10,6 +10,7 @@ body {
   -o-font-feature-settings: "kern" 1;
   font-feature-settings: "kern" 1;
   font-kerning: normal;
+  background: #444;
 }
 
 .content {
@@ -96,9 +97,9 @@ body {
 }
 
 // to hide scrollbars
-::-webkit-scrollbar { 
-    display: none; 
-}
+// ::-webkit-scrollbar { 
+//     display: none; 
+// }
 html {
   overflow: -moz-scrollbars-none;
 }

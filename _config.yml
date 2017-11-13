@@ -22,4 +22,4 @@ collections:
 - team
 - life
 
-exclude: ['config.ru', 'Gemfile', 'Gemfile.lock', 'vendor']
+exclude: ['config.ru', 'Gemfile', 'Gemfile.lock', 'vendor', 'node_modules']
