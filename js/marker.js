@@ -1,226 +1,75 @@
-/* eslint-disable */
-// (function init() {
-//   var HEADER_HEIGHT = 60;
-//   var SCROLL_DURATION = 2000;
-//   var isScrolling = false;
+(function markerInit() {
+  /* INITIAL-DATA */
+  const URL = window.location.pathname;
+  // const hideMarkers = ['/contacts'].indexOf(url) > -1;
+  // const reverseMarkers = ['/team'].indexOf(url) === -1;
+  const REPLACE_LATEST_YAER = URL === '/';
 
-//   var url = window.location.pathname;
-//   var hideMarkers = ['/approach', '/contacts'].indexOf(url) > -1;
-//   var reverseMarkers = ['/team'].indexOf(url) === -1;
-//   var replaceLatestYear = url === '/';
-
-//   if (!hideMarkers) {
-//     // when we don't need 'now' marker we sholdn't search for all elements with data-year attr,
-//     // sometimes h1 also can has a data-year attribute
-
-//     coordsAnchors.forEach(function (anchor) {
-//       var $markerItem = document.createElement('div');
-//       $markerItem.classList.add('marker__item');
-//       $markerItem.innerText = anchor.year;
-//       $markerItem.dataset.year = anchor.year;
-//       if (replaceLatestYear && anchor.year == maxYear) {
-//         $markerItem.innerText = 'Now';
-//       }
-
-//       $markerItemContainer.appendChild($markerItem);
-//       $markers.push($markerItem);
-//     });
-//     document.body.appendChild($marker);
-
-//     var coordsMarkers = getMarkersCoordinates();
-//     arrange()
-
-//     initMarkerClick();
-
-//     function arrange(byScroll) {
-//       var shouldBeActive = null;
-//       coordsMarkers.forEach(function (marker, i) {
-//         var anchorIndex = coordsAnchors.findIndex(function(card) {
-//           return card.year === marker.year;
-//         });
-        
-//         if (anchorIndex === -1) return;
-        
-//         var anchor = coordsAnchors[anchorIndex];
-        
-//         var nextMarker = coordsMarkers[i + 1]; 
-//         var nextAnchor = nextMarker ? coordsAnchors[anchorIndex + 1] : {
-//           top: document.body.offsetHeight - scrollPosition
-//         };
-
-//         var scrollPosition = byScroll ? document.body.scrollTop : (+document.body.dataset.scrollTop || 0);
-
-//         var contentTop = i * 35 + HEADER_HEIGHT; // height on top positino
-//         var initialMarkerTop = marker.top; // top position related to the screen
-
-//         var windowHeight = window.innerHeight;
-//         var distanceToBottom = windowHeight - initialMarkerTop;
-//         var distanceToTop = contentTop;
-    
-//         var yearShown = windowHeight - anchor.top - (windowHeight - initialMarkerTop);
-//         var yearHeight = nextAnchor.top - anchor.top;
-
-//         var markerLineHeight = (windowHeight - contentTop - (windowHeight - initialMarkerTop));
-        
-//         if (anchor.year == maxYear && replaceLatestYear) {
-//           anchorTop = anchor.top;
-//         } else {
-//           anchorTop = Math.floor(contentTop + markerLineHeight - markerLineHeight * (yearShown / yearHeight));
-//         }
-
-//         marker.$marker.classList.remove('marker__item_active');
-//         marker.$marker.classList.remove('marker__item_top-active');
-//         marker.$marker.classList.remove('marker__item_movable');
-
-//         if ((anchorTop > contentTop) && (anchorTop < initialMarkerTop)) {
-//           marker.$marker.classList.remove('marker__item_top');
-//           marker.$marker.classList.add('marker__item_movable');
-//           debugger
-//           marker.$marker.style.transform = 'translateY(' + anchorTop + 'px)';
-//           if (shouldBeActive === null || marker.year == maxYear) {
-//             shouldBeActive = marker.$marker;
-//           }
-//         } else if (anchorTop <= contentTop) {
-//           marker.$marker.classList.add('marker__item_top');
-//         } else {
-//           marker.$marker.classList.remove('marker__item_top');
-//           marker.$marker.style.transform = 'translateY(' + windowHeight + 'px)';
-//         }
-//       });
-
-//       if (shouldBeActive !== null) {
-//         shouldBeActive.classList.add('marker__item_active');
-//       } else {
-//         coordsMarkers[coordsMarkers.length - 1].$marker.classList.add('marker__item_top-active');
-//       }
-//     }
-
-//     function getAnchorsCoordinates() {
-//       var coords = {};
-
-//       for (var i = 0; i < $cards.length; i++) {
-//         var year = $cards[i].dataset.year;
-
-//         if (coords[year]) continue;
-
-//         var rect = $cards[i].getBoundingClientRect();
-
-//         coords[year] = {
-//           top: rect.top,
-//           year: year
-//         }
-//       }
-
-//       var anchorsCoords = Object.keys(coords).map(function (i) {
-//         return coords[i];
-//       });
-
-//       if (reverseMarkers) {
-//         anchorsCoords = anchorsCoords.reverse();
-//       }
-
-//       return anchorsCoords;
-//     }
-
-//     function getMarkersCoordinates() {
-//       var coords = [];
-//       for (var i = 0; i < $markers.length; i++) {
-//         var $marker = $markers[i];
-//         var year = $marker.dataset.year;
-//         var rect = $marker.getBoundingClientRect();
-
-//         coords.push({
-//           $marker: $marker,
-//           top: rect.top,
-//           year: year,
-//         });
-//       }
-
-//       return coords;
-//     }
-
-//     var isMobileRegex = /[mM]obile/g;
-//     // hack to prevent wheeling on mobile chrome
-//     var isMobileBrowser = !!navigator.userAgent.match(isMobileRegex);
-//     function markerItemClickListener(marker) {
-//       if (isScrolling) { return };
-//       isScrolling = true;
-//       var anchor = coordsAnchors.find(function (card) {
-//         return card.year === marker.year;
-//       });
-
-//       var anchorTop = anchor ? anchor.top : 0;
-//       var scrollPosition = isMobileBrowser ? document.body.scrollTop : (document.body.dataset.scrollTop || 0);
-//       // on max year or 'now' marker click - scroll to top of the page
-//       if (anchor.year == maxYear && replaceLatestYear) {
-//         anchorTop = scrollPosition * -1;
-//       }
-
-//       // ScrollManager is in another file ./scroll.js
-//       if (window.ScrollManager) {
-//         window.ScrollManager.scrollContentTo(anchorTop - HEADER_HEIGHT, SCROLL_DURATION, function() {
-//           isScrolling = false;
-//         }, isMobileBrowser);
-//       }
-//     }
-
-//     function initMarkerClick() {
-//       coordsMarkers.forEach(function (marker) {
-//         marker.$marker.addEventListener('click', markerItemClickListener.bind(null, marker));
-//       });
-//     }
-
-//     function redrawMarkers(e) {
-//       coordsAnchors = getAnchorsCoordinates();
-//       requestAnimationFrame(arrange.bind(this, e.type === 'scroll'));
-//     }
-
-//     window.addEventListener('scroll', redrawMarkers);
-//     window.addEventListener('wheel', redrawMarkers);
-//     window.addEventListener('resize', clear);
-//   }
-
-//   function clear() {
-//     window.removeEventListener('scroll', redrawMarkers);
-//     window.removeEventListener('wheel', redrawMarkers);
-//     window.removeEventListener('resize', clear);
-//     document.body.removeChild($marker);
-//     init();
-//   }
-// })();
-/* eslint-enable */
-
-(function() {
   /* CONSTS */
-  var HEADER_HEIGHT = 60;
-  var MARKER_HEIGHT = 35;
-  var DOCUMENT_HEIGHT = document.body.offsetHeight;
-  var SCROLL_ON_LOAD = window.scrollY;
+  // const HEADER_HEIGHT = 60; TODO: use when deal with other scripts
+  const MARKER_HEIGHT = 35;
+  const MOBILE_BREAK_POINT = 568;
+  let WINDOW_HEIGHT = window.innerHeight;
+  let WINDOW_WIDTH = window.innerWidth;
+  let DOCUMENT_HEIGHT = document.body.offsetHeight;
+  let SCROLL_ON_LOAD = window.scrollY;
+
+  /* SHARED */
+  let SCROLL_Y = SCROLL_ON_LOAD;
 
   /* HELPERS */
+  /**
+   * updateConsts updating all the consts after document loaded
+   */
+  function updateConsts() {
+    DOCUMENT_HEIGHT = document.body.offsetHeight;
+    SCROLL_ON_LOAD = window.scrollY;
+    WINDOW_HEIGHT = window.innerHeight;
+    WINDOW_WIDTH = window.innerWidth;
+  }
+
   /**
    * getAnchorsCoordinates finds coords of the start of each year
    * @argument {Array} - array with DOM elements of cards
    * @return {Array} - with type { card: DOMElement, year: string, top: number }
    */
   function getAnchorsCoordinates(cards) {
-    var coordsArray = [];
-    var yearsFound = [];
+    const coordsArray = [];
+    const yearsFound = [];
 
-    for (var i = 0; i < cards.length; i += 1) {
-      var card = cards[i];
-      var year = card.dataset.year;
-      if (yearsFound.indexOf(year) !== -1) { continue; }
-      yearsFound.push(year);
-      coordsArray.push({
-        card: card,
-        year: year,
-        top: card.getBoundingClientRect().top + SCROLL_ON_LOAD, // TODO: think, how to avoid FSL 
-      });
+    for (let i = 0; i < cards.length; i += 1) {
+      const card = cards[i];
+      const { year } = card.dataset;
+      if (yearsFound.indexOf(year) === -1) {
+        yearsFound.push(year);
+        coordsArray.push({
+          card,
+          year,
+          top: card.getBoundingClientRect().top + SCROLL_ON_LOAD, // TODO: think, how to avoid FSL
+        });
+      }
     }
 
     return coordsArray;
   }
+
+  function onMarkerClick(top) {
+    window.scroll({
+      top,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }
+
+  function initMarkerListeners($markers, anchors) {
+    Object.keys($markers).forEach((year) => {
+      const $marker = $markers[year];
+      const yearAnchor = anchors.find(anchor => anchor.year === year);
+      // use onclick to prevent multiple listeners
+      $marker.onclick = onMarkerClick.bind($marker, yearAnchor.top);
+    });
+  }
+
 
   /**
    * generateMarkers generate DOM Elements with single marker
@@ -228,24 +77,42 @@
    * @argument {DOMElement} of markers containers
    * @return {Array} of DOM Elements markers
    */
-  function generateMarkers(years, container) {
+  function generateMarkers(years, container, maxYear) {
     return (
       years
-        .map(function(year) {
-          var pureMarker = document.createElement('DIV');
-          pureMarker.innerText = year;
+        .map((year) => {
+          const pureMarker = document.createElement('DIV');
+
+          pureMarker.innerText = (year === maxYear && REPLACE_LATEST_YAER) ? 'Now' : year;
           pureMarker.classList.add('marker__item');
+          pureMarker.dataset.year = year;
+
           container.appendChild(pureMarker);
-          return { elem: pureMarker, year: year };
+          return { elem: pureMarker, year };
         })
-        .reduce(function(prev, curr) {
-          return Object.assign({}, prev, {
-            [curr.year]: curr.elem
-          });
-        }, {})
+        .reduce((prev, curr) => Object.assign({}, prev, {
+          [curr.year]: curr.elem,
+        }), {})
     );
   }
 
+  /**
+   * getProgress calculate progress of the namber on number line range
+   * @param {Number} curr step in progression
+   * @param {Number} end of progression
+   * @return {Number} in range [1, 0]
+   */
+  function getProgress(curr, end) {
+    const temp = 1 - (Math.abs(curr) / (Math.abs(curr) + end));
+    return temp < 0 ? 0 : temp;
+  }
+
+  /**
+   * Returns difference of Y coord and scrollposition with offset
+   * @param {Numbre} yCoord to check position
+   * @param {Number} scrollPosition of the body
+   * @param {Number} yOffset adding to the scroll position
+   */
   function getViewRelatedPosition(yCoord, scrollPosition, yOffset) {
     return yCoord - (scrollPosition + yOffset);
   }
@@ -253,57 +120,91 @@
   /**
    * arrange makrers on the timeline
    * @param {Array} anchors of first card of the year
-   * @param {Object} markers of DOM Elements  
+   * @param {Object} markers of DOM Elements
    */
   function arrange(anchors, $markers) {
-    var markersCount = anchors.length;
-    var scrollPosition = window.scrollY;
-    var windowHeight = window.innerHeight;
-    var lineHeight = windowHeight - (markersCount * MARKER_HEIGHT);// - HEADER_HEIGHT;
-    
-    anchors.forEach(function(anchor, index) {
-      var nextAnchor = anchors[index + 1] || null;
-      
-      var $marker = $markers[anchor.year];
-      var markersLeft = markersCount - (index + 1);
+    const markersCount = anchors.length;
+    const scrollPosition = SCROLL_Y;
+    const windowHeight = WINDOW_HEIGHT;
+    const isDesktopScreen = WINDOW_WIDTH > MOBILE_BREAK_POINT;
+    const lineHeight = windowHeight - (markersCount * MARKER_HEIGHT);// - HEADER_HEIGHT;
+    let nextActiveYear = null;
+    let currentActiveYear = null;
 
-      var currentAnchorPosition = getViewRelatedPosition(anchor.top, scrollPosition, windowHeight - (markersLeft * MARKER_HEIGHT));
-      
+    anchors.forEach((anchor, index) => {
+      const nextAnchor = anchors[index + 1] || null;
+
+      const $marker = $markers[anchor.year];
+      const markersLeft = markersCount - index;
+
+      if ($marker.classList.contains('marker__item_active')) {
+        currentActiveYear = anchor.year;
+      }
+
+      const currentAnchorPosition = getViewRelatedPosition(
+        anchor.top,
+        scrollPosition,
+        windowHeight - (markersLeft * MARKER_HEIGHT),
+      );
+
       if (currentAnchorPosition > 0) {
-        $marker.style.transform = 'translateY(' + lineHeight + 'px)';
+        $marker.style.transform = isDesktopScreen ? `translateY(${lineHeight}px)` : '';
         return;
       }
 
-      var nextAnchorPosition = nextAnchor
-        ? getViewRelatedPosition(nextAnchor.top, scrollPosition, windowHeight - ((markersLeft - 1) * MARKER_HEIGHT))
+      const nextAnchorPosition = nextAnchor
+        ? (
+          getViewRelatedPosition(
+            nextAnchor.top,
+            scrollPosition,
+            windowHeight - (markersLeft * MARKER_HEIGHT),
+          )
+        )
         : DOCUMENT_HEIGHT - scrollPosition - windowHeight;
 
-      var progress = 1 - (Math.abs(currentAnchorPosition) / (Math.abs(currentAnchorPosition) + nextAnchorPosition));
-      progress = progress < 0 ? 0 : progress;
-      $marker.style.transform = 'translateY(' + lineHeight * progress + 'px)';
-    })
+      const progress = getProgress(currentAnchorPosition, nextAnchorPosition);
+      if (progress !== 0) { nextActiveYear = anchor.year; }
+
+      $marker.style.transform = isDesktopScreen ? `translateY(${lineHeight * progress}px)` : '';
+    });
+
+    if (currentActiveYear !== null && nextActiveYear !== null) {
+      $markers[currentActiveYear].classList.remove('marker__item_active');
+    }
+    if (nextActiveYear !== null) {
+      $markers[nextActiveYear].classList.add('marker__item_active');
+    }
   }
 
   /* INITIALIZATION */
 
-  var $cards = document.querySelectorAll(true ? '[data-year]' : '.card[data-year]');
-  var cardsArray = [].slice.call($cards);
-  var coordsAnchors = getAnchorsCoordinates($cards); // coords with first card of the year
-  var years = coordsAnchors.map(function(anchor) {
-    return parseInt(anchor.year, 10);
-  });
-  var maxYear = Math.max.apply(null, years);
+  const $cards = document.querySelectorAll(true ? '[data-year]' : '.card[data-year]');
 
-  var $markerContainer = document.createElement('div');
-  var $markers = generateMarkers(years, $markerContainer);
+  let coordsAnchors = getAnchorsCoordinates($cards); // coords with first card of the year
+  const years = coordsAnchors.map(anchor => parseInt(anchor.year, 10));
+  const maxYear = Math.max.apply(null, years);
+
+  const $markerContainer = document.createElement('div');
+  const $markers = generateMarkers(years, $markerContainer, maxYear);
 
   $markerContainer.classList.add('marker');
 
   document.body.appendChild($markerContainer);
 
-  requestAnimationFrame(arrange.bind(this, coordsAnchors, $markers));
+  initMarkerListeners($markers, coordsAnchors);
+  arrange(coordsAnchors, $markers);
 
-  window.addEventListener('wheel', () => {
-    requestAnimationFrame(arrange.bind(this, coordsAnchors, $markers));
+  const reinit = () => {
+    updateConsts();
+    coordsAnchors = getAnchorsCoordinates($cards);
+    initMarkerListeners($markers, coordsAnchors);
+    arrange.call(window, coordsAnchors, $markers);
+  };
+
+  window.addEventListener('scroll', () => {
+    SCROLL_Y = window.scrollY;
+    arrange.call(window, coordsAnchors, $markers);
   });
-})();
+  window.addEventListener('load', reinit);
+  window.addEventListener('resize', reinit);
+}());
