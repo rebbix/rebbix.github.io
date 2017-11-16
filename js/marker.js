@@ -1,12 +1,12 @@
 (function markerInit() {
   /* INITIAL-DATA */
   const URL = window.location.pathname;
-  // const hideMarkers = ['/contacts'].indexOf(url) > -1;
-  // const reverseMarkers = ['/team'].indexOf(url) === -1;
+  const HIDE_MARKERS = ['/contacts'].indexOf(URL) > -1;
   const REPLACE_LATEST_YAER = URL === '/';
+  const HIDE_LAST_MARKER = URL === '/';
 
   /* CONSTS */
-  // const HEADER_HEIGHT = 60; TODO: use when deal with other scripts
+  const HEADER_HEIGHT = 60;
   const MARKER_HEIGHT = 35;
   const MOBILE_BREAK_POINT = 568;
   let WINDOW_HEIGHT = window.innerHeight;
@@ -45,7 +45,7 @@
         coordsArray.push({
           card,
           year,
-          top: card.getBoundingClientRect().top + SCROLL_ON_LOAD, // TODO: think, how to avoid FSL
+          top: card.getBoundingClientRect().top + SCROLL_ON_LOAD,
         });
       }
     }
@@ -64,9 +64,13 @@
   function initMarkerListeners($markers, anchors) {
     Object.keys($markers).forEach((year) => {
       const $marker = $markers[year];
+      const isFirstMarker = $marker.parentElement.firstElementChild === $marker;
       const yearAnchor = anchors.find(anchor => anchor.year === year);
       // use onclick to prevent multiple listeners
-      $marker.onclick = onMarkerClick.bind($marker, yearAnchor.top);
+      $marker.onclick = onMarkerClick.bind(
+        $marker,
+        (isFirstMarker ? 0 : yearAnchor.top - HEADER_HEIGHT),
+      );
     });
   }
 
@@ -127,7 +131,8 @@
     const scrollPosition = SCROLL_Y;
     const windowHeight = WINDOW_HEIGHT;
     const isDesktopScreen = WINDOW_WIDTH > MOBILE_BREAK_POINT;
-    const lineHeight = windowHeight - (markersCount * MARKER_HEIGHT);// - HEADER_HEIGHT;
+    let lineHeight = windowHeight - HEADER_HEIGHT - (markersCount * MARKER_HEIGHT);
+    lineHeight += (HIDE_LAST_MARKER ? MARKER_HEIGHT : 0);
     let nextActiveYear = null;
     let currentActiveYear = null;
 
@@ -177,6 +182,8 @@
   }
 
   /* INITIALIZATION */
+
+  if (HIDE_MARKERS === true) { return; }
 
   const $cards = document.querySelectorAll(true ? '[data-year]' : '.card[data-year]');
 

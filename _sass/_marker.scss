@@ -22,10 +22,6 @@
     transition: font-size .2s;
     transform: translateY(0);
     will-change: transform;
-    
-    &:first-child {
-      margin-top: 35px;
-    }
 
     &:hover {
       color: #222;
