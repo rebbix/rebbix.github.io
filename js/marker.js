@@ -1,4 +1,5 @@
-(function markerInit() {
+// eslint-disable-next-line no-unused-vars
+function Markers() {
   /* INITIAL-DATA */
   const URL = window.location.pathname;
   const HIDE_MARKERS = ['/contacts'].indexOf(URL) > -1;
@@ -8,25 +9,6 @@
   /* CONSTS */
   const HEADER_HEIGHT = 60;
   const MARKER_HEIGHT = 35;
-  const MOBILE_BREAK_POINT = 568;
-  let WINDOW_HEIGHT = window.innerHeight;
-  let WINDOW_WIDTH = window.innerWidth;
-  let DOCUMENT_HEIGHT = document.body.offsetHeight;
-  let SCROLL_ON_LOAD = window.scrollY;
-
-  /* SHARED */
-  let SCROLL_Y = SCROLL_ON_LOAD;
-
-  /* HELPERS */
-  /**
-   * updateConsts updating all the consts after document loaded
-   */
-  function updateConsts() {
-    DOCUMENT_HEIGHT = document.body.offsetHeight;
-    SCROLL_ON_LOAD = window.scrollY;
-    WINDOW_HEIGHT = window.innerHeight;
-    WINDOW_WIDTH = window.innerWidth;
-  }
 
   /**
    * getAnchorsCoordinates finds coords of the start of each year
@@ -34,6 +16,8 @@
    * @return {Array} - with type { card: DOMElement, year: string, top: number }
    */
   function getAnchorsCoordinates(cards) {
+    const { SCROLL_Y } = (window.SHARED || {});
+
     const coordsArray = [];
     const yearsFound = [];
 
@@ -45,7 +29,7 @@
         coordsArray.push({
           card,
           year,
-          top: card.getBoundingClientRect().top + SCROLL_ON_LOAD,
+          top: card.getBoundingClientRect().top + SCROLL_Y,
         });
       }
     }
@@ -126,7 +110,16 @@
    * @param {Array} anchors of first card of the year
    * @param {Object} markers of DOM Elements
    */
-  function arrange(anchors, $markers) {
+  const arrange = (anchors, $markers) => {
+    const {
+      DOCUMENT_HEIGHT,
+      SCROLL_Y,
+      WINDOW_HEIGHT,
+      WINDOW_WIDTH,
+      MOBILE_BREAK_POINT,
+    } = (window.SHARED || {});
+
+
     const markersCount = anchors.length;
     const scrollPosition = SCROLL_Y;
     const windowHeight = WINDOW_HEIGHT;
@@ -179,16 +172,16 @@
     if (nextActiveYear !== null) {
       $markers[nextActiveYear].classList.add('marker__item_active');
     }
-  }
+  };
 
   /* INITIALIZATION */
 
   if (HIDE_MARKERS === true) { return; }
 
-  const $cards = document.querySelectorAll(true ? '[data-year]' : '.card[data-year]');
+  const $cards = document.querySelectorAll('[data-year]');
 
-  let coordsAnchors = getAnchorsCoordinates($cards); // coords with first card of the year
-  const years = coordsAnchors.map(anchor => parseInt(anchor.year, 10));
+  this.coordsAnchors = getAnchorsCoordinates($cards); // coords with first card of the year
+  const years = this.coordsAnchors.map(anchor => parseInt(anchor.year, 10));
   const maxYear = Math.max.apply(null, years);
 
   const $markerContainer = document.createElement('div');
@@ -198,20 +191,21 @@
 
   document.body.appendChild($markerContainer);
 
-  initMarkerListeners($markers, coordsAnchors);
-  arrange(coordsAnchors, $markers);
-
-  const reinit = () => {
-    updateConsts();
-    coordsAnchors = getAnchorsCoordinates($cards);
-    initMarkerListeners($markers, coordsAnchors);
-    arrange.call(window, coordsAnchors, $markers);
+  const init = () => {
+    this.coordsAnchors = getAnchorsCoordinates($cards);
+    initMarkerListeners($markers, this.coordsAnchors);
+    arrange(this.coordsAnchors, $markers);
   };
 
-  window.addEventListener('scroll', () => {
-    SCROLL_Y = window.scrollY;
-    arrange.call(window, coordsAnchors, $markers);
-  });
-  window.addEventListener('load', reinit);
-  window.addEventListener('resize', reinit);
-}());
+  init();
+
+  const exportedArranger = () => arrange(this.coordsAnchors, $markers);
+  const exportedInit = () => init();
+  // eslint-disable-next-line consistent-return
+  return {
+    init: exportedInit,
+    onload: exportedInit,
+    onscroll: exportedArranger,
+    onresize: exportedInit,
+  };
+}

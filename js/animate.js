@@ -1,109 +1,87 @@
-/* eslint-disable */
-// (function() {
-//   var animationElements = document.querySelectorAll('.card');
-//   var visibleOnInitialScreen = [];
-//   var loaded = false;
+// eslint-disable-next-line no-unused-vars
+function Animate() {
+  const {
+    MOBILE_BREAK_POINT,
+    WINDOW_WIDTH,
+    WINDOW_HEIGHT,
+    SCROLL_Y,
+    SCROLL_ON_LOAD,
+  } = (window.SHARED || {});
 
-//   function getRGBColor(hexColor) {
-//     var rgb = [];
-//     if (hexColor.indexOf('#') !== 0) {
-//       return null;
-//     } else {
-//       hexColor = hexColor.slice(1);
-//     }
+  const animationElements = document.querySelectorAll('.card:not(.card_separator)');
+  let loaded = false;
 
-//     if (hexColor.length === 3) { // if it is short hex for of color
-//       hexColor.split('').forEach(function(char) {
-//         rgb.push(parseInt(Number('0x' + char.toString()), 10));
-//       });
-//     } else if (hexColor.length === 6) { // if full hex form
-//       var hexChars = hexColor.split('');
-//       for (var i = 0; i < hexChars.length; i += 2) {
-//         var hexNumber = Number('0x' + hexChars[i].toString() + hexChars[i + 1].toString());
-//         rgb.push(parseInt(hexNumber, 10))
-//       }
-//     }
+  function getCardsCoords() {
+    const hiddenCards = [];
+    [].forEach.call(animationElements, (card) => {
+      const clientRect = card.getBoundingClientRect();
+      if (clientRect.top < WINDOW_HEIGHT + SCROLL_ON_LOAD) {
+        card.classList.add('card_in-view', 'no-shadow');
+      } else {
+        hiddenCards.push({
+          card,
+          top: SCROLL_Y + clientRect.top,
+        });
+      }
+    });
+    return hiddenCards;
+  }
 
-//     return rgb;
-//   }
+  function isInView(initialCards) {
+    if (!loaded || WINDOW_WIDTH <= MOBILE_BREAK_POINT) {
+      return;
+    }
+    const windowHeight = WINDOW_HEIGHT;
+    const animationElementsCount = animationElements.length;
 
-//   var MOBILE_BREAK_POINT = 568;
-//   function isInView(initialCards) {
-//     if (!loaded || window.innerWidth <= MOBILE_BREAK_POINT) {
-//       return;
-//     }
-//     var windowHeight = window.innerHeight;
-//     var animationElementsCount = animationElements.length;
+    for (let i = 0; i < animationElementsCount; i += 1) {
+      const element = animationElements[i];
+      const elementBounds = element.getBoundingClientRect();
+      const elementTop = elementBounds.top;
+      const appearingHeight = initialCards === true
+        ? windowHeight
+        : windowHeight - (windowHeight * 0.15);
 
-//     for (var i = 0; i < animationElementsCount; i++) {
-//       var element = animationElements[i];
-//       var elementBounds = element.getBoundingClientRect();
-//       var elementTop = elementBounds.top;
-//       var appearingHeight = initialCards === true ? windowHeight : windowHeight - windowHeight * 0.15;
+      const a = element.querySelector('.card__img');
 
-//       var a = element.querySelector('.card__img');
+      if (elementTop <= appearingHeight) {
+        element.classList.add('card_in-view');
+        element.classList.add('no-shadow');
+      }
 
-//       if (elementTop <= appearingHeight) {
-//         element.classList.add('card_in-view');
-//         element.classList.add('no-shadow');
-//       }
-      
-//       if (elementTop < appearingHeight * 4.5 && a) {
-//         a.style.display = 'initial';
-//       }
-//     }
-//   }
+      if (elementTop < appearingHeight * 4.5 && a) {
+        a.style.display = 'initial';
+      }
+    }
+  }
 
-//   function fadeIn() {
-//       var header = document.querySelector('.header');
-//       if (!header) {
-//           return;
-//       }
+  function fadeIn() {
+    const header = document.querySelector('.header');
+    if (!header) {
+      return;
+    }
 
-//       if (window.sessionStorage && window.sessionStorage.getItem('rebbix:loaded')) {
-//         header.classList.add('shown__hard');
-//       } else {
-//         header.classList.add('shown');
-//         if (window.sessionStorage) {
-//           window.sessionStorage.setItem('rebbix:loaded', true);
-//         }
-//       }
+    if (window.sessionStorage && window.sessionStorage.getItem('rebbix:loaded')) {
+      header.classList.add('shown__hard');
+    } else {
+      header.classList.add('shown');
+      if (window.sessionStorage) {
+        window.sessionStorage.setItem('rebbix:loaded', true);
+      }
+    }
 
-//       setTimeout(function() {
-//         loaded = true;
-//         isInView(true);
-//       }, 800);
-//   }
+    setTimeout(() => {
+      loaded = true;
+      isInView(true);
+    }, 800);
+  }
 
-//   var shadowsApplied = false;
-//   var SHADOW_OPACITY = '0.4';
-//   var SHADOW_SIZE = '0px 2vw 7vw 1vw';
-//   var BRIGHTNESS = 0.5;
-//   function initShadows() {
-//     if (shadowsApplied) return;
+  fadeIn();
+  const cardsCoords = getCardsCoords();
 
-//     var workCards = document.querySelectorAll('.card.card_work:not([class~=card_separator])') || [];
-//     if (!workCards.forEach) {
-//       workCards = Array.from(workCards);
-//     }
-//     workCards.forEach(function(card) {
-//       var wrap = card.querySelector('.card__wrap');
-//       var shadowColor = wrap.dataset.shadowcolor || '#808080';
-//       var rgb = getRGBColor(shadowColor).map(function(color) {
-//         return Math.floor(color * BRIGHTNESS);
-//       });
-
-//       var shadowStyleString = SHADOW_SIZE + ' rgba(' + rgb.join(', ') + ', ' + SHADOW_OPACITY + ')';
-//       wrap.style.boxShadow = shadowStyleString;
-//     });
-
-//     shadowsApplied = true;
-//   }
-
-//   document.addEventListener('DOMContentLoaded', fadeIn);
-//   document.addEventListener('DOMContentLoaded', initShadows);
-//   window.addEventListener('scroll', initShadows);
-//   window.addEventListener('scroll', isInView);
-//   window.addEventListener('wheel', isInView);
-//   window.addEventListener('resize', isInView);
-// })();
+  const exportedIsInView = isInView.bind(this, false);
+  return {
+    onscroll: exportedIsInView,
+    onresize: exportedIsInView,
+  };
+}
