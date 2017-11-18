@@ -12,6 +12,7 @@ window.SHARED = {
   SCROLL_ON_LOAD: window.scrollY,
   SCROLL_Y: window.scrollY,
   DOCUMENT_HEIGHT: document.body.offsetHeight,
+  SCROLL_RATIO: 0.15,
 };
 
 /* HELPERS */
@@ -25,10 +26,12 @@ function updateConsts() {
   window.SHARED.WINDOW_WIDTH = window.innerWidth;
 }
 
+/* eslint-disable no-unused-vars */
+const scroll = new Scroll();
+const hover = new Hover();
+/* eslint-enable no-unused-vars */
 const markers = new Markers();
 const animate = new Animate();
-// eslint-disable-next-line no-unused-vars
-const hover = new Hover();
 
 const composedScrollListeners = () => {
   window.SHARED.SCROLL_Y = window.scrollY;
