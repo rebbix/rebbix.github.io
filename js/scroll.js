@@ -17,6 +17,7 @@ function Scroll() {
   const imitateScroll = () => {
     const delta = parseFloat(((scrollTo - scrolled) * SCROLL_RATIO).toFixed(3));
     scrolled += delta;
+    scrolled = scrolled > 0 ? scrolled : 0;
     window.scrollBy({
       top: delta,
       left: 0,
@@ -32,6 +33,7 @@ function Scroll() {
   window.addEventListener('wheel', (e) => {
     e.preventDefault();
     scrollTo += e.deltaY;
+    scrollTo = scrollTo > 0 ? scrollTo : 0;
 
     if (scrolling === false) {
       scrolling = true;

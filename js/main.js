@@ -26,6 +26,7 @@ function updateConsts() {
   window.SHARED.WINDOW_WIDTH = window.innerWidth;
 }
 
+/* INIT THINGS */
 /* eslint-disable no-unused-vars */
 const scroll = new Scroll();
 const hover = new Hover();
