@@ -21,9 +21,8 @@ function Hover() {
       return;
     }
 
-    const shadowStyle = wrap.style.boxShadow;
-    wrap.style.boxShadow = ''; // to remove !important operator
-    wrap.style.boxShadow = shadowStyle;
+    // eslint-disable-next-line no-param-reassign
+    wrap.style.boxShadow = wrap.style.boxShadow;
   }
 
   function initHoverAction() {
