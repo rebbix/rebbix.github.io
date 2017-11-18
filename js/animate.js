@@ -1,22 +1,25 @@
 // eslint-disable-next-line no-unused-vars
 function Animate() {
+  this.cardsCoords = [];
+
   const {
     MOBILE_BREAK_POINT,
-    WINDOW_WIDTH,
-    WINDOW_HEIGHT,
-    SCROLL_Y,
-    SCROLL_ON_LOAD,
   } = (window.SHARED || {});
 
-  const animationElements = document.querySelectorAll('.card:not(.card_separator)');
+  const animationElements = document.querySelectorAll('.card:not(.card_separator) .card__wrap');
+
   let loaded = false;
 
   function getCardsCoords() {
+    const {
+      WINDOW_HEIGHT,
+      SCROLL_Y,
+    } = (window.SHARED || {});
     const hiddenCards = [];
     [].forEach.call(animationElements, (card) => {
       const clientRect = card.getBoundingClientRect();
-      if (clientRect.top < WINDOW_HEIGHT + SCROLL_ON_LOAD) {
-        card.classList.add('card_in-view', 'no-shadow');
+      if (clientRect.top < WINDOW_HEIGHT + SCROLL_Y) {
+        card.parentElement.classList.add('card_in-view', 'no-shadow');
       } else {
         hiddenCards.push({
           card,
@@ -27,33 +30,28 @@ function Animate() {
     return hiddenCards;
   }
 
-  function isInView(initialCards) {
+  const isInView = (initialCards) => {
+    const {
+      WINDOW_HEIGHT,
+      WINDOW_WIDTH,
+      SCROLL_Y,
+    } = (window.SHARED || {});
+
     if (!loaded || WINDOW_WIDTH <= MOBILE_BREAK_POINT) {
       return;
     }
-    const windowHeight = WINDOW_HEIGHT;
-    const animationElementsCount = animationElements.length;
 
-    for (let i = 0; i < animationElementsCount; i += 1) {
-      const element = animationElements[i];
-      const elementBounds = element.getBoundingClientRect();
-      const elementTop = elementBounds.top;
+    for (let i = 0; i < this.cardsCoords.length; i += 1) {
+      const { card, top } = this.cardsCoords[i];
       const appearingHeight = initialCards === true
-        ? windowHeight
-        : windowHeight - (windowHeight * 0.15);
+        ? SCROLL_Y + WINDOW_HEIGHT
+        : SCROLL_Y + (WINDOW_HEIGHT * 0.85);
 
-      const a = element.querySelector('.card__img');
-
-      if (elementTop <= appearingHeight) {
-        element.classList.add('card_in-view');
-        element.classList.add('no-shadow');
-      }
-
-      if (elementTop < appearingHeight * 4.5 && a) {
-        a.style.display = 'initial';
+      if (top <= appearingHeight && card.parentElement.classList.contains('card_in-view') === false) {
+        card.parentElement.classList.add('card_in-view', 'no-shadow');
       }
     }
-  }
+  };
 
   function fadeIn() {
     const header = document.querySelector('.header');
@@ -77,11 +75,15 @@ function Animate() {
   }
 
   fadeIn();
-  const cardsCoords = getCardsCoords();
 
-  const exportedIsInView = isInView.bind(this, false);
+  this.cardsCoords = getCardsCoords();
+
+  const updateCardsCoords = () => {
+    this.cardsCoords = getCardsCoords();
+  };
   return {
-    onscroll: exportedIsInView,
-    onresize: exportedIsInView,
+    onscroll: isInView,
+    onresize: updateCardsCoords,
+    onload: updateCardsCoords,
   };
 }

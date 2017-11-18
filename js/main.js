@@ -38,6 +38,7 @@ const composedScrollListeners = () => {
 
 const composedLoadListeners = () => {
   markers.onload();
+  animate.onload();
 };
 
 const composedResizeListeners = () => {

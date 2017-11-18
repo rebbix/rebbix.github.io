@@ -74,7 +74,7 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
 
   &_in-view {
     .card__wrap {
-      opacity: 1;
+      opacity: 1 !important;
       transform: matrix(1, 0, 0, 1, 0, 0) !important;
     }
   }
@@ -108,8 +108,6 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     text-decoration: none;
     color: inherit;
     position: relative;
-    // opacity: 0;
-
     // transition: all 1s cubic-bezier(0, 0, 0, 1), box-shadow .8s linear, opacity .5s linear;
     transition: all .8s cubic-bezier(0, 0, 0, 1), box-shadow .8s linear, opacity .4s linear;
 
@@ -145,6 +143,10 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
         transform: none;
       }
     }
+  }
+
+  &:not(#{&}_separator) &__wrap {
+    opacity: 0;
   }
 
   &_right &__wrap {
