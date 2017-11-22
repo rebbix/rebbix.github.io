@@ -32,6 +32,7 @@ function updateConsts() {
 /* eslint-disable no-unused-vars */
 const scroll = new Scroll();
 const hover = new Hover();
+const embed = new Embed();
 /* eslint-enable no-unused-vars */
 const parallax = new Parallax();
 const markers = new Markers();
