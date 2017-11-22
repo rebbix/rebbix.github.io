@@ -56,7 +56,7 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     margin-bottom: $column_width;
   }
 
-  &:not([class~=card_person]):not([class~=card_embed]) {
+  &:not(.card_person, .card_embed) {
     @media #{$mobile} {
       float: none !important;
       clear: both !important;
@@ -136,6 +136,7 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
   &_right {
     float: right;  
     clear: right;
+    will-change: transform;
 
     .card__wrap {
       transform: translate(0, 80px) scale(1.05);

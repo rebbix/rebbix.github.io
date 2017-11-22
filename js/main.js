@@ -7,6 +7,8 @@
 // eslint-disable-next-line prefer-const
 window.SHARED = {
   MOBILE_BREAK_POINT: 568,
+  TABLET_BREAK_POINT: 768,
+  STATIC_CONTENT_BREAK_POINT: 1440,
   WINDOW_WIDTH: window.innerWidth,
   WINDOW_HEIGHT: window.innerHeight,
   SCROLL_ON_LOAD: window.scrollY,
@@ -31,6 +33,7 @@ function updateConsts() {
 const scroll = new Scroll();
 const hover = new Hover();
 /* eslint-enable no-unused-vars */
+const parallax = new Parallax();
 const markers = new Markers();
 const animate = new Animate();
 
@@ -38,17 +41,22 @@ const composedScrollListeners = () => {
   window.SHARED.SCROLL_Y = window.scrollY;
   markers.onscroll();
   animate.onscroll();
+  parallax.onscroll();
 };
 
 const composedLoadListeners = () => {
+  window.SHARED.SCROLL_Y = window.scrollY;
   markers.onload();
   animate.onload();
+  parallax.onload();
 };
 
 const composedResizeListeners = () => {
   updateConsts();
+  window.SHARED.SCROLL_Y = window.scrollY;
   markers.onresize();
   animate.onresize();
+  parallax.onresize();
 };
 
 window.addEventListener('scroll', composedScrollListeners);
