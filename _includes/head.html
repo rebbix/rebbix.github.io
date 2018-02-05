@@ -9,6 +9,14 @@
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}"/>
   <link rel="icon" href="{{ '/img/favicon.ico' | prepend:site.baseurl }}"/>
 
-  <script src="https://use.typekit.net/cwh6elx.js"></script>
+  <link rel="preload" as="script" href={{ "/js/marker.js" | prepend: site.baseurl }} />
+  <link rel="preload" as="script" href={{ "/js/animate.js" | prepend: site.baseurl }} />
+  <link rel="preload" as="script" href={{ "/js/hover.js" | prepend: site.baseurl }} />
+  <link rel="preload" as="script" href={{ "/js/main.js" | prepend: site.baseurl }} />
+  <link rel="preload" as="script" href={{ "/js/scroll.js" | prepend: site.baseurl }} />
+  <link rel="preload" as="script" href={{ "/js/embed.js" | prepend: site.baseurl }} />
+  <link rel="preload" as="script" href={{ "/js/parallax.js" | prepend: site.baseurl }} />
+  <link rel="preload" as="script" href={{ "/js/vendor/smoothscroll.min.js" | prepend: site.baseurl }} />
+  <script src="https://use.typekit.net/cwh6elx.js" async></script>
   <script>try{Typekit.load({ async: false });}catch(e){}</script>
 </head>

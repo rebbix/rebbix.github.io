@@ -13,7 +13,12 @@
       <img class="header__logo" src="{{ '/img/logo_rebbix.svg' | prepend:site.baseurl }}"/>
     </a>
     {% if page.header %}
-      <h1 class="title" data-year="{{ site.time | date: '%Y' }}">{{ page.header }}</h1>
+      <h1
+        class="title"
+        {% if page.permalink != '/team' %}
+          data-year="{{ site.time | date: '%Y' }}"
+        {% endif %}
+      >{{ page.header }}</h1>
     {% endif %}
     {% if page.subheader %}
       {{ page.subheader }}

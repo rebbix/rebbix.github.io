@@ -95,14 +95,6 @@ body {
   user-select: none !important;
 }
 
-// to hide scrollbars
-::-webkit-scrollbar { 
-    display: none; 
-}
-html {
-  overflow: -moz-scrollbars-none;
-}
-
 .scroll {
   $bar-width: 0.7vw;
 

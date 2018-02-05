@@ -1,128 +1,107 @@
-(function(window) {
-    var TRANSLATE_RATIO = 0.15;
-    var measurement = 'vw';
-    var ratio = 0.01;
-    var prevScrollY = 0;
-    var visibleOnLoad = 0;
-    var mobileViewport = false;
-    var parallaxCleared = false;
-    var selectors = [
-        '.card.card_right.card_in-view[class~=card_person]',
-        '.card.card_right.card_in-view[class~=card_work]',
-    ];
-    var translateRegexp = /translate\(-*\d+.?\d*[a-z]*,\s-*\d+.?\d*[a-z]*\)/;
-    var translateValueRegexp = /-*\d+[.\d*]?\w*/g;
-    
-    function getPageHeight() {
-        var footer = document.querySelector('.footer');
-        var footerBottomMargin = 20;
-        return footer
-            ? (footer.offsetTop + footer.offsetHeight + footerBottomMargin - window.innerHeight)
-            : document.body.offsetHeight;
+// eslint-disable-next-line no-unused-vars
+function Parallax() {
+  const selectors = [
+    '.card_right.card_person',
+    '.card_right.card_work',
+  ];
+  const translateRegexp = /translate\(-*\d+.?\d*[a-z]*,\s-*\d+.?\d*[a-z]*\)/;
+  const translateValueRegexp = /-*\d+[.\d*]?\w*/g;
+
+  let measurement = 'vw';
+  let ratio = 0.01;
+  let mobileViewport = false;
+
+  /**
+   * Works almost perfectly, except the case, when user reloads the page
+   * not at the top of the page
+   */
+
+  this.parallaxCards = [];
+
+  const getYTranslation = (transformString = '') => {
+    const { WINDOW_WIDTH } = window.SHARED;
+    if (transformString.length === 0) { return 0; }
+
+    const [translateString] = transformString.match(translateRegexp) || [];
+    if (translateString === undefined) { return 0; }
+
+    // eslint-disable-next-line no-unused-vars
+    const [translateX, translateY] = translateString.match(translateValueRegexp) || [];
+
+    const translateYMeasurement = translateY.replace(/\d./g, '');
+    const translateYValue = parseFloat(translateY, 10);
+
+    if (translateYMeasurement === 'vw') {
+      return translateYValue * (WINDOW_WIDTH / 100);
+    } else if (translateYMeasurement === 'px') {
+      return translateYValue;
     }
+    return 0;
+  };
 
-    function initTransforms() {
-        var rightCards = document.querySelectorAll(selectors.join(', ')) || [];
-        if (!rightCards.forEach) {
-            rightCards = Array.from(rightCards);
-        }
-        rightCards.forEach(function(card) {
-            var transformString = card.style.transform;
-            if (transformString.length) {
-                var translateString = transformString.match(translateRegexp);
-                if (translateString === null) {
-                    return;
-                } else {
-                    translateString = translateString[0];
-                }
+  const getParallaxCardsCoords = () => {
+    const { WINDOW_HEIGHT, DOCUMENT_HEIGHT, SCROLL_Y } = window.SHARED;
+    const rightCards = document.querySelectorAll(selectors.join(', ')) || [];
 
-                var translateValue = translateString.match(translateValueRegexp);
-                if (translateValue === null) { return; }
+    return [].map.call(rightCards, (card) => {
+      const { top } = card.getBoundingClientRect();
+      const absoluteTop = (top + SCROLL_Y) - getYTranslation(card.style.transform);
+      const appearedOn = absoluteTop < WINDOW_HEIGHT
+        ? 0
+        : (absoluteTop - WINDOW_HEIGHT) / DOCUMENT_HEIGHT;
 
-                translateValue[1] = 0 + measurement;
-                translateIndex = transformString.indexOf(translateString);
-
-                var transformStringWithoutTranslate = transformString.slice(0, translateIndex) + transformString.slice(translateIndex + translateString.length);
-                card.style.transform = transformStringWithoutTranslate + 'translate(' + translateValue.join(', ') + ')';
-            }
-        });
-        parallaxCleared = true;
-    }
-
-    function parallax() {
-        var rightCards = document.querySelectorAll(selectors.join(', '));
-
-        if (!rightCards.length) {
-            return;
-        }
-        if (mobileViewport) {
-            if (parallaxCleared) {
-                return;
-            }
-            initTransforms();
-            return;
-        }
-        parallaxCleared = false;
-
-        var currentScroll = +document.body.dataset.scrollTop || 0;
-        prevScrollY = currentScroll;
-
-        rightCards.forEach(function(card) {
-            var transformString = card.style.transform;
-            if (!transformString.length) {
-                card.style.transform = 'translate(0, ' + 0 + 'vw)';
-                var appearedOn = currentScroll / getPageHeight();
-                card.dataset.appearedOn = appearedOn;
-            } else {
-                var translateString = transformString.match(translateRegexp);
-                if (translateString === null) {
-                    return;
-                } else {
-                    translateString = translateString[0];
-                }
-
-                var appearedOn = parseFloat(card.dataset.appearedOn, 10);
-
-                var translateValue = translateString.match(translateValueRegexp);
-                if (translateValue === null) { return; }
-
-                var parallaxStep = -(currentScroll - (getPageHeight() * appearedOn)) * -ratio;
-                parallaxStep = parseInt(parallaxStep * 1000) / 1000;
-
-                translateValue[1] = parallaxStep + measurement;
-
-                translateIndex = transformString.indexOf(translateString);
-                var transformStringWithoutTranslate = transformString.slice(0, translateIndex) + transformString.slice(translateIndex + translateString.length);
-                card.style.transform = transformStringWithoutTranslate + 'translate(' + translateValue.join(', ') + ')';
-            }
-        });
-    }
-
-    var TABLET_BREAK_POINT = 768;
-    var STATIC_CONTENT_BREAK_POINT = 1440;
-    function checkViewportWidth() {
-        if (window.innerWidth <= TABLET_BREAK_POINT) {
-            mobileViewport =  true;
-        } else if (mobileViewport) {
-            mobileViewport = false;
-            visibleOnLoad = window.scrollY;
-        } else if (window.innerWidth >= STATIC_CONTENT_BREAK_POINT) {
-            measurement = 'px';
-            ratio = 0.1;
-        } else {
-            measurement = 'vw';
-            ratio = 0.01;
-        }
-
-        prevScrollY = +document.body.dataset.scrollTop || 0;
-        parallax();
-    }
-
-    window.addEventListener('resize', checkViewportWidth);
-    window.addEventListener('wheel', parallax);
-    window.addEventListener('load', function() {
-        visibleOnLoad = window.scrollY;
-        initTransforms();
-        checkViewportWidth();
+      return {
+        card,
+        appearedOn,
+      };
     });
-})(window);
+  };
+
+  const parallax = () => {
+    const {
+      SCROLL_Y,
+      DOCUMENT_HEIGHT,
+    } = window.SHARED;
+
+    if (mobileViewport) { return; }
+
+    this.parallaxCards.forEach(({ card, appearedOn }) => {
+      if (card.classList.contains('card_in-view')) {
+        const Y = (SCROLL_Y - (DOCUMENT_HEIGHT * appearedOn)) * ratio;
+        // eslint-disable-next-line no-param-reassign
+        card.style.transform = `translate(0, ${Y}${measurement})`;
+      }
+    });
+  };
+
+  const checkViewportWidth = () => {
+    const {
+      WINDOW_WIDTH,
+      TABLET_BREAK_POINT,
+      STATIC_CONTENT_BREAK_POINT,
+    } = window.SHARED;
+
+    if (WINDOW_WIDTH <= TABLET_BREAK_POINT) {
+      mobileViewport = true;
+    } else if (mobileViewport) {
+      mobileViewport = false;
+    } else if (WINDOW_WIDTH >= STATIC_CONTENT_BREAK_POINT) {
+      measurement = 'px';
+      ratio = 0.1;
+    } else {
+      measurement = 'vw';
+      ratio = 0.01;
+    }
+
+    this.parallaxCards = getParallaxCardsCoords();
+    parallax();
+  };
+
+  checkViewportWidth();
+
+  return {
+    onload: checkViewportWidth,
+    onresize: checkViewportWidth,
+    onscroll: parallax,
+  };
+}
