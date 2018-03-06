@@ -41,7 +41,7 @@ function Parallax() {
 
   const getParallaxCardsCoords = () => {
     const { WINDOW_HEIGHT, DOCUMENT_HEIGHT, SCROLL_Y } = window.SHARED;
-    const rightCards = document.querySelectorAll(selectors.join(', ')) || [];
+    const rightCards = window.document.querySelectorAll(selectors.join(', ')) || [];
 
     return [].map.call(rightCards, (card) => {
       const { top } = card.getBoundingClientRect();
