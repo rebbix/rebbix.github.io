@@ -46,6 +46,10 @@
   ```bash
   brew install rbenv
   ```
+  then use following command to properly initialize rbenv paths on OSX
+  ```
+  rbenv init
+  ```
 
 3. Install ruby-build
 
