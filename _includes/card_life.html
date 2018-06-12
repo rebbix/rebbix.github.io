@@ -25,9 +25,10 @@
                 <div class="card__content">
                     <a href="{{ item.link }}" target="_blank">
                         {% if item.live_video %}
-                        <video src="{{ item.img | prepend:site.baseurl }}" autoplay muted loop />
+                            <video src="{{ item.img | prepend:site.baseurl }}" autoplay muted loop />
+                        {% else %}
+                            <img class="card__img" src="{{ item.img | prepend:site.baseurl }}"{% if item.image2x %} srcset="{{item.image2x}}" {% endif %} />
                         {% endif %}
-                        <img class="card__img" src="{{ item.img | prepend:site.baseurl }}"{% if item.image2x %} srcset="{{item.image2x}}" {% endif %} />
                     </a>
                     <div class="card__label">{{ item.date | date: "%B, %Y" }}</div>
                 </div>
