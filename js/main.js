@@ -19,9 +19,9 @@ window.SHARED = {
 
 /* HELPERS */
 /**
- * updateConsts updating all the consts after document loaded
+ * updateVariables updating all the consts after document loaded
  */
-function updateConsts() {
+function updateVariables() {
   window.SHARED.DOCUMENT_HEIGHT = document.body.offsetHeight;
   window.SHARED.SCROLL_ON_LOAD = window.scrollY;
   window.SHARED.WINDOW_HEIGHT = window.innerHeight;
@@ -53,13 +53,13 @@ const composedLoadListeners = () => {
 };
 
 const composedResizeListeners = () => {
-  updateConsts();
+  updateVariables();
   window.SHARED.SCROLL_Y = window.scrollY;
   markers.onresize();
   animate.onresize();
   parallax.onresize();
 };
 
-window.addEventListener('scroll', composedScrollListeners);
+window.addEventListener('scroll', composedScrollListeners, { passive: true });
 window.addEventListener('resize', composedResizeListeners);
 window.addEventListener('load', composedLoadListeners);
