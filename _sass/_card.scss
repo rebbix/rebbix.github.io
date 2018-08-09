@@ -51,6 +51,7 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
 
 .card {
   box-sizing: border-box;
+  will-change: opacity, transform;
 
   @media #{$tablet} {
     margin-bottom: $column_width;
@@ -76,11 +77,16 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     .card__wrap {
       opacity: 1 !important;
       transform: matrix(1, 0, 0, 1, 0, 0) !important;
+      box-shadow: none !important;
+    }
+
+    .card__photo {
+      box-shadow: none !important;
     }
   }
 
 
-  &_work &__wrap:hover {
+  &__wrap_work:hover {
     transform: translate(0, -1em) !important;
 
     @media #{$tablet} {
@@ -88,11 +94,11 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     }
   }
 
-  &_separator &__wrap:hover {
-    transform: none !important;
+  &_separator {
+    pointer-events: none !important;
   }
 
-  &_person .card__wrap:hover .card__photo {
+  &__wrap_person:hover .card__photo {
     transform: translate(0, -1em) !important;
     box-shadow: $default_box_shadow !important;
 
@@ -112,7 +118,6 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     text-decoration: none;
     color: inherit;
     position: relative;
-    // transition: all 1s cubic-bezier(0, 0, 0, 1), box-shadow .8s linear, opacity .5s linear;
     transition: all .8s cubic-bezier(0, 0, 0, 1), box-shadow .8s linear, opacity .4s linear;
 
     @media #{$mobile} {
@@ -140,7 +145,6 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
   &_right {
     float: right;
     clear: right;
-    will-change: transform;
 
     .card__wrap {
       transform: translate(0, 80px) scale(1.05);
@@ -150,8 +154,12 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     }
   }
 
-  &:not(#{&}_separator) &__wrap {
+  &__wrap {
     opacity: 0;
+  }
+
+  &_separator {
+    opacity: 1 !important;
   }
 
   &_right &__wrap {
@@ -394,7 +402,9 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     display: block;
     width: 100%;
     box-shadow: $default_box_shadow;
-    transition: box-shadow .6s linear;
+    transition:
+      transform .8s cubic-bezier(0, 0, 0, 1),
+      box-shadow .8s cubic-bezier(0, 0, 0, 1);
 
     @media (max-width: $mobile_break_point) {
       box-shadow: none;
@@ -718,12 +728,7 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
 }
 
 .no-shadow .card__wrap {
-  box-shadow: 0px 2vw 7vw 1vw transparent !important;
-
-  .card__photo,
-  .card__img {
-    box-shadow: 0 0 0 0 transparent !important;
-  }
+  box-shadow: none !important;
 }
 
 .instagram-media,

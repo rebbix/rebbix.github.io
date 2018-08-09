@@ -1,8 +1,8 @@
 <div class="card card_person card_{{ item.type }} {% if item.offset %} card_offset-{{ item.offset }}{% endif %}{% if item.offset-top %} card_offset-top-{{ item.offset-top }}{% endif %}{% if item.width %} card_width-{{ item.width }}{% endif %}" data-year="{{ item.date | date: "%Y" }}">
   {% if item.link %}
-    <a class="card__wrap" href="{{ item.link }}" target="_blank">
+    <a class="card__wrap card__wrap_person" href="{{ item.link }}" target="_blank">
   {% else %}
-    <div class="card__wrap">
+    <div class="card__wrap card__wrap_person">
   {% endif %}
 
     {% if item.image %}
