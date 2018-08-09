@@ -10,6 +10,7 @@ function Scroll() {
     SCROLL_ON_LOAD,
   } = (window.SHARED || {});
 
+  let scrollTriggered = false;
   let scrolling = false;
   let scrolled = SCROLL_ON_LOAD;
   let scrollTo = SCROLL_ON_LOAD;
@@ -26,12 +27,19 @@ function Scroll() {
       requestAnimationFrame(imitateScroll);
     } else {
       scrolling = false;
+      scrollTriggered = false;
+      document.body.style.pointerEvents = '';
     }
   };
 
   window.addEventListener('wheel', (e) => {
     e.preventDefault();
     scrollTo += e.deltaY;
+
+    if (scrollTriggered === false) {
+      scrollTriggered = true;
+      document.body.style.pointerEvents = 'none';
+    }
 
     if (scrolling === false) {
       scrolling = true;
