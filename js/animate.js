@@ -41,14 +41,15 @@ function Animate() {
       return;
     }
 
-    for (let i = 0; i < this.cardsCoords.length; i += 1) {
+    const appearingHeight = initialCards === true
+      ? SCROLL_Y + WINDOW_HEIGHT
+      : SCROLL_Y + (WINDOW_HEIGHT * 0.85);
+
+      for (let i = 0; i < this.cardsCoords.length; i += 1) {
       const { card, top } = this.cardsCoords[i];
-      const appearingHeight = initialCards === true
-        ? SCROLL_Y + WINDOW_HEIGHT
-        : SCROLL_Y + (WINDOW_HEIGHT * 0.85);
 
       if (top <= appearingHeight && card.parentElement.classList.contains('card_in-view') === false) {
-        card.parentElement.classList.add('card_in-view', 'no-shadow');
+        card.parentElement.classList.add('card_in-view');
       }
     }
   };
