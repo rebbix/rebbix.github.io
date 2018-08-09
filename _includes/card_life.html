@@ -3,7 +3,12 @@
     <div class="card__wrap">
         <div class="card__content">
             <div class="card_embed__thumb">
-                <img class="card__img__thumb" src="{{ item.thumb | prepend:site.baseurl }}" />
+                <img
+                    class="card__img__thumb card__img_life"
+                    data-src="{{ item.thumb | prepend:site.baseurl }}"
+                    data-image-width={{ item.imageWidth }}
+                    data-image-height={{ item.imageHeight }}
+                />
             </div>
             <div class="card__label">{{ item.date | date: "%B, %Y" }}</div>
             <a href="{{ item.link }}" target="_blank" class="card_embed__link"></a>
@@ -25,9 +30,21 @@
                 <div class="card__content">
                     <a href="{{ item.link }}" target="_blank">
                         {% if item.live_video %}
-                            <video src="{{ item.img | prepend:site.baseurl }}" class="card__video" autoplay muted loop />
+                            <video
+                                data-src="{{ item.img | prepend:site.baseurl }}"
+                                class="card__video"
+                                autoplay muted loop
+                                data-image-width={{ item.imageWidth }}
+                                data-image-height={{ item.imageHeight }}
+                            />
                         {% else %}
-                            <img class="card__img" src="{{ item.img | prepend:site.baseurl }}"{% if item.image2x %} srcset="{{item.image2x}}" {% endif %} />
+                            <img
+                                class="card__img card__img_life"
+                                data-src="{{ item.img | prepend:site.baseurl }}"
+                                {% if item.image2x %} srcset="{{item.image2x}}" {% endif %}
+                                data-image-width={{ item.imageWidth }}
+                                data-image-height={{ item.imageHeight }}
+                            />
                         {% endif %}
                     </a>
                     <div class="card__label">{{ item.date | date: "%B, %Y" }}</div>
