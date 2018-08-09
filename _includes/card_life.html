@@ -1,4 +1,4 @@
-{% if item.video %}  
+{% if item.video %}
 <div class="card card_embed" data-videoembed="{{ item.video }}" data-year="{{ item.date | date: "%Y" }}">
     <div class="card__wrap">
         <div class="card__content">
@@ -25,7 +25,7 @@
                 <div class="card__content">
                     <a href="{{ item.link }}" target="_blank">
                         {% if item.live_video %}
-                            <video src="{{ item.img | prepend:site.baseurl }}" autoplay muted loop />
+                            <video src="{{ item.img | prepend:site.baseurl }}" class="card__video" autoplay muted loop />
                         {% else %}
                             <img class="card__img" src="{{ item.img | prepend:site.baseurl }}"{% if item.image2x %} srcset="{{item.image2x}}" {% endif %} />
                         {% endif %}

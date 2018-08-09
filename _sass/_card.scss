@@ -57,8 +57,8 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     margin-bottom: $column_width;
   }
 
-  &:not(.card_person, .card_embed) {
-    @media #{$mobile} {
+  @media #{$mobile} {
+    &:not(.card_person):not(.card_embed) {
       float: none !important;
       clear: both !important;
       width: 100% !important;
@@ -409,6 +409,10 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     @media (max-width: $mobile_break_point) {
       box-shadow: none;
     }
+  }
+
+  &__video {
+    width: 100%;
   }
 
   &__label {
