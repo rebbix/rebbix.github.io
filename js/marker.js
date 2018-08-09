@@ -11,6 +11,18 @@ function Markers() {
   const MARKER_HEIGHT = 35;
 
   /**
+   * Broadcast scroll position for lazy loader
+   * @param {Number} progress
+   * @param {String} year
+   */
+  function broadcaseMarkerScrollPosition(progress, year) {
+    window.postMessage(
+      { type: 'scrollProgress', progress, year },
+      window.location.origin || "*"
+    );
+  }
+
+  /**
    * getAnchorsCoordinates finds coords of the start of each year
    * @argument {Array} - array with DOM elements of cards
    * @return {Array} - with type { card: DOMElement, year: string, top: number }
@@ -151,18 +163,18 @@ function Markers() {
       }
 
       const nextAnchorPosition = nextAnchor
-        ? (
-          getViewRelatedPosition(
+        ? getViewRelatedPosition(
             nextAnchor.top,
             scrollPosition,
             windowHeight - (markersLeft * MARKER_HEIGHT),
           )
-        )
         : DOCUMENT_HEIGHT - scrollPosition - windowHeight;
 
       const progress = getProgress(currentAnchorPosition, nextAnchorPosition);
-      if (progress !== 0) { nextActiveYear = anchor.year; }
-
+      if (progress !== 0) {
+        nextActiveYear = anchor.year;
+        broadcaseMarkerScrollPosition(progress, anchor.year);
+      }
       $marker.style.transform = isDesktopScreen ? `translateY(${lineHeight * progress}px)` : '';
     });
 

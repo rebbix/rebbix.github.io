@@ -1,5 +1,16 @@
 // eslint-disable-next-line no-unused-vars
 function Embed() {
+  const container = document.getElementById('contentContainer');
+  let containerPadding = 0;
+  let contentBoxWidth = 0;
+
+  function updateContentDimenstions() {
+    containerPadding = parseInt(window.getComputedStyle(container).paddingLeft, 10);
+    contentBoxWidth = container.clientWidth - containerPadding * 2;
+  }
+
+  updateContentDimenstions();
+
   const initIFrame = (card, thumbnail) => {
     const iframe = document.createElement('iframe');
     iframe.setAttribute('width', '100%');
@@ -14,13 +25,19 @@ function Embed() {
     thumbnail.style.display = 'none';
   };
 
-  let cards = document.querySelectorAll('.card.card_embed');
-  if (!cards.forEach) {
-    cards = Array.from(cards);
-  }
-  cards.forEach((card, index) => {
-    const cardWidth = card.dataset.videoembed ? 47 : Math.floor((Math.random() * 20) + 25);
+  const cards = [];
+
+  Array.from(document.querySelectorAll('.card.card_embed')).forEach((card, index) => {
+    const cardWidth = Math.floor((Math.random() * 20) + 25);
     const cardMargin = Math.floor(Math.random() * (47 - cardWidth));
+    const cardData = {
+      element: card,
+      calculatedWidth: cardWidth,
+    }
+
+    cards.push(cardData);
+    updateHeight(cardData);
+
     const cardMarginBottom = 20;
     const cardMarginTop = index > 1 ? -0 : 15;
 
@@ -44,4 +61,32 @@ function Embed() {
       thumbnail.addEventListener('click', initIFrame.bind(null, card, thumbnail));
     }
   });
+
+  function updateHeight({ element, calculatedWidth }) {
+    const mediaElement = element.querySelector('[data-image-width]');
+
+    if (!mediaElement) { return; }
+
+    debugger;
+    const mediaWidth = +mediaElement.dataset.imageWidth;
+    const mediaHeight = +mediaElement.dataset.imageHeight;
+
+
+    const renderedWidth = contentBoxWidth * (calculatedWidth / 100);
+    const renderedHeight = mediaHeight * (renderedWidth / mediaWidth);
+
+    mediaElement.style.width = '100%';
+    mediaElement.style.height = `${renderedHeight}px`;
+  }
+
+  function handleResize(cardData) {
+    updateContentDimenstions();
+    cards.forEach(updateHeight);
+  }
+
+  window.postMessage({ type: 'sizesSet' }, window.location.origin || '*');
+
+  return {
+    onresize: handleResize,
+  }
 }

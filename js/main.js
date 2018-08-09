@@ -32,11 +32,12 @@ function updateVariables() {
 /* eslint-disable no-unused-vars */
 const scroll = new Scroll();
 const hover = new Hover();
-const embed = new Embed();
-/* eslint-enable no-unused-vars */
 const parallax = new Parallax();
 const markers = new Markers();
+const lazyLoader = new LazyImageLoader();
+const embed = new Embed();
 const animate = new Animate();
+/* eslint-enable no-unused-vars */
 
 const composedScrollListeners = () => {
   window.SHARED.SCROLL_Y = window.scrollY;
@@ -55,9 +56,10 @@ const composedLoadListeners = () => {
 const composedResizeListeners = () => {
   updateVariables();
   window.SHARED.SCROLL_Y = window.scrollY;
-  markers.onresize();
   animate.onresize();
   parallax.onresize();
+  embed.onresize();
+  markers.onresize();
 };
 
 window.addEventListener('scroll', composedScrollListeners, { passive: true });

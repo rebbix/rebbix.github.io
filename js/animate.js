@@ -6,7 +6,7 @@ function Animate() {
     MOBILE_BREAK_POINT,
   } = (window.SHARED || {});
 
-  const animationElements = document.querySelectorAll('.card:not(.card_separator) .card__wrap');
+  const animationElements = Array.from(document.querySelectorAll('.card:not(.card_separator) .card__wrap'));
 
   let loaded = false;
 
@@ -15,9 +15,12 @@ function Animate() {
       WINDOW_HEIGHT,
       SCROLL_Y,
     } = (window.SHARED || {});
+
     const hiddenCards = [];
-    [].forEach.call(animationElements, (card) => {
+
+    animationElements.forEach((card) => {
       const clientRect = card.getBoundingClientRect();
+
       if (clientRect.top < WINDOW_HEIGHT + SCROLL_Y) {
         card.parentElement.classList.add('card_in-view', 'no-shadow');
       } else {
@@ -27,6 +30,7 @@ function Animate() {
         });
       }
     });
+
     return hiddenCards;
   }
 
@@ -64,6 +68,7 @@ function Animate() {
       header.classList.add('shown__hard');
     } else {
       header.classList.add('shown');
+
       if (window.sessionStorage) {
         window.sessionStorage.setItem('rebbix:loaded', true);
       }
