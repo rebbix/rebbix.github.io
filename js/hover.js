@@ -1,15 +1,21 @@
 // eslint-disable-next-line no-unused-vars
 function Hover() {
   const TABLET_BREAK_POINT = 768;
+  const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+
+  function removeShadowsWhereNeeded() {
+    if (isFirefox && window.location.pathname.indexOf('/team') !== -1) {
+      Array.from(document.querySelectorAll('.card__photo')).forEach(photo => {
+        photo.setAttribute('style', 'box-shadow: none !important;');
+      });
+    }
+  }
+
   function onMouseOver(wrap) {
     if (window.innerWidth <= TABLET_BREAK_POINT) { return; }
 
     const element = wrap;
     element.classList.add('hover_transition');
-
-    if (wrap.parentElement.classList.contains('card_person') || wrap.parentElement.classList.contains('card_life')) {
-      return;
-    }
 
     const shadowStyle = element.style.boxShadow;
     element.style.boxShadow = '';
@@ -26,15 +32,18 @@ function Hover() {
   }
 
   function initHoverAction() {
+    if (isFirefox) return;
+
     const selectors = [
       '.card.card_work:not([class~=card_separator]) .card__wrap',
-      '.card.card_person:not([class~=card_separator]) .card__wrap',
-      '.card.card_life:not([class~=card_separator]) .card__wrap',
     ];
+
     let workwraps = document.querySelectorAll(selectors.join(', ')) || [];
+
     if (!workwraps.forEach) {
       workwraps = Array.from(workwraps);
     }
+
     workwraps.forEach((wrap) => {
       wrap.addEventListener('mouseenter', onMouseOver.bind(null, wrap));
       wrap.addEventListener('mouseleave', onMouseOut.bind(null, wrap));
@@ -70,7 +79,7 @@ function Hover() {
   const BRIGHTNESS = 0.5;
 
   function initShadows() {
-    if (shadowsApplied) return;
+    if (shadowsApplied || isFirefox) return;
 
     let workCards = document.querySelectorAll('.card.card_work:not([class~=card_separator])') || [];
     if (!workCards.forEach) {
@@ -90,4 +99,5 @@ function Hover() {
 
   initShadows();
   initHoverAction();
+  removeShadowsWhereNeeded();
 }
