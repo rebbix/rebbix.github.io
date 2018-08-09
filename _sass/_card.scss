@@ -381,9 +381,14 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     display: block;
     max-width: 100%;
     margin-bottom: 30px;
+    border: none;
 
     @media (max-width: $mobile_break_point) {
       margin-bottom: 20px;
+    }
+
+    &_life {
+      background: #eee;
     }
   }
 
