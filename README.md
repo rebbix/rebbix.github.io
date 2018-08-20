@@ -8,13 +8,17 @@
   git clone git@github.com:rebbix/rebbix.github.io.git
   cd rebbix.com
   ```
+2. Fetch dependencies
 
-2. Sync dependencies versions (this may require [installing specific ruby version](#ruby-installation))
+  ```bash
+  bundle install
+  ```
+3. Sync dependencies versions (this may require [installing specific ruby version](#ruby-installation))
 
   ```bash
   bin/sync-versions
   ```
-3. Run
+4. Run
 
   ```bash
   bin/server
