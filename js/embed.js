@@ -67,7 +67,6 @@ function Embed() {
 
     if (!mediaElement) { return; }
 
-    debugger;
     const mediaWidth = +mediaElement.dataset.imageWidth;
     const mediaHeight = +mediaElement.dataset.imageHeight;
 
