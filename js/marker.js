@@ -188,7 +188,15 @@ function Markers() {
 
   /* INITIALIZATION */
 
-  if (HIDE_MARKERS === true) { return; }
+  let doNothing = () => {}
+  if (HIDE_MARKERS === true) {
+    return {
+      init: doNothing,
+      onload: doNothing,
+      onscroll: doNothing,
+      onresize: doNothing,
+    }
+  }
 
   const $cards = document.querySelectorAll('[data-year]');
 
