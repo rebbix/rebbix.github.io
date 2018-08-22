@@ -4,6 +4,6 @@ image: "/img/team/2012 taras_v@2x.jpg"
 name: "Taras Voitovych"
 type: "right"
 width: 7
-offset: 7
+offset: 1
 offset-top: 5
 ---
