@@ -22,8 +22,8 @@ function Scroll() {
       top: delta,
       left: 0,
     });
-
-    if (Math.round(scrolled) !== scrollTo) {
+    
+    if (Math.round(scrolled) !== Math.round(scrollTo)) {
       requestAnimationFrame(imitateScroll);
     } else {
       scrolling = false;
