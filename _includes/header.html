@@ -22,6 +22,8 @@
     {% if page.subheader %}
       {{ page.subheader }}
     {% endif %}
-    <div class="header__scroll-hint" id="headerScrollHint">Scroll</div>
+    {% if page.url == '/' %}
+      <div class="header__scroll-hint" id="headerScrollHint">Scroll</div>
+    {% endif %}
   </div>
 </header>

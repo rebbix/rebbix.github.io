@@ -215,6 +215,10 @@ $fade-duration: 0.4s;
       display: none;
     }
 
+    @media screen and (max-width: $mobile_break_point) {
+      display: none;
+    }
+
     &.hidden {
       opacity: 0;
     }
