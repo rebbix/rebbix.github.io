@@ -8,6 +8,7 @@ function RB_Scroll() {
   const {
     SCROLL_RATIO,
     SCROLL_ON_LOAD,
+    SCROLL_Y
   } = (window.SHARED || {});
 
   let scrollTriggered = false;
@@ -23,10 +24,12 @@ function RB_Scroll() {
       left: 0,
     });
     
-    if (Math.round(scrolled) !== Math.round(scrollTo)) {
+    if (scrolled > 0 && Math.round(scrolled) !== Math.round(scrollTo)) {
+      console.log(scrollTo, scrolled);
       requestAnimationFrame(imitateScroll);
     } else {
       scrolling = false;
+      scrolled = scrollTo = window.scrollY;
       scrollTriggered = false;
       document.body.style.pointerEvents = '';
     }
@@ -57,6 +60,7 @@ function RB_Scroll() {
     const logoNode = document.getElementById('headerLogo');
     scrollHintNode && contentNode && scrollHintNode.addEventListener('click', () => {
       scrollTo = contentNode.offsetTop;
+      // debugger;
       performScroll();
     });
     logoNode && logoNode.addEventListener('click', () => {
