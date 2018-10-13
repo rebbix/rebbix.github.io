@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-function Markers() {
+function RB_Markers() {
   /* INITIAL-DATA */
   const URL = window.location.pathname;
   const HIDE_MARKERS = ['/contacts'].indexOf(URL) > -1;
@@ -188,7 +188,15 @@ function Markers() {
 
   /* INITIALIZATION */
 
-  if (HIDE_MARKERS === true) { return; }
+  if (HIDE_MARKERS === true) {
+    const dummyfunc = () => {};
+    return {
+      init: dummyfunc,
+      onload: dummyfunc,
+      onscroll: dummyfunc,
+      onresize: dummyfunc,
+    };
+  }
 
   const $cards = document.querySelectorAll('[data-year]');
 

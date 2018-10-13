@@ -1,4 +1,4 @@
-function LazyImageLoader() {
+function RB_LazyImageLoader() {
   const loadedYears = new Set();
   const cardsPerYears = new Map();
   let years = [];

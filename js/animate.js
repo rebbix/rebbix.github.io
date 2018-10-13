@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-function Animate() {
+function RB_Animate() {
   this.cardsCoords = [];
 
   const {

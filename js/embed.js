@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-function Embed() {
+function RB_Embed() {
   const container = document.getElementById('contentContainer');
   let containerPadding = 0;
   let contentBoxWidth = 0;

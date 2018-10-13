@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-function Hover() {
+function RB_Hover() {
   const TABLET_BREAK_POINT = 768;
   const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 

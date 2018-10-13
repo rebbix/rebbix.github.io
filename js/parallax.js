@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-function Parallax() {
+function RB_Parallax() {
   const selectors = [
     '.card_right.card_person',
     '.card_right.card_work',

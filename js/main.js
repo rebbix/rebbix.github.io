@@ -30,13 +30,13 @@ function updateVariables() {
 
 /* INIT THINGS */
 /* eslint-disable no-unused-vars */
-const scroll = new Scroll();
-const hover = new Hover();
-const parallax = new Parallax();
-const markers = new Markers();
-const lazyLoader = new LazyImageLoader();
-const embed = new Embed();
-const animate = new Animate();
+const scroll = new RB_Scroll();
+const hover = new RB_Hover();
+const parallax = new RB_Parallax();
+const markers = new RB_Markers();
+const lazyLoader = new RB_LazyImageLoader();
+const embed = new RB_Embed();
+const animate = new RB_Animate();
 /* eslint-enable no-unused-vars */
 
 const composedScrollListeners = () => {

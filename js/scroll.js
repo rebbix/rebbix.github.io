@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-function Scroll() {
+function RB_Scroll() {
   const requestAnimationFrame = window.requestAnimationFrame
     || window.mozRequestAnimationFrame
     || window.webkitRequestAnimationFrame
