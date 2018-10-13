@@ -7,7 +7,7 @@ function RB_Markers() {
   const HIDE_LAST_MARKER = URL === '/';
 
   /* CONSTS */
-  const HEADER_HEIGHT = 60;
+  const HEADER_HEIGHT = 85;
   const MARKER_HEIGHT = 35;
 
   /**
