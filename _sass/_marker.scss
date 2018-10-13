@@ -94,11 +94,12 @@
       display: block;
       height: 35px;
       width: 0;
+      position: relative;
       color: transparent !important;
       transform: none !important;
 
       &::before {
-        left: -2px;
+        left: -22px;
       }
     }
   }
