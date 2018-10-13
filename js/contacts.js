@@ -1,5 +1,5 @@
 function initContactsMap() {
-  var coords = new google.maps.LatLng(49.831792,24.044215);
+  var coords = new google.maps.LatLng(49.831905, 24.044015);
   var mapOptions = {
     zoom: 17,
     center: coords,
