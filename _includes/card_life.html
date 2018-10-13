@@ -18,10 +18,8 @@
 {% else %}
     {% if item.separator %}
         <div class="card card_separator card_separator_embed" data-year="{{ item.date | date: "%Y" }}">
-            <div class="card__wrap">
-                <div class="card__content">
-                    <h1>{{ item.separator }}</h3>
-                </div>
+            <div class="card__content">
+                <h1>{{ item.separator }}</h3>
             </div>
         </div>
     {% else %}
