@@ -3,18 +3,26 @@
 $fade-duration: 0.4s;
 
 .header {
-  padding: 0 120px;
-  margin: 200px auto 50px;
+  padding: 200px 120px 50px;
+  box-sizing: border-box;
+  margin: 0 auto;
   max-width: 1200px;
   font-family: "acumin-pro-wide", "Helvetica Neue", Arial, Helvetica, sans-serif;
 
+  &_work {
+    min-height: 100vh;
+    @media (max-width: $mobile_break_point) {
+      min-height: 0;
+    }
+  }
+
   @media (max-width: $responsive_break_point) {
-    margin-bottom: 0;
+    padding-bottom: 0;
   }
 
   @media (max-width: $mobile_break_point) {
-    padding: 0;
-    margin: 117px 7% 40px 8%;
+    padding: 117px 0 40px 0;
+    margin: 0 7% 0 8%;
   }
 
   &__wrap {
@@ -122,7 +130,7 @@ $fade-duration: 0.4s;
     transition: transform 0.3s;
     display: inline-block;
     cursor: pointer;
-    @media (min-width: $mobile_break_point + 1 ) {
+    @media (min-width: $mobile_break_point + 1) {
       z-index: 10;
     }
 
@@ -194,23 +202,23 @@ $fade-duration: 0.4s;
   &__scroll-hint {
     // margin: 150px auto 0;
     text-align: center;
-    width: 45px;
-    height: 64px;
-    background: url('/img/arrow-down.svg') no-repeat bottom center;
+    height: 45px;
+    background: url("/img/arrow-down.svg") no-repeat bottom center;
     color: #aaaaaa;
-    font-size: 16;
-    font-family: "acumin-pro-wide", "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-family: "acumin-pro-wide", "Helvetica Neue", Arial, Helvetica,
+      sans-serif;
     font-weight: 100;
     position: fixed;
     width: 100%;
     left: 0;
     bottom: 50px;
-    transition: opacity .3s;
+    transition: opacity 0.3s;
     cursor: pointer;
 
-    @media screen and (min-height: 720px) {
-      display: none;
-    }
+    // @media screen and (min-height: 720px) {
+    //   display: none;
+    // }
 
     @media screen and (max-width: $mobile_break_point) {
       display: none;

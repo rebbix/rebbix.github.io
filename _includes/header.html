@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header {% if page.url == '/' %} header_work {% endif %}">
   <nav class="header__nav"><!-- ontouchstart is a hack to apply :focus and: active pseudo-classes on mobile safari-->
     <a href="{{'/' | prepend:site.baseurl }}" class="header__nav-item{% if page.url == '/' %} header__nav-item_current-page header__nav-item_active {% endif %}" ontouchstart="">Work</a><!--
   --><a href="{{ '/team' | prepend:site.baseurl }}" class="header__nav-item{% if page.url == '/team' %} header__nav-item_current-page header__nav-item_active {% endif %}" ontouchstart="">Team</a><!--
