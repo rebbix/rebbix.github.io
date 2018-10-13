@@ -1,11 +1,14 @@
 ---
+title: What we do at Rebbix
 layout: default
 permalink: /
+og_image: TODO
+og_url: TODO
 header: Community of experienced technologists passionate about building ambitious products
 subheader: <p class="header__subtitle">We specialize in building online marketplaces, travel & accommodation services, social products, and data solutions.</p>
 ---
-<div class="content" id="contentContainer">
+<main class="content" id="contentContainer">
   {% for item in site.work reversed %}
   {% include card_work.html item=item %}
   {% endfor %}
-</div>
+</main>

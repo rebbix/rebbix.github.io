@@ -105,6 +105,9 @@ $fade-duration: 0.4s;
     &_active {
       color: #111;
     }
+    &_current-page {
+      cursor: default;
+    }
   }
 
   &__logo-wrapper {
@@ -136,6 +139,7 @@ $fade-duration: 0.4s;
       opacity: 1;
       transition: opacity 0.3s;
     }
+
     &.sticky {
       @media (min-width: $mobile_break_point + 1) {
         position: fixed;

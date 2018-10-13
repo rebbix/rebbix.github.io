@@ -8,14 +8,22 @@
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"/>
   <link rel="icon" href="{{ '/img/favicon.ico' | prepend:site.baseurl }}"/>
 
-  <meta property="og:title" content="TODO">
-  <meta property="og:description" content="TODO.">
-  <meta property="og:image" content="http://TODO">
-  <meta property="og:url" content="http://TODO">
+  <meta property="og:title" content="Rebbix">
+  <meta property="og:description" content="{{ page.title }}">
+  <!-- <meta property="og:image" content="{{ page.og_image }}">
+  <meta property="og:url" content="{{ page.og_url }}"> -->
   <meta name="twitter:card" content="summary_large_image">
 
-  <script src="https://use.typekit.net/cwh6elx.js" async></script>
-  <script>try{Typekit.load({ async: false });}catch(e){}</script>
+  <link rel="stylesheet" href="https://use.typekit.net/cwh6elx.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-41381086-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-41381086-1');
+  </script>
 
   <link rel="preload" as="script" href={{ "/js/animate.js" | prepend: site.baseurl }} />
   <link rel="preload" as="script" href={{ "/js/marker.js" | prepend: site.baseurl }} />
