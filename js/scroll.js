@@ -32,10 +32,7 @@ function RB_Scroll() {
     }
   };
 
-  window.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    scrollTo += e.deltaY;
-
+  const performScroll = () => {
     if (scrollTriggered === false) {
       scrollTriggered = true;
       document.body.style.pointerEvents = 'none';
@@ -45,7 +42,30 @@ function RB_Scroll() {
       scrolling = true;
       requestAnimationFrame(imitateScroll);
     }
+  }
+
+  window.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    scrollTo += e.deltaY;
+
+    performScroll();
   });
 
-  return {};
+  onload = () => {
+    const scrollHintNode = document.getElementById('headerScrollHint');
+    const contentNode = document.getElementById('contentContainer');
+    const logoNode = document.getElementById('headerLogo');
+    scrollHintNode && contentNode && scrollHintNode.addEventListener('click', () => {
+      scrollTo = contentNode.offsetTop;
+      performScroll();
+    });
+    logoNode && logoNode.addEventListener('click', () => {
+      scrollTo = 0;
+      performScroll();
+    });
+  }
+
+  return {
+    onload: onload
+  };
 }

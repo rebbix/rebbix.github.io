@@ -54,6 +54,7 @@ const composedLoadListeners = () => {
   sticky.onload();
   animate.onload();
   parallax.onload();
+  scroll.onload();
 };
 
 const composedResizeListeners = () => {
