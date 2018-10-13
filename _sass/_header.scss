@@ -30,7 +30,7 @@ $fade-duration: .4s;
     left: 0;
     padding-bottom: 20px;
     padding-top: 15px;
-    z-index: 1; 
+    z-index: 1;
     text-align: center;
     line-height: 23px;
     font-family: "acumin-pro", sans-serif;
@@ -49,7 +49,7 @@ $fade-duration: .4s;
       margin: 0 auto;
       padding-top: 0;
       padding-bottom: 5px;
-      z-index: 2; 
+      z-index: 2;
       transform: translateZ(0);
       text-align: center;
       line-height: 16px;
@@ -88,7 +88,7 @@ $fade-duration: .4s;
     vertical-align: middle;
     font-family: "acumin-pro-wide", sans-serif;
     font-size: 18px;
-    
+
     @media (max-width: $mobile_break_point) {
       padding: 17px 3vw 10px;
       margin: 0;
@@ -105,8 +105,11 @@ $fade-duration: .4s;
     &_active {
       color: #111;
     }
-  }
 
+    &_current-page {
+      cursor: default;
+    }
+  }
 
   &__logo {
     margin-top: 80px;
