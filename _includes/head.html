@@ -8,10 +8,9 @@
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}"/>
   <link rel="icon" href="{{ '/img/favicon.ico' | prepend:site.baseurl }}"/>
 
-  <meta property="og:title" content="Rebbix">
-  <meta property="og:description" content="{{ page.title }}">
-  <!-- <meta property="og:image" content="{{ page.og_image }}">
-  <meta property="og:url" content="{{ page.og_url }}"> -->
+  <meta property="og:title" content="{{ page.title }}">
+  <!-- <meta property="og:image" content="{{ page.og_image }}"> -->
+  <meta property="og:url" content="{{ site.url }}{{ page.url | replace:'index.html',''}}">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="stylesheet" href="https://use.typekit.net/cwh6elx.css">

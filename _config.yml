@@ -6,11 +6,10 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Rebbix Website
+title: Rebbix
 email: hello@rebbix.com
 description: Rebbix Website
-url: "http://rebbix.com" # the base hostname & protocol for your site
-# baseurl: "/omg"
+url: "https://rebbix.com" # the base hostname & protocol for your site
 twitter_username: rebbix
 github_username:  rebbix
 
