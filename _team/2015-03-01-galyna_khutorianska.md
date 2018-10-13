@@ -5,5 +5,5 @@ name: "Galyna Khutorianska"
 type: "left"
 width: 7
 offset: 4
-offset-top: 25
+offset-top: 10
 ---

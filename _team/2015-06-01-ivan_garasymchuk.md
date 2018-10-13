@@ -5,5 +5,5 @@ name: "Ivan Garasymchuk"
 type: "right"
 width: 9
 offset: 5
-offset-top: 25
+offset-top: 10
 ---
