@@ -688,9 +688,12 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     }
   }
 
-  &__wrap_map {
+  &__map {
     height: 380px;
-    overflow: hidden;
+    max-width: 480px;
+    width: 100%;
+    border: 1px solid #eee;
+    border-radius: 3px;
   }
 
   &__spinner {
