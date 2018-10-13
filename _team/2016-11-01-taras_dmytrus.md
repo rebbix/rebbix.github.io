@@ -4,5 +4,5 @@ image: "/img/team/2016 taras_d@2x.jpg"
 name: "Taras Dmytrus"
 type: "right"
 offset: 5
-offset-top: 25
+offset-top: 18
 ---

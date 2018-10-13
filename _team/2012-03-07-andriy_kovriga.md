@@ -5,4 +5,5 @@ name: "Andriy Kovriga"
 type: "right"
 width: 7
 offset-top: 10
+offset: 3
 ---

@@ -5,5 +5,5 @@ name: "Andriy Kushneruk"
 type: "right"
 width: 7
 offset: 4
-offset-top: 40
+offset-top: 20
 ---

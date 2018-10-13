@@ -5,5 +5,5 @@ name: "Nastia Mayboroda"
 type: "left"
 width: 8
 offset: 2
-offset-top: 3
+offset-top: 8
 ---
