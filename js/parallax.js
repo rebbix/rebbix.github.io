@@ -69,7 +69,9 @@ function RB_Parallax() {
       if (card.classList.contains('card_in-view')) {
         const Y = (SCROLL_Y - (DOCUMENT_HEIGHT * appearedOn)) * ratio;
         // eslint-disable-next-line no-param-reassign
-        card.style.transform = `translate(0, ${Y}${measurement})`;
+        window.requestAnimationFrame(() => {
+          card.style.transform = `translate(0, ${Y}${measurement})`;
+        })
       }
     });
   };

@@ -188,14 +188,14 @@ function RB_Markers() {
 
   /* INITIALIZATION */
 
+  let doNothing = () => {}
   if (HIDE_MARKERS === true) {
-    const dummyfunc = () => {};
     return {
-      init: dummyfunc,
-      onload: dummyfunc,
-      onscroll: dummyfunc,
-      onresize: dummyfunc,
-    };
+      init: doNothing,
+      onload: doNothing,
+      onscroll: doNothing,
+      onresize: doNothing,
+    }
   }
 
   const $cards = document.querySelectorAll('[data-year]');
