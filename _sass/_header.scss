@@ -1,6 +1,6 @@
-@import './_mixin';
+@import "./_mixin";
 
-$fade-duration: .4s;
+$fade-duration: 0.4s;
 
 .header {
   padding: 0 120px;
@@ -28,18 +28,18 @@ $fade-duration: .4s;
     position: fixed;
     top: 0;
     left: 0;
-    padding-bottom: 20px;
-    padding-top: 15px;
-    z-index: 1; 
+    height: 85px;
+    line-height: 85px;
+    z-index: 1;
     text-align: center;
-    line-height: 23px;
     font-family: "acumin-pro", sans-serif;
     font-size: 20px;
     color: #222;
     background-color: white;
     transform: translate(0, -100%);
 
-    transition: transform $fade-duration ease-out $fade-duration, padding .3s, background-color .3s;
+    transition: transform $fade-duration ease-out $fade-duration, padding 0.3s,
+      background-color 0.3s;
 
     @media (max-width: $mobile_break_point) {
       width: 100%;
@@ -47,14 +47,14 @@ $fade-duration: .4s;
       top: 0;
       left: 0;
       margin: 0 auto;
-      padding-top: 0;
-      padding-bottom: 5px;
-      z-index: 2; 
+      height: 50px;
+      line-height: 50px;
+      z-index: 2;
       transform: translateZ(0);
       text-align: center;
       line-height: 16px;
       font-size: 16px;
-      border-bottom:1px solid #EEEEEE;
+      border-bottom: 1px solid #eeeeee;
       background-color: #fff;
     }
   }
@@ -88,7 +88,7 @@ $fade-duration: .4s;
     vertical-align: middle;
     font-family: "acumin-pro-wide", sans-serif;
     font-size: 18px;
-    
+
     @media (max-width: $mobile_break_point) {
       padding: 17px 3vw 10px;
       margin: 0;
@@ -107,18 +107,59 @@ $fade-duration: .4s;
     }
   }
 
+  &__logo-wrapper {
+    display: block;
+    margin-top: 6px;
+    margin-bottom: 20px;
+    height: 85px;
+  }
+
+  &__logo-bg {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: scale(1);
+    transition: transform 0.3s;
+    display: inline-block;
+    @media (min-width: $mobile_break_point + 1 ) {
+      z-index: 10;
+    }
+
+    &::before {
+      content: "";
+      width: 124px;
+      height: 35px;
+      background: url("/img/no-bb-logo.svg") no-repeat;
+      position: absolute;
+      top: 33px;
+      left: 0;
+      opacity: 1;
+      transition: opacity 0.3s;
+    }
+    &.sticky {
+      @media (min-width: $mobile_break_point + 1) {
+        position: fixed;
+        left: auto;
+        transform: scale(0.8);
+        &::before {
+          opacity: 0;
+        }
+      }
+    }
+  }
 
   &__logo {
-    margin-top: 80px;
     display: block;
-    margin-bottom: 20px;
-    width: 123px;
+    padding-top: 22px;
+    width: auto;
     height: 50px;
+    position: relative;
+    left: 37px;
 
     @media (max-width: $mobile_break_point) {
       display: block;
       float: none;
-      margin-top: 25px;
+      // margin-top: 25px;
     }
   }
 
@@ -129,7 +170,7 @@ $fade-duration: .4s;
     margin: 24px 0 0;
     font-family: acumin-pro, Arial, Helvetica, sans-serif;
     font-weight: 300;
-    color: #7E7E7E;
+    color: #7e7e7e;
     letter-spacing: -0.11px;
     font-size: #{$font-size}px;
     line-height: #{$line-height}px;

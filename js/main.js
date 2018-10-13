@@ -34,6 +34,7 @@ const scroll = new RB_Scroll();
 const hover = new RB_Hover();
 const parallax = new RB_Parallax();
 const markers = new RB_Markers();
+const sticky = new RB_Sticky();
 const lazyLoader = new RB_LazyImageLoader();
 const embed = new RB_Embed();
 const animate = new RB_Animate();
@@ -42,6 +43,7 @@ const animate = new RB_Animate();
 const composedScrollListeners = () => {
   window.SHARED.SCROLL_Y = window.scrollY;
   markers.onscroll();
+  sticky.onscroll();
   animate.onscroll();
   parallax.onscroll();
 };
@@ -49,6 +51,7 @@ const composedScrollListeners = () => {
 const composedLoadListeners = () => {
   window.SHARED.SCROLL_Y = window.scrollY;
   markers.onload();
+  sticky.onload();
   animate.onload();
   parallax.onload();
 };
