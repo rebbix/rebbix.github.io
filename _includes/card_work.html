@@ -1,7 +1,7 @@
 <div class="card card_work card_{{ item.type }}{% if item.offset %} card_offset-{{ item.offset }}{% endif %}{% if item.offset-top %} card_offset-top-{{ item.offset-top }}{% endif %}{% if item.width %} card_width-{{ item.width }}{% endif %}" data-year="{{ item.date | date: "%Y" }}">
   <{% if item.link %}a href="{{ item.link }}" target="_blank" {% else %}div {% endif %} {% unless item.type == 'separator' %} class="card__wrap card__wrap_work" {% endunless %} {% if item.style %} style="{{ item.style }}"{% endif %} data-shadowcolor="{{ item.shadow_color }}" >
     {% if item.top_image %}
-      <img class="card__top_image" src="{{ item.top_image }}"/>
+      <img class="card__top_image" src="{{ item.top_image }}" {% if item.top_image_style %} style="{{ item.top_image_style }}" {% endif %} />
     {% endif %}
     <div class="card__content" {% if item.content_style %} style="{{ item.content_style }}" {% endif %}>
       {% if item.image %}
