@@ -47,12 +47,12 @@ function RB_Scroll() {
     }
   }
 
-  // window.addEventListener('wheel', (e) => {
-  //   e.preventDefault();
-  //   scrollTo += e.deltaY;
+  window.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    scrollTo += e.deltaY;
 
-  //   performScroll();
-  // });
+    performScroll();
+  });
 
   onload = () => {
     const scrollHintNode = document.getElementById('headerScrollHint');
