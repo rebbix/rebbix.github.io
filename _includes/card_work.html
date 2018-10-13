@@ -3,7 +3,7 @@
     {% if item.top_image %}
       <img class="card__top_image" src="{{ item.top_image }}"/>
     {% endif %}
-    <div class="card__content">
+    <div class="card__content" {% if item.content_style %} style="{{ item.content_style }}" {% endif %}>
       {% if item.image %}
         <img class="card__img" src="{{item.image}}" {% if item.image_style %} {{ item.image_style }}{% endif %} />
       {% endif %}
@@ -18,7 +18,7 @@
       {% endunless %}
     </div>
     {% if item.bottom_image %}
-      <img class="card__bottom_image" src="{{ item.bottom_image }}" />
+      <img class="card__bottom_image" src="{{ item.bottom_image }}" {% if item.bottom_image_style %} style="{{ item.bottom_image_style }}" {% endif %}/>
     {% endif %}
   </{% if item.link %}a {% else %}div {% endif %}>
 </div>
