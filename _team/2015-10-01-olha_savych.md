@@ -5,5 +5,5 @@ name: "Olha Savych"
 type: "right"
 width: 6
 offset: 1
-offset-top: 5
+offset-top: 10
 ---

@@ -4,6 +4,6 @@ image: "/img/team/2016 yuriy_k@2x.jpg"
 name: "Yuriy Krevnyi"
 type: "right"
 width: 7
-offset: 3
+offset: 5
 offset-top: 17
 ---
