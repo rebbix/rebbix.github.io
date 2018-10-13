@@ -5,5 +5,5 @@ name: "Valery Topalo"
 type: "left"
 width: 9
 offset: 1
-offset-top: 23
+offset-top: 8
 ---
