@@ -85,6 +85,13 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     }
   }
 
+  &_embed:hover &__img {
+    transform: translate(0, -1em) !important;
+
+    @media #{$tablet} {
+      transform: none !important;
+    }
+  }
 
   &__wrap_work:hover {
     transform: translate(0, -1em) !important;
