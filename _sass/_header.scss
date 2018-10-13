@@ -124,6 +124,7 @@ $fade-duration: 0.4s;
     transform: scale(1);
     transition: transform 0.3s;
     display: inline-block;
+    cursor: pointer;
     @media (min-width: $mobile_break_point + 1 ) {
       z-index: 10;
     }
@@ -191,6 +192,35 @@ $fade-duration: 0.4s;
 
     @media #{$mobile} {
       line-height: 25px;
+    }
+  }
+  &__scroll-hint {
+    // margin: 150px auto 0;
+    text-align: center;
+    width: 45px;
+    height: 64px;
+    background: url('/img/arrow-down.svg') no-repeat bottom center;
+    color: #aaaaaa;
+    font-size: 16;
+    font-family: "acumin-pro-wide", "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 50px;
+    transition: opacity .3s;
+    cursor: pointer;
+
+    @media screen and (min-height: 720px) {
+      display: none;
+    }
+
+    @media screen and (max-width: $mobile_break_point) {
+      display: none;
+    }
+
+    &.hidden {
+      opacity: 0;
     }
   }
 }

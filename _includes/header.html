@@ -6,11 +6,11 @@
   --><a {% if page.url != '/contacts' %} href="{{ '/contacts' | prepend:site.baseurl }}" {% endif %} class="header__nav-item{% if page.url == '/contacts' %} header__nav-item_current-page header__nav-item_active {% endif %}" ontouchstart="">Contacts</a>
   </nav>
   <div class="header__wrap">
-    <a href="{{ '/' | prepend:site.baseurl }}" class="header__logo-wrapper">
+    <div href="{{ '/' | prepend:site.baseurl }}" class="header__logo-wrapper">
       <div class="header__logo-bg" id="headerLogo">
         <img class="header__logo" src="{{ '/img/logo_bb.svg' | prepend:site.baseurl }}"/>
       </div>
-    </a>
+    </div>
     {% if page.header %}
       <h1
         class="title"
@@ -21,6 +21,9 @@
     {% endif %}
     {% if page.subheader %}
       {{ page.subheader }}
+    {% endif %}
+    {% if page.url == '/' %}
+      <div class="header__scroll-hint" id="headerScrollHint">Scroll</div>
     {% endif %}
   </div>
 </header>

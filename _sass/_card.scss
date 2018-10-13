@@ -94,10 +94,6 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     }
   }
 
-  &_separator {
-    pointer-events: none !important;
-  }
-
   &__wrap_person:hover .card__photo {
     transform: translate(0, -1em) !important;
     box-shadow: $default_box_shadow !important;
