@@ -6,4 +6,4 @@ offset: 2
 link: "https://www.investing.com/"
 offset-top: 7
 ---
-### Started working with one of the top global financial portals.
+### Started working with one of the top global financial portals
