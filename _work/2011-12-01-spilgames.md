@@ -5,4 +5,4 @@ width: 14
 offset-top: 3
 ---
 #### Spilgames
-One of the top online gaming companies with more than 100 million monthly active users
+One of the top online gaming companies with more than 100 million monthly active users.

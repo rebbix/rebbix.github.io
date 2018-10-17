@@ -10,4 +10,4 @@ width: 14
 offset-top: 3
 ---
 #### Belvilla mobile apps
-UX, Design and development solution provider for Belvilla’s mobile apps.
+UX, design and development solution provider for Belvilla’s mobile apps.

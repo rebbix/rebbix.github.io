@@ -8,4 +8,4 @@ offset: 3
 offset-top: 7
 ---
 #### Cryptosigma MVP
-Launching an MVP of bitcoin wallet and exchange platform.
+Launching an MVP of a bitcoin wallet and exchange platform.
