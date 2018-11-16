@@ -1,0 +1,15 @@
+---
+title: Join Rebbix
+layout: default
+hide_markers: true
+permalink: /jobs
+og_image: /img/covers/TODO.png
+og_description: TODO
+header: Join our team
+subheader: <p class="header__subtitle">"GET OVER HERE!" — Pani Galia</p>
+---
+<main class="content hover_transition" id="contentContainer">
+    {% for item in site.jobs reversed %}
+    {% include card_jobs.html item=item %}
+    {% endfor %}
+</main>

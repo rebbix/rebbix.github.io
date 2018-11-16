@@ -2,7 +2,8 @@
 function RB_Markers() {
   /* INITIAL-DATA */
   const URL = window.location.pathname;
-  const HIDE_MARKERS = ['/contacts'].indexOf(URL) > -1;
+  // TODO: Refactor the crap below. It belongs in config.
+  const HIDE_MARKERS = (['/contacts'].indexOf(URL) > -1) || (['/jobs'].indexOf(URL) > -1);
   const REPLACE_LATEST_YAER = URL === '/';
   const HIDE_LAST_MARKER = URL === '/';
 

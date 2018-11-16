@@ -20,6 +20,7 @@ collections:
 - work
 - team
 - life
+- jobs
 
 exclude:
   - .dockerignore
