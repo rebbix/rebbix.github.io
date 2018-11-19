@@ -1,0 +1,9 @@
+@import "base";
+
+.belvillaCard {
+  padding: 40px 50px 50px !important;
+
+  @media #{$mobile} {
+    padding: 40px 30px 50px !important;
+  }
+}
