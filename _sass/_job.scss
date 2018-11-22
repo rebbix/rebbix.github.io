@@ -1,0 +1,50 @@
+@import "mixin";
+
+.job {
+  &__description {
+    $font-size: 20px;
+    $line-height: 28px;
+
+    font-family: "acumin-pro", "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-size: $font-size;
+    line-height: $line-height;
+    color: #222;
+    max-width: 840px;
+    font-weight: 300;
+
+    @media (max-width: $responsive_break_point) {
+      font-size: #{$font-size * 100 / $responsive_width}vw;
+      line-height: #{$line-height * 100 / $responsive_width}vw;
+    }
+  }
+
+  &__techListTitle {
+    margin-bottom: 0;
+    font-weight: 600;
+  }
+
+  &__techList {
+    margin: 0 0 1em;
+    padding: 0;
+
+    li {
+      list-style: none;
+    }
+  }
+
+  &__photoSectionTitle {
+    $font-size: 28px;
+    $line-height: 35px;
+
+    font-family: "acumin-pro-wide", "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-size: $font-size;
+    line-height: $line-height;
+    font-weight: 300;
+    margin-top: 100px;
+
+    @media (max-width: $responsive_break_point) {
+      font-size: #{$font-size * 100 / $responsive_width}vw;
+      line-height: #{$line-height * 100 / $responsive_width}vw;
+    }
+  }
+}

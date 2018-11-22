@@ -1,0 +1,23 @@
+- url: "/img/job_images/fixly-1.jpg"
+  type: "left"
+  width: 16
+  offset: 0
+  offset-top: 2
+
+- url: "/img/job_images/fixly-2.jpg"
+  type: "right"
+  width: 14
+  offset: 2
+  offset-top: 18
+
+- url: "/img/job_images/fixly-3.jpg"
+  type: "left"
+  width: 14
+  offset: 0
+  offset-top: 22
+
+- url: "/img/job_images/fixly-4.jpg"
+  type: "right"
+  width: 15
+  offset: 0
+  offset-top: 13

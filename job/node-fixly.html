@@ -1,0 +1,35 @@
+---
+title: Join Rebbix
+layout: default
+hide_markers: true
+permalink: /job/node-fixly
+og_image: /img/covers/TODO.png
+og_description: TODO
+header: Node.js Developer, Fixly
+subheader: <span></span>
+---
+
+<main class="content hover_transition" id="contentContainer">
+  <section class="job__description">
+      <p>Fixly — its project that we deleveled and support together with OLX (Naspers). Full cycle: prototyping, UX, development and support production on our side. After the pilot project in Poland plan to scale on other markets. Project data-driven, a lot of analytics, a/b experiments and other interesting experience.</p>
+
+      <p class="job__techListTitle">Main technologies:</p>
+      <ul class="job__techList">
+        <li>Backend: Node.js, Graphql, AWS, PortgreSQL, Docker, PHP (legacy pages / admin).</li>
+        <li>Frontend: react.js and etc.</li>
+        <li>Android/iOS apps</li>
+      </ul>
+
+      <p>Most of your time you’ll work with NodeJs API, but the desire to dig into Frontend or other parts of a code are welcome.</p>
+  </section>
+
+  <aside style="display: none;">
+    <!-- Here will be awesome social buttons -->
+  </aside>
+
+  <h2 class="job__photoSectionTitle">Meet Fixly Team</h2>
+  {% for item in site.data.fixly-team %}
+    {% include card_job_image.html item=item %}
+  {% endfor %}
+</main>
+
