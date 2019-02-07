@@ -23,9 +23,8 @@ function RB_Scroll() {
       top: delta,
       left: 0,
     });
-    
+
     if (scrolled > 0 && Math.round(scrolled) !== Math.round(scrollTo)) {
-      console.log(scrollTo, scrolled);
       requestAnimationFrame(imitateScroll);
     } else {
       scrolling = false;

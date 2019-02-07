@@ -34,7 +34,6 @@ function RB_LazyImageLoader() {
 
   function sizeSetListener(event) {
     sizesSet = true;
-    console.log({ sizesSet });
   }
 
   function messageHandler(event) {
