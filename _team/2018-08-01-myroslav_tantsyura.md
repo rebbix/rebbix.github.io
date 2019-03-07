@@ -4,6 +4,6 @@ image: "/img/team/2018_myroslav_tanstyura.jpg"
 name: "Myroslav Tantsyura"
 type: "left"
 width: 9
-offset-top: 10
-offset: 4
+offset-top: 4
+offset: 2
 ---

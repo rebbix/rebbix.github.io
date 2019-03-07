@@ -3,10 +3,10 @@
 $fade-duration: 0.4s;
 
 .header {
-  padding: 200px 120px 50px;
+  padding: 200px 100px 50px;
   box-sizing: border-box;
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 1240px;
   font-family: "acumin-pro-wide", "Helvetica Neue", Arial, Helvetica, sans-serif;
 
   &_work {
@@ -140,7 +140,7 @@ $fade-duration: 0.4s;
       height: 35px;
       background: url("/img/no-bb-logo.svg") no-repeat;
       position: absolute;
-      top: 33px;
+      top: 36px;
       left: 0;
       opacity: 1;
       transition: opacity 0.3s;
