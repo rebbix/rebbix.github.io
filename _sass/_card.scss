@@ -668,8 +668,23 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     line-height: 27px;
     color: #fff;
     text-decoration: none;
-    background: url('/img/contact_arrow.png') left 70% center no-repeat;
-    background-size: 1.7vw;
+    // background: url('/img/contact_arrow.png') left 70% center no-repeat;
+    // background-size: 1.7vw;
+
+    &::after {
+      display: block;
+      content: '';
+      position: absolute;
+      width: 30%;
+      height: 100%;
+      top: 0;
+      right: 0;
+      background: url('/img/contact_arrow.png') left center no-repeat;
+      background-size: 1.7vw;
+      @media #{$mobile} {
+        background-size: 1em;
+      }
+    }
 
     &_fb {
       background-color: #3B5998;
@@ -677,6 +692,11 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
 
     &_ln {
       background-color: #007BB6;
+    }
+
+    &_in {
+      background-color: #0e24f7;
+      background-image: linear-gradient(90deg, #0e24f7, #eb4c59) ;
     }
 
     @media (max-width: $responsive_break_point) {
@@ -687,7 +707,6 @@ $default_box_shadow: 0px 2vw 7vw 1vw rgba(128, 128, 128, .4);
     @media #{$mobile} {
       font-size: 1em;
       line-height: initial;
-      background-size: 1em;
     }
   }
 
